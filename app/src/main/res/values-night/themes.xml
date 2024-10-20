@@ -7,4 +7,9 @@
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
         <item name="android:windowLightStatusBar">false</item>
     </style>
+
+    <style name="CreateNote">
+        <item name="tint">@color/dark_grey</item>
+        <item name="backgroundTint">@color/light_grey</item>
+    </style>
 </resources>
