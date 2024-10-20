@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Base.Theme.Notable" parent="Theme.Material3.DayNight.NoActionBar">
-
+        <item name="colorPrimary">@color/ghost_white</item>
     </style>
 
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
