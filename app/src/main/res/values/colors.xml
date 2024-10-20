@@ -4,7 +4,7 @@
     <color name="pure_white">#FFFFFFFF</color>
 
     <color name="ghost_white">#F3F4F6</color>
-    <color name="dark_grey">#393939</color>
+    <color name="dark_grey">#222222</color>
     <color name="light_grey">#F0F0F0</color>
     <color name="beige">#F5F5DC</color>
 </resources>
