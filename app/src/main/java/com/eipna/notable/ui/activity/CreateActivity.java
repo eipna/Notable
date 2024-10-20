@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.eipna.notable.R;
 import com.eipna.notable.databinding.ActivityCreateBinding;
+import com.eipna.notable.util.DateUtil;
 
 public class CreateActivity extends AppCompatActivity {
 
@@ -21,5 +22,8 @@ public class CreateActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        // Sets date creation text to current date (Eg. Monday, October 21 2024)
+        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED, DateUtil.getCurrentTime()));
     }
 }
