@@ -14,17 +14,22 @@ import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
 
 import java.util.ArrayList;
+import java.util.Date;
+
+import org.ocpsoft.prettytime.*;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private final ArrayList<NoteModel> notes;
     private final Context context;
     private final NoteListener listener;
+    private PrettyTime prettyTime;
 
     public NoteAdapter(Context context, NoteListener listener, ArrayList<NoteModel> notes) {
         this.context = context;
         this.notes = notes;
         this.listener = listener;
+        this.prettyTime = new PrettyTime();
     }
 
     @NonNull
@@ -39,6 +44,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         NoteModel currentNote = notes.get(position);
         holder.noteTitle.setText(currentNote.getNoteTitle());
         holder.noteContent.setText(currentNote.getNoteContent());
+        holder.noteDateEdited.setText(prettyTime.format(new Date(currentNote.getNoteDateEdited())));
     }
 
     @Override
@@ -48,12 +54,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView noteTitle, noteContent;
+        TextView noteTitle, noteContent, noteDateEdited;
 
         public ViewHolder(@NonNull View itemView, NoteListener listener) {
             super(itemView);
             noteTitle = itemView.findViewById(R.id.noteTitle);
             noteContent = itemView.findViewById(R.id.noteContent);
+            noteDateEdited = itemView.findViewById(R.id.noteDateEdited);
 
             itemView.setOnClickListener(view -> {
                 if (listener != null) {
