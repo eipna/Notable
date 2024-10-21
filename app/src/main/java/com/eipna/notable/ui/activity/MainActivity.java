@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
+    private final ActivityResultLauncher<Intent> updateNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        if (result.getResultCode() == RESULT_OK) {
+            updateNoteList();
+        }
+    });
+
     private void updateNoteList() {
         notes = database.readNotes();
         adapter = new NoteAdapter(MainActivity.this, notes);
