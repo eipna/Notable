@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
@@ -49,6 +50,16 @@ public class CreateActivity extends AppCompatActivity {
         NoteModel newNote = new NoteModel();
         String title = Objects.requireNonNull(binding.titleInput.getText()).toString();
         String content = Objects.requireNonNull(binding.noteInput.getText()).toString();
+
+        // Error handling for title and note fields
+        if (title.isEmpty()) {
+            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DD_MM_YYYY, DateUtil.getCurrentTime()));
+        }
+
+        if (content.isEmpty()) {
+            Toast.makeText(this, "Error: This input is required", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         newNote.setNoteTitle(title);
         newNote.setNoteContent(content);
