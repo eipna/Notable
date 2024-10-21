@@ -7,6 +7,8 @@ public class NoteModel {
     private String noteContent;
     private long noteDateCreated;
 
+    public static final String EMPTY_NOTE = "Empty note.";
+
     public NoteModel() {
         this.noteId = -1;
         this.noteTitle = null;
