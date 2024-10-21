@@ -11,13 +11,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.eipna.notable.data.Database;
+import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
 import com.eipna.notable.databinding.ActivityMainBinding;
 import com.eipna.notable.ui.adapter.NoteAdapter;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityMainBinding binding;
     private Database database;
@@ -54,5 +55,21 @@ public class MainActivity extends AppCompatActivity {
         adapter = new NoteAdapter(MainActivity.this, notes);
         binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         binding.noteList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onNoteClick(int position) {
+        NoteModel note = notes.get(position);
+        int noteId = note.getNoteId();
+        String noteTitle = note.getNoteTitle();
+        String noteContent = note.getNoteContent();
+        long noteDateCreated = note.getNoteDateCreated();
+
+        Intent updateNoteIntent = new Intent(MainActivity.this, UpdateActivity.class);
+        updateNoteIntent.putExtra("NOTE_ID", noteId);
+        updateNoteIntent.putExtra("NOTE_TITLE", noteTitle);
+        updateNoteIntent.putExtra("NOTE_CONTENT", noteContent);
+        updateNoteIntent.putExtra("NOTE_DATE_CREATED", noteDateCreated);
+        updateNoteLauncher.launch(updateNoteIntent);
     }
 }
