@@ -6,6 +6,7 @@ public class NoteModel {
     private String noteTitle;
     private String noteContent;
     private long noteDateCreated;
+    private long noteDateEdited;
 
     public static final String EMPTY_NOTE = "Empty note.";
 
@@ -14,6 +15,7 @@ public class NoteModel {
         this.noteTitle = null;
         this.noteContent = null;
         this.noteDateCreated = -1;
+        this.noteDateEdited = -1;
     }
 
     public int getNoteId() {
@@ -34,6 +36,14 @@ public class NoteModel {
 
     public void setNoteDateCreated(long noteDateCreated) {
         this.noteDateCreated = noteDateCreated;
+    }
+
+    public long getNoteDateEdited() {
+        return noteDateEdited;
+    }
+
+    public void setNoteDateEdited(long noteDateEdited) {
+        this.noteDateEdited = noteDateEdited;
     }
 
     public void setNoteTitle(String noteTitle) {

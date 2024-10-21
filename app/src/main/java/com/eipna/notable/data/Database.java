@@ -25,6 +25,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_NOTE_TITLE = "title";
     private static final String COLUMN_NOTE_CONTENT = "content";
     private static final String COLUMN_NOTE_DATE_CREATED = "date_created";
+    private static final String COLUMN_NOTE_DATE_EDITED = "date_edited";
 
     public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,7 +37,8 @@ public class Database extends SQLiteOpenHelper {
                 COLUMN_NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NOTE_TITLE + " TEXT, " +
                 COLUMN_NOTE_CONTENT + " TEXT, " +
-                COLUMN_NOTE_DATE_CREATED + " LONG)";
+                COLUMN_NOTE_DATE_CREATED + " LONG, " +
+                COLUMN_NOTE_DATE_EDITED + " LONG)";
         sqLiteDatabase.execSQL(noteQuery);
     }
 
@@ -51,6 +53,7 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
         values.put(COLUMN_NOTE_DATE_CREATED, note.getNoteDateCreated());
+        values.put(COLUMN_NOTE_DATE_EDITED, note.getNoteDateEdited());
         getWritableDatabase().insert(TABLE_NOTE, null, values);
         close();
     }
@@ -77,6 +80,7 @@ public class Database extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
+        values.put(COLUMN_NOTE_DATE_EDITED, note.getNoteDateEdited());
         getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(note.getNoteId())});
         close();
     }
