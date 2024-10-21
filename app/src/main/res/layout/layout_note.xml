@@ -17,7 +17,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:paddingTop="14dp"
-        android:paddingBottom="16dp"
+        android:paddingBottom="12dp"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:layout_width="match_parent"
@@ -45,5 +45,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:targetApi="o" />
+
+        <LinearLayout
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@drawable/edit"
+                android:layout_marginEnd="2dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"/>
+
+            <TextView
+                android:id="@+id/noteDateEdited"
+                android:text="a few moments ago"
+                android:textSize="13sp"
+                android:fontFamily="sans-serif-medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
