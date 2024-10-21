@@ -24,6 +24,7 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_NOTE_ID = "note_id";
     private static final String COLUMN_NOTE_TITLE = "title";
     private static final String COLUMN_NOTE_CONTENT = "content";
+    private static final String COLUMN_NOTE_DATE_CREATED = "date_created";
 
     public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,7 +35,8 @@ public class Database extends SQLiteOpenHelper {
         String noteQuery = "CREATE TABLE IF NOT EXISTS " + TABLE_NOTE + "(" +
                 COLUMN_NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NOTE_TITLE + " TEXT, " +
-                COLUMN_NOTE_CONTENT + " TEXT)";
+                COLUMN_NOTE_CONTENT + " TEXT, " +
+                COLUMN_NOTE_DATE_CREATED + " LONG)";
         sqLiteDatabase.execSQL(noteQuery);
     }
 
@@ -48,6 +50,7 @@ public class Database extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
+        values.put(COLUMN_NOTE_DATE_CREATED, note.getNoteDateCreated());
         getWritableDatabase().insert(TABLE_NOTE, null, values);
         close();
     }
@@ -59,7 +62,12 @@ public class Database extends SQLiteOpenHelper {
         @SuppressLint("Recycle")
         Cursor cursor = getReadableDatabase().rawQuery(readQuery, null);
         while (cursor.moveToNext()) {
-            notes.add(new NoteModel(cursor.getInt(0), cursor.getString(1), cursor.getString(2)));
+            NoteModel note = new NoteModel();
+            note.setNoteId(cursor.getInt(0));
+            note.setNoteTitle(cursor.getString(1));
+            note.setNoteContent(cursor.getString(2));
+            note.setNoteDateCreated(cursor.getLong(3));
+            notes.add(note);
         }
         cursor.close();
         return notes;

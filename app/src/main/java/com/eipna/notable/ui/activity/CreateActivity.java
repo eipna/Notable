@@ -63,6 +63,7 @@ public class CreateActivity extends AppCompatActivity {
 
         newNote.setNoteTitle(title);
         newNote.setNoteContent(content);
+        newNote.setNoteDateCreated(DateUtil.getCurrentTime());
         database.createNote(newNote);
 
         closeActivity();

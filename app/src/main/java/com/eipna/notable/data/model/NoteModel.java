@@ -5,17 +5,13 @@ public class NoteModel {
     private int noteId;
     private String noteTitle;
     private String noteContent;
+    private long noteDateCreated;
 
     public NoteModel() {
         this.noteId = -1;
         this.noteTitle = null;
         this.noteContent = null;
-    }
-
-    public NoteModel(int noteId, String noteTitle, String noteContent) {
-        this.noteId = noteId;
-        this.noteTitle = noteTitle;
-        this.noteContent = noteContent;
+        this.noteDateCreated = -1;
     }
 
     public int getNoteId() {
@@ -28,6 +24,14 @@ public class NoteModel {
 
     public String getNoteTitle() {
         return noteTitle;
+    }
+
+    public long getNoteDateCreated() {
+        return noteDateCreated;
+    }
+
+    public void setNoteDateCreated(long noteDateCreated) {
+        this.noteDateCreated = noteDateCreated;
     }
 
     public void setNoteTitle(String noteTitle) {
