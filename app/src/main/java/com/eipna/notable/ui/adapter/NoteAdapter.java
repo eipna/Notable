@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
+import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
 
 import java.util.ArrayList;
@@ -18,17 +19,19 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private final ArrayList<NoteModel> notes;
     private final Context context;
+    private final NoteListener listener;
 
-    public NoteAdapter(Context context, ArrayList<NoteModel> notes) {
+    public NoteAdapter(Context context, NoteListener listener, ArrayList<NoteModel> notes) {
         this.context = context;
         this.notes = notes;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_note, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, listener);
     }
 
     @Override
@@ -47,10 +50,19 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         TextView noteTitle, noteContent;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, NoteListener listener) {
             super(itemView);
             noteTitle = itemView.findViewById(R.id.noteTitle);
             noteContent = itemView.findViewById(R.id.noteContent);
+
+            itemView.setOnClickListener(view -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onNoteClick(position);
+                    }
+                }
+            });
         }
     }
 }
