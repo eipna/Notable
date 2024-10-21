@@ -70,6 +70,7 @@ public class Database extends SQLiteOpenHelper {
             note.setNoteTitle(cursor.getString(1));
             note.setNoteContent(cursor.getString(2));
             note.setNoteDateCreated(cursor.getLong(3));
+            note.setNoteDateEdited(cursor.getLong(4));
             notes.add(note);
         }
         cursor.close();
