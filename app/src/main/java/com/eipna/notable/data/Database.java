@@ -32,7 +32,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String noteQuery = "CREATE TABLE IF NOT EXISTS " + TABLE_NOTE + "(" +
-                COLUMN_NOTE_ID + " INTGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NOTE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_NOTE_TITLE + " TEXT, " +
                 COLUMN_NOTE_CONTENT + " TEXT)";
         sqLiteDatabase.execSQL(noteQuery);
