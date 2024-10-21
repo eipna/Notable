@@ -8,12 +8,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.eipna.notable.R;
+import com.eipna.notable.data.Database;
+import com.eipna.notable.data.model.NoteModel;
 import com.eipna.notable.databinding.ActivityUpdateBinding;
 import com.eipna.notable.util.DateUtil;
+
+import java.util.Objects;
 
 public class UpdateActivity extends AppCompatActivity {
 
     private ActivityUpdateBinding binding;
+    private Database database;
 
     private int noteIdExtra;
     private String noteTitleExtra, noteContentExtra;
@@ -24,6 +29,7 @@ public class UpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUpdateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        database = new Database(UpdateActivity.this);
 
         getExtras();
 
@@ -54,12 +60,30 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateNote() {
-        closeActivity();
+        if (noteIsUnchanged()) {
+            finish();
+        } else {
+            NoteModel updatedNote = new NoteModel();
+            String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
+            String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
+
+            updatedNote.setNoteId(noteIdExtra);
+            updatedNote.setNoteTitle(updateNoteTitle);
+            updatedNote.setNoteContent(updateNotedContent);
+            database.updateNote(updatedNote);
+            closeActivity();
+        }
     }
 
     private void closeActivity() {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    private boolean noteIsUnchanged() {
+        String currentNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
+        String currentNoteContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        return currentNoteTitle.equals(noteTitleExtra) && currentNoteContent.equals(noteContentExtra);
     }
 }
