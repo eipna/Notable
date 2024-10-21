@@ -64,4 +64,12 @@ public class Database extends SQLiteOpenHelper {
         cursor.close();
         return notes;
     }
+
+    public void updateNote(NoteModel note) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
+        values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
+        getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(note.getNoteId())});
+        close();
+    }
 }
