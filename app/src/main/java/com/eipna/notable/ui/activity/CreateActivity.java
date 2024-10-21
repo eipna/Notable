@@ -57,8 +57,7 @@ public class CreateActivity extends AppCompatActivity {
         }
 
         if (content.isEmpty()) {
-            Toast.makeText(this, "Error: This input is required", Toast.LENGTH_SHORT).show();
-            return;
+            content = NoteModel.EMPTY_NOTE;
         }
 
         newNote.setNoteTitle(title);
