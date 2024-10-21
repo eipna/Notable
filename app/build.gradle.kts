@@ -36,6 +36,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.preference:preference-ktx:1.2.1")
     implementation("org.ocpsoft.prettytime:prettytime:5.0.8.Final")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
