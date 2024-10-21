@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         binding.createNote.setOnClickListener(view -> createNoteLauncher.launch(new Intent(MainActivity.this, CreateActivity.class)));
     }
 
-    private ActivityResultLauncher<Intent> createNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+    private final ActivityResultLauncher<Intent> createNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
             Toast.makeText(this, "DEBUG: New Note Created", Toast.LENGTH_SHORT).show();
         }
