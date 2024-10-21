@@ -57,6 +57,9 @@ public class UpdateActivity extends AppCompatActivity {
             updateNote();
         }
 
+        if (item.getItemId() == R.id.options_update_share) {
+            showShareIntent();
+        }
         return true;
     }
 
@@ -64,6 +67,16 @@ public class UpdateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
         return true;
+    }
+
+    private void showShareIntent() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(binding.noteInput.getText()).toString());
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
     }
 
     private void updateNote() {
