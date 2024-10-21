@@ -8,18 +8,24 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.eipna.notable.R;
+import com.eipna.notable.data.Database;
+import com.eipna.notable.data.model.NoteModel;
 import com.eipna.notable.databinding.ActivityCreateBinding;
 import com.eipna.notable.util.DateUtil;
+
+import java.util.Objects;
 
 public class CreateActivity extends AppCompatActivity {
 
     private ActivityCreateBinding binding;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        database = new Database(CreateActivity.this);
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
@@ -40,6 +46,18 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     public void createNote() {
+        NoteModel newNote = new NoteModel();
+        String title = Objects.requireNonNull(binding.titleInput.getText()).toString();
+        String content = Objects.requireNonNull(binding.noteInput.getText()).toString();
+
+        newNote.setNoteTitle(title);
+        newNote.setNoteContent(content);
+        database.createNote(newNote);
+
+        closeActivity();
+    }
+
+    public void closeActivity() {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
