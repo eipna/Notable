@@ -90,6 +90,7 @@ public class UpdateActivity extends AppCompatActivity {
             updatedNote.setNoteId(noteIdExtra);
             updatedNote.setNoteTitle(updateNoteTitle);
             updatedNote.setNoteContent(updateNotedContent);
+            updatedNote.setNoteDateEdited(DateUtil.getCurrentTime());
             database.updateNote(updatedNote);
             closeActivity();
         }
