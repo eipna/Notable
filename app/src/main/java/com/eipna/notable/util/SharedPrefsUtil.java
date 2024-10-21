@@ -3,7 +3,7 @@ package com.eipna.notable.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SharedPrefsUtil {
+public final class SharedPrefsUtil {
     private static final String PREFS_NAME = "NOTABLE_PREFS";
     private final SharedPreferences sharedPreferences;
 

@@ -5,7 +5,7 @@ import android.annotation.SuppressLint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DateUtil {
+public final class DateUtil {
 
     public static final String PATTERN_DETAILED = "EEEE, dd MMMM yyyy";
     public static final String PATTERN_DD_MM_YYYY = "dd/mm/yyyy";
