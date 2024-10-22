@@ -2,14 +2,18 @@ package com.eipna.notable.ui.activity;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
@@ -49,6 +53,26 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
             updateNoteList();
         }
     });
+
+    private final ActivityResultLauncher<Intent> settingsLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        if (result.getResultCode() == RESULT_OK) {
+            // Update note configuration in some way
+        }
+    });
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.options_main_settings) {
+            settingsLauncher.launch(new Intent(MainActivity.this, SettingsActivity.class));
+        }
+        return true;
+    }
 
     private void updateNoteList() {
         notes = database.readNotes();
