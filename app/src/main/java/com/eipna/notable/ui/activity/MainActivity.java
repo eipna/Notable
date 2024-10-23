@@ -96,4 +96,16 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
         updateNoteIntent.putExtra("NOTE_DATE_CREATED", noteDateCreated);
         updateNoteLauncher.launch(updateNoteIntent);
     }
+
+    @Override
+    public void onNoteLongClick(int position) {
+        /*
+        Prototype note long click behaviour and implementation
+        For now the function is to delete the note
+         */
+        NoteModel note = notes.get(position);
+        database.deleteNote(note.getNoteId());
+        notes.remove(position);
+        adapter.notifyItemRemoved(position);
+    }
 }
