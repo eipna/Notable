@@ -85,4 +85,9 @@ public class Database extends SQLiteOpenHelper {
         getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(note.getNoteId())});
         close();
     }
+
+    public void deleteNote(int noteId) {
+        getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
+        close();
+    }
 }
