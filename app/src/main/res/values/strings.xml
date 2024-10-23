@@ -12,4 +12,15 @@
         tristique odio luctus quisque habitasse dictum metus tempus dis. Amet dictum
         elementum himenaeos dis vel at magna litora donec. Odio interdum fames
         molestie taciti sodales tempor vel diam tellus.</string>
+
+    <string-array name="preference_list_theme">
+        <item>Follow System</item>
+        <item>Light Mode</item>
+        <item>Dark Mode</item>
+    </string-array>
+    <string-array name="preference_list_theme_values">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
 </resources>

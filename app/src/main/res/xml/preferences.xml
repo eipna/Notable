@@ -2,7 +2,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        app:title="ABOUT">
+        app:title="Look &amp; Feel">
+
+        <ListPreference
+            android:key="list_theme"
+            app:title="Theme"
+            app:summary="Change between light mode or dark mode or follow the current system theme"
+            android:entries="@array/preference_list_theme"
+            android:entryValues="@array/preference_list_theme_values"
+            app:icon="@drawable/sun"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="About">
 
         <Preference
             app:title="Github"
