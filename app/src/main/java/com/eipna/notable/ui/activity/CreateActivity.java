@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.model.NoteModel;
 import com.eipna.notable.databinding.ActivityCreateBinding;
@@ -53,7 +51,7 @@ public class CreateActivity extends AppCompatActivity {
 
         // Error handling for title and note fields
         if (title.isEmpty()) {
-            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DD_MM_YYYY, DateUtil.getCurrentTime()));
+            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DAY_MONTH_YEAR, DateUtil.getCurrentTime()));
         }
 
         if (content.isEmpty()) {
