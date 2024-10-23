@@ -8,6 +8,10 @@ public class NoteModel {
     private long noteDateCreated;
     private long noteDateEdited;
 
+    public static final int STATUS_DEFAULT = 1;
+    public static final int STATUS_ARCHIVED = 2;
+    public static final int STATUS_DELETED = 3;
+
     public static final String EMPTY_NOTE = "Empty note.";
 
     public NoteModel() {
