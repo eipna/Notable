@@ -7,6 +7,7 @@ public class NoteModel {
     private String noteContent;
     private long noteDateCreated;
     private long noteDateEdited;
+    private int noteStatus;
 
     public static final int STATUS_DEFAULT = 1;
     public static final int STATUS_ARCHIVED = 2;
@@ -20,6 +21,7 @@ public class NoteModel {
         this.noteContent = null;
         this.noteDateCreated = -1;
         this.noteDateEdited = -1;
+        this.noteStatus = -1;
     }
 
     public int getNoteId() {
@@ -60,5 +62,13 @@ public class NoteModel {
 
     public void setNoteContent(String noteContent) {
         this.noteContent = noteContent;
+    }
+
+    public int getNoteStatus() {
+        return noteStatus;
+    }
+
+    public void setNoteStatus(int noteStatus) {
+        this.noteStatus = noteStatus;
     }
 }
