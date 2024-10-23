@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Notable</string>
     <string name="app_version">1.0.0</string>
+    <string name="link_github">https://github.com/eipna/Notable</string>
 
     <string name="lorem_ipsum">Lorem ipsum odor amet, consectetuer adipiscing elit.
         At volutpat donec potenti libero ante; dictumst litora. Netus netus posuere
