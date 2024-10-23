@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Notable</string>
     <string name="app_version">1.0.0</string>
+    <string name="app_easter_egg">You are now a developer :D</string>
     <string name="link_github">https://github.com/eipna/Notable</string>
 
     <string name="lorem_ipsum">Lorem ipsum odor amet, consectetuer adipiscing elit.
