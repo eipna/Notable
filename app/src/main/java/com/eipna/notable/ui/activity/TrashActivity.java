@@ -3,6 +3,7 @@ package com.eipna.notable.ui.activity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
@@ -14,6 +15,7 @@ import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
 import com.eipna.notable.databinding.ActivityTrashBinding;
 import com.eipna.notable.ui.adapter.NoteAdapter;
+import com.eipna.notable.util.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     private Database database;
     private ArrayList<NoteModel> notes;
     private NoteAdapter adapter;
+    private SharedPrefsUtil sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         binding = ActivityTrashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         database = new Database(TrashActivity.this);
+        sharedPrefs = new SharedPrefsUtil(TrashActivity.this);
 
         updateNoteList();
 
@@ -48,8 +52,21 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     private void updateNoteList() {
         notes = database.readNotes(NoteModel.STATUS_DELETED);
         adapter = new NoteAdapter(this, this, notes);
-        binding.noteList.setLayoutManager(new LinearLayoutManager(TrashActivity.this));
-        binding.noteList.setAdapter(adapter);
+        updateNoteDisplay();
+    }
+
+    private void updateNoteDisplay() {
+        String display = sharedPrefs.getString("DISPLAY", "list");
+        switch (display) {
+            case "list":
+                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+                binding.noteList.setAdapter(adapter);
+                break;
+            case "grid":
+                binding.noteList.setLayoutManager(new GridLayoutManager(this, 2));
+                binding.noteList.setAdapter(adapter);
+                break;
+        }
     }
 
     @Override
