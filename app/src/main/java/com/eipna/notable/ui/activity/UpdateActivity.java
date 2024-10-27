@@ -67,6 +67,22 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
+        switch (noteStatusExtra) {
+            case NoteModel.STATUS_DEFAULT:
+                menu.findItem(R.id.options_update_unarchive).setVisible(false);
+                menu.findItem(R.id.options_update_restore).setVisible(false);
+                menu.findItem(R.id.options_update_delete).setVisible(false);
+                break;
+            case NoteModel.STATUS_ARCHIVED:
+                menu.findItem(R.id.options_update_archive).setVisible(false);
+                menu.findItem(R.id.options_update_restore).setVisible(false);
+                menu.findItem(R.id.options_update_delete).setVisible(false);
+                break;
+            case NoteModel.STATUS_DELETED:
+                menu.findItem(R.id.options_update_unarchive).setVisible(false);
+                menu.findItem(R.id.options_update_Trash).setVisible(false);
+                break;
+        }
         return true;
     }
 
