@@ -94,4 +94,11 @@ public class Database extends SQLiteOpenHelper {
         getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
         close();
     }
+
+    public void alterNoteStatus(int noteId, int newNoteStatus) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NOTE_DATE_STATUS, newNoteStatus);
+        getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
+        close();
+    }
 }
