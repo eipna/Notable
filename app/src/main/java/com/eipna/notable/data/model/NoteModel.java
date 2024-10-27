@@ -8,10 +8,14 @@ public class NoteModel {
     private long noteDateCreated;
     private long noteDateEdited;
     private int noteStatus;
+    private int isFavorite;
 
     public static final int STATUS_DEFAULT = 1;
     public static final int STATUS_ARCHIVED = 2;
     public static final int STATUS_DELETED = 3;
+
+    public static final int IS_FAVORITE = 1;
+    public static final int NOT_FAVORITE = 0;
 
     public static final String EMPTY_NOTE = "Empty note.";
 
@@ -22,6 +26,7 @@ public class NoteModel {
         this.noteDateCreated = -1;
         this.noteDateEdited = -1;
         this.noteStatus = -1;
+        this.isFavorite = -1;
     }
 
     public int getNoteId() {
@@ -70,5 +75,13 @@ public class NoteModel {
 
     public void setNoteStatus(int noteStatus) {
         this.noteStatus = noteStatus;
+    }
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }
