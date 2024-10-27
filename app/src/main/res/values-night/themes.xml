@@ -13,4 +13,8 @@
         <item name="tint">@color/dark_grey</item>
         <item name="backgroundTint">@color/light_grey</item>
     </style>
+
+    <style name="TextViewStyle">
+        <item name="android:textColor">@color/ghost_white</item>
+    </style>
 </resources>

@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private void updateNoteList() {
         notes = database.readNotes(NoteModel.STATUS_DEFAULT);
+        binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
+
         adapter = new NoteAdapter(this, this, notes);
         updateNoteDisplay();
     }
