@@ -23,7 +23,7 @@ public class UpdateActivity extends AppCompatActivity {
     private ActivityUpdateBinding binding;
     private Database database;
 
-    private int noteIdExtra, noteStatusExtra;
+    private int noteIdExtra, noteStatusExtra, noteIsFavoriteExtra;
     private String noteTitleExtra, noteContentExtra;
     private long noteDateCreatedExtra;
 
@@ -52,6 +52,7 @@ public class UpdateActivity extends AppCompatActivity {
         noteContentExtra = getIntent().getStringExtra("NOTE_CONTENT");
         noteDateCreatedExtra = getIntent().getLongExtra("NOTE_DATE_CREATED", -1);
         noteStatusExtra = getIntent().getIntExtra("NOTE_STATUS", -1);
+        noteIsFavoriteExtra = getIntent().getIntExtra("NOTE_FAVORITE", -1);
     }
 
     @Override

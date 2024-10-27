@@ -80,6 +80,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
         String noteContent = note.getNoteContent();
         long noteDateCreated = note.getNoteDateCreated();
         int noteStatus = note.getNoteStatus();
+        int noteIsFavorite = note.getIsFavorite();
 
         Intent updateNoteIntent = new Intent(ArchiveActivity.this, UpdateActivity.class);
         updateNoteIntent.putExtra("NOTE_ID", noteId);
@@ -87,6 +88,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
         updateNoteIntent.putExtra("NOTE_CONTENT", noteContent);
         updateNoteIntent.putExtra("NOTE_DATE_CREATED", noteDateCreated);
         updateNoteIntent.putExtra("NOTE_STATUS", noteStatus);
+        updateNoteIntent.putExtra("NOTE_FAVORITE", noteIsFavorite);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 
