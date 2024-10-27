@@ -85,6 +85,26 @@ public class Database extends SQLiteOpenHelper {
         return notes;
     }
 
+    public ArrayList<NoteModel> readFavoriteNotes() {
+        final ArrayList<NoteModel> notes = new ArrayList<>();
+        String readQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_IS_FAVORITE + " = ?";
+
+        Cursor cursor = getReadableDatabase().rawQuery(readQuery, new String[]{String.valueOf(NoteModel.IS_FAVORITE)});
+        while (cursor.moveToNext()) {
+            NoteModel note = new NoteModel();
+            note.setNoteId(cursor.getInt(0));
+            note.setNoteTitle(cursor.getString(1));
+            note.setNoteContent(cursor.getString(2));
+            note.setNoteDateCreated(cursor.getLong(3));
+            note.setNoteDateEdited(cursor.getLong(4));
+            note.setNoteStatus(cursor.getInt(5));
+            note.setIsFavorite(cursor.getInt(6));
+            notes.add(note);
+        }
+        cursor.close();
+        return notes;
+    }
+
     public void updateNote(NoteModel note) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
