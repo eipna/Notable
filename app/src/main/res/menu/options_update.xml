@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/options_update_favorite"
+        android:title="Favorite"
+        android:icon="@drawable/heart_not_filled"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/options_update_share"
         android:title="Share" />
 
