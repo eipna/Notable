@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
@@ -45,6 +46,8 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
 
     private void updateNoteList() {
         notes = database.readFavoriteNotes();
+        binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
+
         adapter = new NoteAdapter(this, this, notes);
         updateNoteDisplay();
     }
