@@ -59,12 +59,14 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         String noteTitle = note.getNoteTitle();
         String noteContent = note.getNoteContent();
         long noteDateCreated = note.getNoteDateCreated();
+        int noteStatus = note.getNoteStatus();
 
         Intent updateNoteIntent = new Intent(TrashActivity.this, UpdateActivity.class);
         updateNoteIntent.putExtra("NOTE_ID", noteId);
         updateNoteIntent.putExtra("NOTE_TITLE", noteTitle);
         updateNoteIntent.putExtra("NOTE_CONTENT", noteContent);
         updateNoteIntent.putExtra("NOTE_DATE_CREATED", noteDateCreated);
+        updateNoteIntent.putExtra("NOTE_STATUS", noteStatus);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 
