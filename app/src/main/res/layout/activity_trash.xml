@@ -38,8 +38,8 @@
 
         <ImageView
             android:src="@drawable/illustration_trash"
-            android:layout_width="300dp"
-            android:layout_height="300dp"/>
+            android:layout_width="280dp"
+            android:layout_height="280dp"/>
 
         <TextView
             android:text="Your trash is clean :D"
