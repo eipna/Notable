@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -110,6 +112,20 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
+
+        switch (noteIsFavoriteExtra) {
+            case NoteModel.IS_FAVORITE:
+                @SuppressLint("UseCompatLoadingForDrawables")
+                Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
+                menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
+                break;
+            case NoteModel.NOT_FAVORITE:
+                @SuppressLint("UseCompatLoadingForDrawables")
+                Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
+                menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
+                break;
+        }
+
         switch (noteStatusExtra) {
             case NoteModel.STATUS_DEFAULT:
                 menu.findItem(R.id.options_update_unarchive).setVisible(false);
