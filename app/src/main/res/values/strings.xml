@@ -24,4 +24,13 @@
         <item>light</item>
         <item>dark</item>
     </string-array>
+
+    <string-array name="preference_list_display">
+        <item>Show notes by list</item>
+        <item>Show notes by grids</item>
+    </string-array>
+    <string-array name="preference_list_display_values">
+        <item>list</item>
+        <item>grid</item>
+    </string-array>
 </resources>

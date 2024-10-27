@@ -11,6 +11,14 @@
             android:entries="@array/preference_list_theme"
             android:entryValues="@array/preference_list_theme_values"
             app:icon="@drawable/sun"/>
+
+        <ListPreference
+            android:key="list_display"
+            android:title="Display Style"
+            app:icon="@drawable/note"
+            android:entries="@array/preference_list_display"
+            android:entryValues="@array/preference_list_display_values"
+            app:summary="Choose how your notes are displayed"/>
     </PreferenceCategory>
 
     <PreferenceCategory
