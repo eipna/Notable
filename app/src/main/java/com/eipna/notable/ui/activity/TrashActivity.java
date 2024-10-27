@@ -85,7 +85,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         @SuppressLint("NotifyDataSetChanged")
         AlertDialog.Builder builder = new AlertDialog.Builder(TrashActivity.this)
                 .setTitle("Clear Notes")
-                .setMessage("This operation will clear all trashed notes in your device")
+                .setMessage("This operation will clear all notes inside your trash")
                 .setNegativeButton("Cancel", null)
                 .setPositiveButton("Clear", (dialogInterface, i) -> {
                     database.clearTrashNotes();
