@@ -15,6 +15,7 @@ import com.eipna.notable.util.SharedPrefsUtil;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     private ListPreference listTheme;
+    private ListPreference listDisplay;
     private Preference prefsVersion;
     private SharedPrefsUtil sharedPrefs;
 
@@ -39,12 +40,15 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             setTheme((String) newValue);
             return true;
         });
+
+        listDisplay.setNegativeButtonText("");
     }
 
     private void setPreferences() {
         sharedPrefs = new SharedPrefsUtil(requireContext());
         prefsVersion = findPreference("prefs_version");
         listTheme = findPreference("list_theme");
+        listDisplay = findPreference("list_display");
     }
 
     private void setTheme(String theme) {
