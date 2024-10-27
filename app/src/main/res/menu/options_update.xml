@@ -3,6 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/options_update_archive"
+        android:title="Archive"/>
+
+    <item
+        android:id="@+id/options_update_unarchive"
+        android:title="Unarchive"/>
+
+    <item
+        android:id="@+id/options_update_Trash"
+        android:title="Trash"/>
+
+    <item
+        android:id="@+id/options_update_restore"
+        android:title="Restore"/>
+
+    <item
+        android:id="@+id/options_update_delete"
+        android:title="Delete"/>
+
+    <item
         android:id="@+id/options_update_share"
         android:title="Share Note"
         android:icon="@drawable/share"
