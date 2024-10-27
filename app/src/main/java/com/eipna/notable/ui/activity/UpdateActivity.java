@@ -1,8 +1,10 @@
 package com.eipna.notable.ui.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -79,13 +81,29 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.options_update_delete) {
-            // Show delete note dialog
+            showDeleteDialog();
         }
 
         if (item.getItemId() == R.id.options_update_share) {
             showShareIntent();
         }
         return true;
+    }
+
+    private void showDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this)
+                .setTitle("Permanently Delete Note")
+                .setMessage("This operation will permanently delete the note from your device.")
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Delete", (dialogInterface, i) -> {
+                    database.deleteNote(noteIdExtra);
+                    closeActivity();
+                });
+
+        AlertDialog deleteDialog = builder.create();
+        deleteDialog.show();
+        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
+        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
     }
 
     @Override
