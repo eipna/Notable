@@ -63,6 +63,18 @@ public class UpdateActivity extends AppCompatActivity {
             updateNote();
         }
 
+        if (item.getItemId() == R.id.options_update_favorite) {
+            switch (noteIsFavoriteExtra) {
+                case NoteModel.IS_FAVORITE:
+                    noteIsFavoriteExtra = NoteModel.NOT_FAVORITE;
+                    break;
+                case NoteModel.NOT_FAVORITE:
+                    noteIsFavoriteExtra = NoteModel.IS_FAVORITE;
+                    break;
+            }
+            invalidateOptionsMenu();
+        }
+
         if (item.getItemId() == R.id.options_update_archive) {
             database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_ARCHIVED);
             closeActivity();
@@ -89,6 +101,23 @@ public class UpdateActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.options_update_share) {
             showShareIntent();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        switch (noteIsFavoriteExtra) {
+            case NoteModel.IS_FAVORITE:
+                @SuppressLint("UseCompatLoadingForDrawables")
+                Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
+                menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
+                break;
+            case NoteModel.NOT_FAVORITE:
+                @SuppressLint("UseCompatLoadingForDrawables")
+                Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
+                menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
+                break;
         }
         return true;
     }
@@ -157,6 +186,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     private void updateNote() {
         if (noteIsUnchanged()) {
+            database.alterNoteFavorite(noteIdExtra, noteIdExtra);
             finish();
         } else {
             NoteModel updatedNote = new NoteModel();
@@ -167,6 +197,7 @@ public class UpdateActivity extends AppCompatActivity {
             updatedNote.setNoteTitle(updateNoteTitle);
             updatedNote.setNoteContent(updateNotedContent);
             updatedNote.setNoteDateEdited(DateUtil.getCurrentTime());
+            updatedNote.setIsFavorite(noteIsFavoriteExtra);
             database.updateNote(updatedNote);
             closeActivity();
         }
