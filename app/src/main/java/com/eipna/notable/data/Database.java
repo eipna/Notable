@@ -61,12 +61,12 @@ public class Database extends SQLiteOpenHelper {
         close();
     }
 
-    public ArrayList<NoteModel> readNotes() {
+    public ArrayList<NoteModel> readNotes(int status) {
         final ArrayList<NoteModel> notes = new ArrayList<>();
-        String readQuery = "SELECT * FROM " + TABLE_NOTE;
+        String readQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_DATE_STATUS + " = ?";
 
         @SuppressLint("Recycle")
-        Cursor cursor = getReadableDatabase().rawQuery(readQuery, null);
+        Cursor cursor = getReadableDatabase().rawQuery(readQuery, new String[]{String.valueOf(status)});
         while (cursor.moveToNext()) {
             NoteModel note = new NoteModel();
             note.setNoteId(cursor.getInt(0));

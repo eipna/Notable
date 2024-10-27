@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     }
 
     private void updateNoteList() {
-        notes = database.readNotes();
+        notes = database.readNotes(NoteModel.STATUS_DEFAULT);
         adapter = new NoteAdapter(this, this, notes);
         binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         binding.noteList.setAdapter(adapter);
