@@ -42,7 +42,7 @@
             android:layout_height="250dp"/>
 
         <TextView
-            android:text="No notes to see here."
+            android:text="No favorite notes to explore."
             android:textStyle="bold"
             style="@style/TextViewStyle"
             android:layout_gravity="center"
