@@ -42,6 +42,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         });
 
         listDisplay.setNegativeButtonText("");
+        listDisplay.setOnPreferenceChangeListener((preference, newValue) -> {
+            setDisplay((String) newValue);
+            return true;
+        });
     }
 
     private void setPreferences() {
@@ -49,6 +53,17 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         prefsVersion = findPreference("prefs_version");
         listTheme = findPreference("list_theme");
         listDisplay = findPreference("list_display");
+    }
+
+    private void setDisplay(String display) {
+        switch (display) {
+            case "list":
+                sharedPrefs.setString("DISPLAY", "list");
+                break;
+            case "grid":
+                sharedPrefs.setString("DISPLAY", "grid");
+                break;
+        }
     }
 
     private void setTheme(String theme) {
