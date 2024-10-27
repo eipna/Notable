@@ -2,12 +2,18 @@ package com.eipna.notable.ui.activity;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.eipna.notable.R;
@@ -50,8 +56,54 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         }
     });
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_trash, menu);
+        menu.findItem(R.id.options_trash_clear).setVisible(!notes.isEmpty());
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.options_trash_clear).setVisible(!notes.isEmpty());
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            return super.onOptionsItemSelected(item);
+        }
+
+        if (item.getItemId() == R.id.options_trash_clear) {
+            showClearDialog();
+        }
+        return true;
+    }
+
+    private void showClearDialog() {
+        @SuppressLint("NotifyDataSetChanged")
+        AlertDialog.Builder builder = new AlertDialog.Builder(TrashActivity.this)
+                .setTitle("Clear Notes")
+                .setMessage("This operation will clear all trashed notes in your device")
+                .setNegativeButton("Cancel", null)
+                .setPositiveButton("Clear", (dialogInterface, i) -> {
+                    database.clearTrashNotes();
+                    notes.clear();
+                    adapter.notifyDataSetChanged();
+                    invalidateOptionsMenu();
+                    updateNoteList();
+                });
+
+        AlertDialog clearDialog = builder.create();
+        clearDialog.show();
+        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
+        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
+    }
+
     private void updateNoteList() {
         notes = database.readNotes(NoteModel.STATUS_DELETED);
+        invalidateOptionsMenu();
         binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
 
         adapter = new NoteAdapter(this, this, notes);
