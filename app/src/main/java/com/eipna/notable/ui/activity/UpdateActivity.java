@@ -58,6 +58,30 @@ public class UpdateActivity extends AppCompatActivity {
             updateNote();
         }
 
+        if (item.getItemId() == R.id.options_update_archive) {
+            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_ARCHIVED);
+            closeActivity();
+        }
+
+        if (item.getItemId() == R.id.options_update_unarchive) {
+            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_DEFAULT);
+            closeActivity();
+        }
+
+        if (item.getItemId() == R.id.options_update_Trash) {
+            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_DELETED);
+            closeActivity();
+        }
+
+        if (item.getItemId() == R.id.options_update_restore) {
+            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_DEFAULT);
+            closeActivity();
+        }
+
+        if (item.getItemId() == R.id.options_update_delete) {
+            // Show delete note dialog
+        }
+
         if (item.getItemId() == R.id.options_update_share) {
             showShareIntent();
         }
