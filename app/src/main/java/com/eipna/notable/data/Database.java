@@ -107,6 +107,13 @@ public class Database extends SQLiteOpenHelper {
         close();
     }
 
+    public void alterNoteFavorite(int noteId, int newValue) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NOTE_IS_FAVORITE, newValue);
+        getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
+        close();
+    }
+
     public void clearTrashNotes() {
         getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_DATE_STATUS + " = ?", new String[]{String.valueOf(NoteModel.STATUS_DELETED)});
         close();
