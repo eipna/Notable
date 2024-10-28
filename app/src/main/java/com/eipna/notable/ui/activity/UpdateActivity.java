@@ -140,8 +140,8 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
         deleteDialog.show();
-        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
-        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
+        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
+        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
     }
 
     @Override

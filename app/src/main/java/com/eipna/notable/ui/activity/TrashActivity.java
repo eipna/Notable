@@ -105,8 +105,8 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         });
 
         clearDialog.show();
-        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
-        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
+        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
+        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
     }
 
     private void updateNoteList() {
