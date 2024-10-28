@@ -142,19 +142,6 @@ public class UpdateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
 
-        switch (noteIsFavoriteExtra) {
-            case NoteModel.IS_FAVORITE:
-                @SuppressLint("UseCompatLoadingForDrawables")
-                Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
-                menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
-                break;
-            case NoteModel.NOT_FAVORITE:
-                @SuppressLint("UseCompatLoadingForDrawables")
-                Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
-                menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
-                break;
-        }
-
         switch (noteStatusExtra) {
             case NoteModel.STATUS_DEFAULT:
                 menu.findItem(R.id.options_update_unarchive).setVisible(false);
@@ -171,6 +158,19 @@ public class UpdateActivity extends AppCompatActivity {
                 menu.findItem(R.id.options_update_Trash).setVisible(false);
                 break;
         }
+
+        switch (noteIsFavoriteExtra) {
+            case NoteModel.IS_FAVORITE:
+                @SuppressLint("UseCompatLoadingForDrawables")
+                Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
+                menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
+                break;
+            case NoteModel.NOT_FAVORITE:
+                @SuppressLint("UseCompatLoadingForDrawables")
+                Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
+                menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
+                break;
+        }
         return true;
     }
 
@@ -185,33 +185,22 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateNote() {
-        if (noteIsUnchanged()) {
-            database.alterNoteFavorite(noteIdExtra, noteIdExtra);
-            finish();
-        } else {
-            NoteModel updatedNote = new NoteModel();
-            String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-            String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        NoteModel updatedNote = new NoteModel();
+        String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
+        String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
-            updatedNote.setNoteId(noteIdExtra);
-            updatedNote.setNoteTitle(updateNoteTitle);
-            updatedNote.setNoteContent(updateNotedContent);
-            updatedNote.setNoteDateEdited(DateUtil.getCurrentTime());
-            updatedNote.setIsFavorite(noteIsFavoriteExtra);
-            database.updateNote(updatedNote);
-            closeActivity();
-        }
+        updatedNote.setNoteId(noteIdExtra);
+        updatedNote.setNoteTitle(updateNoteTitle);
+        updatedNote.setNoteContent(updateNotedContent);
+        updatedNote.setNoteDateEdited(DateUtil.getCurrentTime());
+        updatedNote.setIsFavorite(noteIsFavoriteExtra);
+        database.updateNote(updatedNote);
+        closeActivity();
     }
 
     private void closeActivity() {
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
         finish();
-    }
-
-    private boolean noteIsUnchanged() {
-        String currentNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-        String currentNoteContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
-        return currentNoteTitle.equals(noteTitleExtra) && currentNoteContent.equals(noteContentExtra);
     }
 }
