@@ -19,6 +19,7 @@
             android:text="Favorite"
             android:textSize="23sp"
             android:textStyle="bold"
+            android:textColor="?attr/colorPrimaryInverse"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

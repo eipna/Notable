@@ -19,6 +19,7 @@
             android:text="Create new note"
             android:textSize="23sp"
             android:layout_gravity="center"
+            android:textColor="?attr/colorPrimaryInverse"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
