@@ -56,13 +56,13 @@
             <ImageView
                 android:src="@drawable/edit"
                 android:layout_marginEnd="2dp"
-                android:layout_width="19dp"
-                android:layout_height="19dp"/>
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
 
             <TextView
                 android:id="@+id/noteDateEdited"
                 android:text="a few moments ago"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 android:fontFamily="sans-serif-medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
