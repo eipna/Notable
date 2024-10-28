@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import com.eipna.notable.ui.adapter.NoteAdapter;
 import com.eipna.notable.util.SharedPrefsUtil;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TrashActivity extends AppCompatActivity implements NoteListener {
 
@@ -96,6 +98,12 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
                 });
 
         AlertDialog clearDialog = builder.create();
+        clearDialog.setOnShowListener(dialogInterface -> {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+            Objects.requireNonNull(clearDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+        });
+
         clearDialog.show();
         clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
         clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.delete, getTheme()));
