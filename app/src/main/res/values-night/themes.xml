@@ -19,7 +19,7 @@
     </style>
     
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
-        <item name="popupMenuBackground">@color/dark_grey</item>
+        <item name="popupMenuBackground">@drawable/popup_menu_dark</item>
         <item name="android:textColor">@color/ghost_white</item>
     </style>
 </resources>
