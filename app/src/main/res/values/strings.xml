@@ -2,7 +2,9 @@
     <string name="app_name">Notable</string>
     <string name="app_version">1.0.0</string>
     <string name="app_easter_egg">You are now a developer :D</string>
+
     <string name="link_github">https://github.com/eipna/Notable</string>
+    <string name="link_pretty_time">https://www.ocpsoft.org/prettytime/</string>
 
     <string name="lorem_ipsum">Lorem ipsum odor amet, consectetuer adipiscing elit.
         At volutpat donec potenti libero ante; dictumst litora. Netus netus posuere
@@ -13,6 +15,10 @@
         tristique odio luctus quisque habitasse dictum metus tempus dis. Amet dictum
         elementum himenaeos dis vel at magna litora donec. Odio interdum fames
         molestie taciti sodales tempor vel diam tellus.</string>
+
+    <string-array name="libraries">
+        <item>PrettyTime</item>
+    </string-array>
 
     <string-array name="preference_list_theme">
         <item>Follow System</item>

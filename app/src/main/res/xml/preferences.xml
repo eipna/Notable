@@ -35,6 +35,11 @@
         </Preference>
 
         <Preference
+            android:key="prefs_libraries"
+            android:title="Libraries"
+            android:icon="@drawable/link" />
+
+        <Preference
             android:key="prefs_version"
             app:title="Version"
             app:summary="@string/app_version"
