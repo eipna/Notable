@@ -22,6 +22,20 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:title="Backup">
+
+        <Preference
+            android:key="prefs_import"
+            app:title="Import"
+            android:icon="@drawable/backup_import"/>
+
+        <Preference
+            android:key="prefs_export"
+            app:title="Export"
+            android:icon="@drawable/backup_export"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:title="About">
 
         <Preference
