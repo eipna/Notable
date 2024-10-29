@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -67,7 +68,42 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.options_main_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        assert searchView != null;
+        searchView.setQueryHint("Search notes...");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterNotes(newText);
+                return true;
+            }
+        });
+
         return true;
+    }
+
+    private void filterNotes(String query) {
+        final ArrayList<NoteModel> filteredNotes = new ArrayList<>();
+        for (NoteModel note : notes) {
+            if (note.getNoteTitle().toLowerCase().contains(query.toLowerCase())) {
+                filteredNotes.add(note);
+            }
+        }
+
+        if (filteredNotes.isEmpty()) {
+            Toast.makeText(this, "No notes matched", Toast.LENGTH_SHORT).show();
+        } else {
+            adapter.searchNotes(filteredNotes);
+        }
     }
 
     @Override

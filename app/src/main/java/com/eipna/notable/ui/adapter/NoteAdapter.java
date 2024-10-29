@@ -1,5 +1,6 @@
 package com.eipna.notable.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,7 @@ import org.ocpsoft.prettytime.*;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
-    private final ArrayList<NoteModel> notes;
+    private ArrayList<NoteModel> notes;
     private final Context context;
     private final NoteListener listener;
     private PrettyTime prettyTime;
@@ -30,6 +31,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         this.notes = notes;
         this.listener = listener;
         this.prettyTime = new PrettyTime();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void searchNotes(ArrayList<NoteModel> filteredNotes) {
+        notes = filteredNotes;
+        notifyDataSetChanged();
     }
 
     @NonNull
