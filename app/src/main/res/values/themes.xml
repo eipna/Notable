@@ -5,6 +5,7 @@
     <style name="Base.Theme.Notable" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/ghost_white</item>
         <item name="colorPrimaryInverse">@color/dark_grey</item>
+        <item name="colorAccent">@color/ghost_white</item>
     </style>
 
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
