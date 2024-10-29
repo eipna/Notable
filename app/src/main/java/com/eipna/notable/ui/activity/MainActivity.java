@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private final ActivityResultLauncher<Intent> settingsLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteDisplay();
+            updateNoteList();
         }
     });
 
