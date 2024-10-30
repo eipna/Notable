@@ -2,7 +2,6 @@ package com.eipna.notable.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.documentfile.provider.DocumentFile;
@@ -29,7 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -129,6 +126,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                     builder.append(line);
                 }
                 reader.close();
+                inputStream.close();
 
                 final JSONArray jsonArray = new JSONArray(builder.toString());
                 final Database database = new Database(requireContext());
