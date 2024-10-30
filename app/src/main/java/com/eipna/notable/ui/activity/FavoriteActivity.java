@@ -83,20 +83,13 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     @Override
     public void onNoteClick(int position) {
         NoteModel note = notes.get(position);
-        int noteId = note.getNoteId();
-        String noteTitle = note.getNoteTitle();
-        String noteContent = note.getNoteContent();
-        long noteDateCreated = note.getNoteDateCreated();
-        int noteStatus = note.getNoteStatus();
-        int noteIsFavorite = note.getIsFavorite();
-
-        Intent updateNoteIntent = new Intent(FavoriteActivity.this, UpdateActivity.class);
-        updateNoteIntent.putExtra("NOTE_ID", noteId);
-        updateNoteIntent.putExtra("NOTE_TITLE", noteTitle);
-        updateNoteIntent.putExtra("NOTE_CONTENT", noteContent);
-        updateNoteIntent.putExtra("NOTE_DATE_CREATED", noteDateCreated);
-        updateNoteIntent.putExtra("NOTE_STATUS", noteStatus);
-        updateNoteIntent.putExtra("NOTE_FAVORITE", noteIsFavorite);
+        Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
+        updateNoteIntent.putExtra("NOTE_ID", note.getNoteId());
+        updateNoteIntent.putExtra("NOTE_TITLE", note.getNoteTitle());
+        updateNoteIntent.putExtra("NOTE_CONTENT", note.getNoteContent());
+        updateNoteIntent.putExtra("NOTE_DATE_CREATED", note.getNoteDateCreated());
+        updateNoteIntent.putExtra("NOTE_STATUS", note.getNoteStatus());
+        updateNoteIntent.putExtra("NOTE_FAVORITE", note.getIsFavorite());
         updateNoteLauncher.launch(updateNoteIntent);
     }
 
