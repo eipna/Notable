@@ -195,6 +195,15 @@ public class UpdateActivity extends AppCompatActivity {
         String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
         String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
+        // Error handling for title and note fields
+        if (updateNoteTitle.isEmpty()) {
+            updateNotedContent = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DAY_MONTH_YEAR, DateUtil.getCurrentTime()));
+        }
+
+        if (updateNotedContent.isEmpty()) {
+            updateNotedContent = NoteModel.EMPTY_NOTE;
+        }
+
         updatedNote.setNoteId(noteIdExtra);
         updatedNote.setNoteTitle(updateNoteTitle);
         updatedNote.setNoteContent(updateNotedContent);
