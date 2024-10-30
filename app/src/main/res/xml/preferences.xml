@@ -26,12 +26,12 @@
 
         <Preference
             android:key="prefs_import"
-            app:title="Import"
+            app:title="Import Notes"
             android:icon="@drawable/backup_import"/>
 
         <Preference
             android:key="prefs_export"
-            app:title="Export"
+            app:title="Export Notes"
             android:icon="@drawable/backup_export"/>
     </PreferenceCategory>
 
