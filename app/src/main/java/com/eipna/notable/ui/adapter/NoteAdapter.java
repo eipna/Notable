@@ -24,7 +24,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private ArrayList<NoteModel> notes;
     private final Context context;
     private final NoteListener listener;
-    private PrettyTime prettyTime;
+    private final PrettyTime prettyTime;
 
     public NoteAdapter(Context context, NoteListener listener, ArrayList<NoteModel> notes) {
         this.context = context;
