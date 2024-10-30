@@ -1,5 +1,13 @@
 package com.eipna.notable.ui.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -7,15 +15,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
@@ -120,13 +119,21 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     private void updateNoteDisplay() {
         String display = sharedPrefs.getString("DISPLAY", "list");
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TrashActivity.this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(TrashActivity.this, 2);
+        gridLayoutManager.setReverseLayout(true);
+
         switch (display) {
             case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+                binding.noteList.setLayoutManager(linearLayoutManager);
                 binding.noteList.setAdapter(adapter);
                 break;
             case "grid":
-                binding.noteList.setLayoutManager(new GridLayoutManager(this, 2));
+                binding.noteList.setLayoutManager(gridLayoutManager);
                 binding.noteList.setAdapter(adapter);
                 break;
         }

@@ -24,6 +24,7 @@ import com.eipna.notable.ui.adapter.NoteAdapter;
 import com.eipna.notable.util.SharedPrefsUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity implements NoteListener {
 
@@ -136,13 +137,21 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private void updateNoteDisplay() {
         String display = sharedPrefs.getString("DISPLAY", "list");
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+        gridLayoutManager.setReverseLayout(true);
+
         switch (display) {
             case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+                binding.noteList.setLayoutManager(linearLayoutManager);
                 binding.noteList.setAdapter(adapter);
                 break;
             case "grid":
-                binding.noteList.setLayoutManager(new GridLayoutManager(this, 2));
+                binding.noteList.setLayoutManager(gridLayoutManager);
                 binding.noteList.setAdapter(adapter);
                 break;
         }

@@ -54,13 +54,21 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
 
     private void updateNoteDisplay() {
         String display = sharedPrefs.getString("DISPLAY", "list");
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(FavoriteActivity.this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(FavoriteActivity.this, 2);
+        gridLayoutManager.setReverseLayout(true);
+
         switch (display) {
             case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+                binding.noteList.setLayoutManager(linearLayoutManager);
                 binding.noteList.setAdapter(adapter);
                 break;
             case "grid":
-                binding.noteList.setLayoutManager(new GridLayoutManager(this, 2));
+                binding.noteList.setLayoutManager(gridLayoutManager);
                 binding.noteList.setAdapter(adapter);
                 break;
         }
