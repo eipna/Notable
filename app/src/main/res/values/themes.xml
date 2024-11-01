@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/ghost_white</item>
         <item name="colorPrimaryInverse">@color/dark_grey</item>
         <item name="colorAccent">@color/dark_grey</item>
+        <item name="actionOverflowButtonStyle">@style/OverFlowButtonStyle</item>
     </style>
 
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
@@ -24,5 +25,9 @@
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
         <item name="popupMenuBackground">@drawable/popup_menu</item>
         <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="OverFlowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/dark_grey</item>
     </style>
 </resources>
