@@ -2,7 +2,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        app:title="Appearance">
+        app:title="Appearance"
+        app:iconSpaceReserved="false">
 
         <ListPreference
             android:key="list_theme"
@@ -24,7 +25,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Backup">
+        app:title="Backup"
+        app:iconSpaceReserved="false">
 
         <Preference
             android:key="prefs_import"
@@ -40,7 +42,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="About">
+        app:title="About"
+        app:iconSpaceReserved="false">
 
         <Preference
             app:title="Github"
