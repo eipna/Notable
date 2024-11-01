@@ -133,13 +133,13 @@ public class UpdateActivity extends AppCompatActivity {
                 });
 
         AlertDialog deleteDialog = builder.create();
-        deleteDialog.setOnShowListener(dialogInterface -> {
-            @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
-            Objects.requireNonNull(deleteDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
-        });
-
         deleteDialog.show();
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Objects.requireNonNull(deleteDialog.getWindow()).setWindowAnimations(0);
+        Objects.requireNonNull(deleteDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+
         deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
         deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
     }

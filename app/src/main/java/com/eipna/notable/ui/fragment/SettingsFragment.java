@@ -190,18 +190,19 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
     }
 
+    @SuppressLint("ResourceType")
     private void showLibrariesDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
                 .setTitle("Libraries")
                 .setItems(R.array.libraries, (dialogInterface, item) -> linkLauncher(item));
 
         AlertDialog librariesDialog = builder.create();
-        librariesDialog.setOnShowListener(dialogInterface -> {
-            @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
-            Objects.requireNonNull(librariesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
-        });
         librariesDialog.show();
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
+        Objects.requireNonNull(librariesDialog.getWindow()).setWindowAnimations(0);
+        Objects.requireNonNull(librariesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
     }
 
     private void linkLauncher(int item) {

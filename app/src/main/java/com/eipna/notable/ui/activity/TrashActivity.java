@@ -97,13 +97,13 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
                 });
 
         AlertDialog clearDialog = builder.create();
-        clearDialog.setOnShowListener(dialogInterface -> {
-            @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
-            Objects.requireNonNull(clearDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
-        });
-
         clearDialog.show();
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Objects.requireNonNull(clearDialog.getWindow()).setWindowAnimations(0);
+        Objects.requireNonNull(clearDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+
         clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
         clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
     }
