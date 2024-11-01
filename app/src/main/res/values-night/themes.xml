@@ -12,10 +12,6 @@
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
         <item name="android:windowLightStatusBar">false</item>
     </style>
-
-    <style name="TextViewStyle">
-        <item name="android:textColor">@color/ghost_white</item>
-    </style>
     
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
         <item name="popupMenuBackground">@drawable/popup_menu</item>

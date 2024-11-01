@@ -52,7 +52,7 @@
         <TextView
             android:text="Your trash is clean :D"
             android:textStyle="bold"
-            style="@style/TextViewStyle"
+            android:textColor="?attr/colorPrimaryInverse"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
