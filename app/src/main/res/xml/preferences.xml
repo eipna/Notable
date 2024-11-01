@@ -7,6 +7,7 @@
         <ListPreference
             android:key="list_theme"
             app:title="Theme"
+            android:layout="@layout/layout_preference"
             app:summary="Change between light mode or dark mode or follow the current system theme"
             android:entries="@array/preference_list_theme"
             android:entryValues="@array/preference_list_theme_values"
@@ -16,6 +17,7 @@
             android:key="list_display"
             android:title="Display Style"
             app:icon="@drawable/note"
+            android:layout="@layout/layout_preference"
             android:entries="@array/preference_list_display"
             android:entryValues="@array/preference_list_display_values"
             app:summary="Choose how your notes are displayed"/>
@@ -27,12 +29,14 @@
         <Preference
             android:key="prefs_import"
             app:title="Import Notes"
-            android:icon="@drawable/backup_import"/>
+            android:icon="@drawable/backup_import"
+            android:layout="@layout/layout_preference"/>
 
         <Preference
             android:key="prefs_export"
             app:title="Export Notes"
-            android:icon="@drawable/backup_export"/>
+            android:icon="@drawable/backup_export"
+            android:layout="@layout/layout_preference"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -41,7 +45,8 @@
         <Preference
             app:title="Github"
             app:summary="eipna"
-            app:icon="@drawable/link">
+            app:icon="@drawable/link"
+            android:layout="@layout/layout_preference">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -51,13 +56,15 @@
         <Preference
             android:key="prefs_libraries"
             android:title="Libraries"
-            android:icon="@drawable/link" />
+            android:icon="@drawable/link"
+            android:layout="@layout/layout_preference"/>
 
         <Preference
             android:key="prefs_version"
             app:title="Version"
             app:summary="@string/app_version"
-            app:icon="@drawable/info"/>
+            app:icon="@drawable/info"
+            android:layout="@layout/layout_preference"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
