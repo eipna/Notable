@@ -1,24 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-    <color name="dialog_button">@color/ghost_white</color>
-
     <style name="Base.Theme.Notable" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Changes color of status bar -->
         <item name="colorPrimary">@color/dark_grey</item>
+
+        <!-- Custom inverted color theme -->
         <item name="colorPrimaryInverse">@color/ghost_white</item>
+
+        <!-- Changes color of preference category title text -->
         <item name="colorAccent">@color/ghost_white</item>
+
+        <!-- Sets a custom theme for the overflow button -->
         <item name="actionOverflowButtonStyle">@style/OverFlowButtonStyle</item>
     </style>
 
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
         <item name="android:windowLightStatusBar">false</item>
     </style>
-    
+
+    <!-- Custom theme for popup menus -->
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
         <item name="popupMenuBackground">@drawable/popup_menu</item>
         <item name="android:textColor">@color/ghost_white</item>
     </style>
-    
+
+    <!-- Custom theme/color for kebab/more options icon -->
     <style name="OverFlowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">?attr/colorPrimaryInverse</item>
     </style>
+
+    <!-- Custom global colors -->
+    <color name="dialog_button">@color/ghost_white</color>
 </resources>
