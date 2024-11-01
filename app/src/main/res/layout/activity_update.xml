@@ -76,6 +76,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Sunday, October 18 2024"
+        android:textColor="?attr/colorPrimaryInverse"
         android:layout_marginBottom="6dp"
         android:fontFamily="sans-serif-light"
         android:layout_width="wrap_content"
