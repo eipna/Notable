@@ -65,8 +65,8 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(ArchiveActivity.this, 2);
-        gridLayoutManager.setReverseLayout(true);
+        final int SPAN_COUNT = 2;
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(ArchiveActivity.this, SPAN_COUNT);
 
         switch (display) {
             case "list":
