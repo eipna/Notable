@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
@@ -120,20 +121,20 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     private void updateNoteDisplay() {
         String display = sharedPrefs.getString("DISPLAY", "list");
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TrashActivity.this);
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
+        LinearLayoutManager listLayout = new LinearLayoutManager(this);
+        listLayout.setReverseLayout(true);
+        listLayout.setStackFromEnd(true);
 
         final int SPAN_COUNT = 2;
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(TrashActivity.this, SPAN_COUNT);
+        StaggeredGridLayoutManager gridLayout = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
 
         switch (display) {
             case "list":
-                binding.noteList.setLayoutManager(linearLayoutManager);
+                binding.noteList.setLayoutManager(listLayout);
                 binding.noteList.setAdapter(adapter);
                 break;
             case "grid":
-                binding.noteList.setLayoutManager(gridLayoutManager);
+                binding.noteList.setLayoutManager(gridLayout);
                 binding.noteList.setAdapter(adapter);
                 break;
         }
