@@ -63,6 +63,8 @@
                 android:hint="Jot your notes here..."
                 android:background="@null"
                 android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:inputType="textMultiLine"
                 android:layout_marginTop="16dp"
                 android:textColor="?attr/colorPrimaryInverse"
                 android:textSize="15sp"
