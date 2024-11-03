@@ -148,6 +148,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         updateNoteIntent.putExtra("NOTE_TITLE", note.getNoteTitle());
         updateNoteIntent.putExtra("NOTE_CONTENT", note.getNoteContent());
         updateNoteIntent.putExtra("NOTE_DATE_CREATED", note.getNoteDateCreated());
+        updateNoteIntent.putExtra("NOTE_LAST_UPDATED", note.getNoteLastUpdated());
         updateNoteIntent.putExtra("NOTE_STATUS", note.getNoteStatus());
         updateNoteIntent.putExtra("NOTE_FAVORITE", note.getIsFavorite());
         updateNoteLauncher.launch(updateNoteIntent);

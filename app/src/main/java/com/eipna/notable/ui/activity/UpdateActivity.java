@@ -26,9 +26,15 @@ public class UpdateActivity extends AppCompatActivity {
     private ActivityUpdateBinding binding;
     private Database database;
 
-    private int noteIdExtra, noteStatusExtra, noteIsFavoriteExtra;
-    private String noteTitleExtra, noteContentExtra;
+    private int noteIdExtra;
+    private int noteStatusExtra;
+    private int noteIsFavoriteExtra;
+
+    private String noteTitleExtra;
+    private String noteContentExtra;
+
     private long noteDateCreatedExtra;
+    private long noteLastUpdatedExtra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +62,7 @@ public class UpdateActivity extends AppCompatActivity {
         noteDateCreatedExtra = getIntent().getLongExtra("NOTE_DATE_CREATED", -1);
         noteStatusExtra = getIntent().getIntExtra("NOTE_STATUS", -1);
         noteIsFavoriteExtra = getIntent().getIntExtra("NOTE_FAVORITE", -1);
+        noteLastUpdatedExtra = getIntent().getLongExtra("NOTE_LAST_UPDATED", -1);
     }
 
     @Override
