@@ -18,7 +18,7 @@
         android:paddingEnd="16dp"/>
 
     <TextView
-        android:id="@+id/notePropertiesDateEdited"
+        android:id="@+id/notePropertiesLastUpdated"
         android:text="Last Updated: October 03 2024"
         android:paddingStart="24dp"
         android:paddingEnd="16dp"
