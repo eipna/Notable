@@ -83,6 +83,8 @@ public class SettingsActivity extends AppCompatActivity {
         private SharedPrefsUtil sharedPrefs;
 
         private int easterEggCounter;
+        private String prefsTheme;
+        private String prefsDisplay;
 
         @Override
         public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
@@ -100,12 +102,14 @@ public class SettingsActivity extends AppCompatActivity {
             });
 
             listTheme.setNegativeButtonText(""); // Removes negative button
+            listTheme.setValue(prefsTheme);
             listTheme.setOnPreferenceChangeListener((preference, newValue) -> {
                 setTheme((String) newValue);
                 return true;
             });
 
             listDisplay.setNegativeButtonText("");
+            listDisplay.setValue(prefsDisplay);
             listDisplay.setOnPreferenceChangeListener((preference, newValue) -> {
                 setDisplay((String) newValue);
                 return true;
@@ -261,6 +265,10 @@ public class SettingsActivity extends AppCompatActivity {
             prefsLibraries = findPreference("prefs_libraries");
             prefsExport = findPreference("prefs_export");
             prefsImport = findPreference("prefs_import");
+
+            // If no shared preference found, use default values instead
+            prefsTheme = sharedPrefs.getString("THEME", "system");
+            prefsDisplay = sharedPrefs.getString("DISPLAY", "list");
 
             listTheme = findPreference("list_theme");
             listDisplay = findPreference("list_display");
