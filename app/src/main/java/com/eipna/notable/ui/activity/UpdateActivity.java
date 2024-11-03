@@ -48,7 +48,6 @@ public class UpdateActivity extends AppCompatActivity {
 
         binding.titleInput.setText(noteTitleExtra);
         binding.noteInput.setText(noteContentExtra);
-        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra));
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {

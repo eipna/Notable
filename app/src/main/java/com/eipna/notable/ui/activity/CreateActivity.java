@@ -36,9 +36,6 @@ public class CreateActivity extends AppCompatActivity {
         binding.noteInput.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.showSoftInput(binding.noteInput, InputMethodManager.SHOW_IMPLICIT);
-
-        // Sets date creation text to current date (Eg. Monday, October 21 2024)
-        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
     }
 
     @Override

@@ -29,7 +29,6 @@
     <ScrollView
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="28dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -73,16 +72,4 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
-
-    <TextView
-        android:id="@+id/dateText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Sunday, October 18 2024"
-        android:textColor="?attr/colorPrimaryInverse"
-        android:layout_marginBottom="6dp"
-        android:fontFamily="sans-serif-light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
