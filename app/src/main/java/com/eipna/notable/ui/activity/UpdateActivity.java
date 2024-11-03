@@ -41,9 +41,9 @@ public class UpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUpdateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        database = new Database(UpdateActivity.this);
 
-        getExtras();
+        database = new Database(UpdateActivity.this);
+        setNoteExtras();
 
         binding.titleInput.setText(noteTitleExtra);
         binding.noteInput.setText(noteContentExtra);
@@ -55,7 +55,7 @@ public class UpdateActivity extends AppCompatActivity {
         }
     }
 
-    private void getExtras() {
+    private void setNoteExtras() {
         noteIdExtra = getIntent().getIntExtra("NOTE_ID", -1);
         noteTitleExtra = getIntent().getStringExtra("NOTE_TITLE");
         noteContentExtra = getIntent().getStringExtra("NOTE_CONTENT");
