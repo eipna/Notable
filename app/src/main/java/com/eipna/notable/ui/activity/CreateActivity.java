@@ -38,7 +38,7 @@ public class CreateActivity extends AppCompatActivity {
         inputMethodManager.showSoftInput(binding.noteInput, InputMethodManager.SHOW_IMPLICIT);
 
         // Sets date creation text to current date (Eg. Monday, October 21 2024)
-        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED, DateUtil.getCurrentTime()));
+        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
     }
 
     @Override
@@ -57,7 +57,7 @@ public class CreateActivity extends AppCompatActivity {
 
         // Error handling for title and note fields
         if (title.isEmpty()) {
-            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DAY_MONTH_YEAR, DateUtil.getCurrentTime()));
+            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
         }
 
         if (content.isEmpty()) {

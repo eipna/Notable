@@ -48,7 +48,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         binding.titleInput.setText(noteTitleExtra);
         binding.noteInput.setText(noteContentExtra);
-        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED, noteDateCreatedExtra));
+        binding.dateText.setText(DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra));
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
@@ -125,6 +125,14 @@ public class UpdateActivity extends AppCompatActivity {
         // Get dialog properties view or layout
         @SuppressLint("InflateParams")
         View propertiesDialog = inflater.inflate(R.layout.dialog_properties, null);
+
+        // Get all text views in custom properties dialog
+        TextView dateCreatedProperty = propertiesDialog.findViewById(R.id.notePropertiesDateCreated);
+        TextView lastUpdatedProperty = propertiesDialog.findViewById(R.id.notePropertiesLastUpdated);
+
+        // Set text to note properties text views
+        dateCreatedProperty.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra)));
+        lastUpdatedProperty.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteLastUpdatedExtra)));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle("Properties")
@@ -235,7 +243,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         // Error handling for title and note fields
         if (updateNoteTitle.isEmpty()) {
-            updateNotedContent = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DAY_MONTH_YEAR, DateUtil.getCurrentTime()));
+            updateNotedContent = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
         }
 
         if (updateNotedContent.isEmpty()) {
