@@ -102,7 +102,28 @@ public class UpdateActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.options_update_share) {
             showShareIntent();
         }
+
+        if (item.getItemId() == R.id.options_update_properties) {
+            showNotePropertiesDialog();
+        }
         return true;
+    }
+
+    private void showNotePropertiesDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setTitle("Properties")
+                .setMessage("List of properties for the note.")
+                .setNegativeButton("Go Back", null);
+
+        AlertDialog notePropertiesDialog = builder.create();
+        notePropertiesDialog.show();
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Objects.requireNonNull(notePropertiesDialog.getWindow()).setWindowAnimations(0);
+        Objects.requireNonNull(notePropertiesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+
+        notePropertiesDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
     }
 
     @Override
