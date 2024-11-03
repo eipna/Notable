@@ -32,4 +32,8 @@
         android:id="@+id/options_update_delete"
         android:title="Delete"/>
 
+    <item
+        android:id="@+id/options_update_properties"
+        android:title="Properties"/>
+
 </menu>
