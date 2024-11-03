@@ -62,7 +62,7 @@
                 android:layout_height="16dp"/>
 
             <TextView
-                android:id="@+id/noteDateEdited"
+                android:id="@+id/noteLastUpdated"
                 android:text="a few moments ago"
                 android:textSize="11sp"
                 android:textColor="?attr/colorPrimaryInverse"

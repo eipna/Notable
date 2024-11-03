@@ -5,7 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -238,7 +237,7 @@ public class UpdateActivity extends AppCompatActivity {
         updatedNote.setNoteId(noteIdExtra);
         updatedNote.setNoteTitle(updateNoteTitle);
         updatedNote.setNoteContent(updateNotedContent);
-        updatedNote.setNoteDateEdited(DateUtil.getCurrentTime());
+        updatedNote.setNoteLastUpdated(DateUtil.getCurrentTime());
         updatedNote.setIsFavorite(noteIsFavoriteExtra);
         database.updateNote(updatedNote);
         closeActivity();

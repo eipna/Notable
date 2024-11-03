@@ -6,7 +6,7 @@ public class NoteModel {
     private String noteTitle;
     private String noteContent;
     private long noteDateCreated;
-    private long noteDateEdited;
+    private long noteLastUpdated;
     private int noteStatus;
     private int isFavorite;
 
@@ -24,7 +24,7 @@ public class NoteModel {
         this.noteTitle = null;
         this.noteContent = null;
         this.noteDateCreated = -1;
-        this.noteDateEdited = -1;
+        this.noteLastUpdated = -1;
         this.noteStatus = -1;
         this.isFavorite = -1;
     }
@@ -49,12 +49,12 @@ public class NoteModel {
         this.noteDateCreated = noteDateCreated;
     }
 
-    public long getNoteDateEdited() {
-        return noteDateEdited;
+    public long getNoteLastUpdated() {
+        return noteLastUpdated;
     }
 
-    public void setNoteDateEdited(long noteDateEdited) {
-        this.noteDateEdited = noteDateEdited;
+    public void setNoteLastUpdated(long noteLastUpdated) {
+        this.noteLastUpdated = noteLastUpdated;
     }
 
     public void setNoteTitle(String noteTitle) {
