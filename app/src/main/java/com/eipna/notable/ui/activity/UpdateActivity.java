@@ -9,8 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
@@ -110,9 +112,16 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void showNotePropertiesDialog() {
+        // Get activity layout inflater
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        // Get dialog properties view or layout
+        @SuppressLint("InflateParams")
+        View propertiesDialog = inflater.inflate(R.layout.dialog_properties, null);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle("Properties")
-                .setMessage("List of properties for the note.")
+                .setView(propertiesDialog)
                 .setNegativeButton("Go Back", null);
 
         AlertDialog notePropertiesDialog = builder.create();
@@ -145,6 +154,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     private void showDeleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this)
+                .setView(R.layout.dialog_properties)
                 .setTitle("Permanently Delete Note")
                 .setMessage("This operation will permanently delete the note from your device.")
                 .setNegativeButton("Cancel", null)
