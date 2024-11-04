@@ -252,22 +252,25 @@ public class UpdateActivity extends AppCompatActivity {
         if (isNoteUnchanged()) {
             closeActivity();
         } else {
-            NoteModel updatedNote = new NoteModel();
-            String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-            String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
+            NoteModel note = new NoteModel();
+            String updatedTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
+            String updatedNote = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
-            // Error handling for title and note fields
-            if (updateNoteTitle.isEmpty()) {
-                updateNoteTitle = NoteModel.EMPTY_TITLE;
-            } else if (updateNotedContent.isEmpty()) {
-                updateNotedContent = NoteModel.EMPTY_NOTE;
+            // Sets title as empty title placeholder if field is blank
+            if (updatedTitle.isEmpty()) {
+                updatedTitle = NoteModel.EMPTY_TITLE;
             }
 
-            updatedNote.setNoteId(noteIdExtra);
-            updatedNote.setNoteTitle(updateNoteTitle);
-            updatedNote.setNoteContent(updateNotedContent);
-            updatedNote.setNoteLastUpdated(DateUtil.getCurrentTime());
-            database.updateNote(updatedNote);
+            // Sets note as empty note placeholder if field is blank
+            if (updatedNote.isEmpty()) {
+                updatedNote = NoteModel.EMPTY_NOTE;
+            }
+
+            note.setNoteId(noteIdExtra);
+            note.setNoteTitle(updatedTitle);
+            note.setNoteContent(updatedNote);
+            note.setNoteLastUpdated(DateUtil.getCurrentTime());
+            database.updateNote(note);
             closeActivity();
         }
     }

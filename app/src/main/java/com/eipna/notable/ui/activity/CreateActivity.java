@@ -50,23 +50,25 @@ public class CreateActivity extends AppCompatActivity {
     public void createNote() {
         NoteModel newNote = new NoteModel();
         String title = Objects.requireNonNull(binding.titleInput.getText()).toString();
-        String content = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        String note = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
-        // Error handling for title and note fields
+        // Sets title as empty title placeholder if field is blank
         if (title.isEmpty()) {
             title = NoteModel.EMPTY_TITLE;
-        } else if (content.isEmpty()) {
-            content = NoteModel.EMPTY_NOTE;
+        }
+
+        // Sets note as empty note placeholder if field is blank
+        if (note.isEmpty()) {
+            note = NoteModel.EMPTY_NOTE;
         }
 
         newNote.setNoteTitle(title);
-        newNote.setNoteContent(content);
+        newNote.setNoteContent(note);
         newNote.setNoteDateCreated(DateUtil.getCurrentTime());
         newNote.setNoteLastUpdated(DateUtil.getCurrentTime());
         newNote.setNoteStatus(NoteModel.STATUS_DEFAULT);
         newNote.setIsFavorite(NoteModel.NOT_FAVORITE);
         database.createNote(newNote);
-
         closeActivity();
     }
 
