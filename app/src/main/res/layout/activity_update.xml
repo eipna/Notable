@@ -51,12 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <View
-                android:id="@+id/noteDivider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
-
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/noteInput"
                 android:hint="Jot your notes here..."
