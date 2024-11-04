@@ -100,12 +100,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
                 filteredNotes.add(note);
             }
         }
-
-        if (filteredNotes.isEmpty()) {
-            Toast.makeText(this, "No notes matched", Toast.LENGTH_SHORT).show();
-        } else {
-            adapter.searchNotes(filteredNotes);
-        }
+        adapter.searchNotes(filteredNotes);
     }
 
     @Override
