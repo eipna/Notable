@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eipna.notable.R;
@@ -225,11 +226,13 @@ public class UpdateActivity extends AppCompatActivity {
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
+                database.alterNoteFavorite(noteIdExtra, NoteModel.IS_FAVORITE);
                 break;
             case NoteModel.NOT_FAVORITE:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
+                database.alterNoteFavorite(noteIdExtra, NoteModel.NOT_FAVORITE);
                 break;
         }
         return true;
@@ -246,26 +249,38 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     private void updateNote() {
-        NoteModel updatedNote = new NoteModel();
-        String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-        String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        if (isNoteUnchanged()) {
+            closeActivity();
+        } else {
+            NoteModel updatedNote = new NoteModel();
+            String updateNoteTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
+            String updateNotedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
-        // Error handling for title and note fields
-        if (updateNoteTitle.isEmpty()) {
-            updateNoteTitle = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
+            // Error handling for title and note fields
+            if (updateNoteTitle.isEmpty()) {
+                updateNoteTitle = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
+            }
+
+            if (updateNotedContent.isEmpty()) {
+                updateNotedContent = NoteModel.EMPTY_NOTE;
+            }
+
+            updatedNote.setNoteId(noteIdExtra);
+            updatedNote.setNoteTitle(updateNoteTitle);
+            updatedNote.setNoteContent(updateNotedContent);
+            updatedNote.setNoteLastUpdated(DateUtil.getCurrentTime());
+            database.updateNote(updatedNote);
+            closeActivity();
         }
+    }
 
-        if (updateNotedContent.isEmpty()) {
-            updateNotedContent = NoteModel.EMPTY_NOTE;
-        }
+    private boolean isNoteUnchanged() {
+        // Get string in title and content fields
+        String titleInField = Objects.requireNonNull(binding.titleInput.getText()).toString();
+        String contentInField = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
-        updatedNote.setNoteId(noteIdExtra);
-        updatedNote.setNoteTitle(updateNoteTitle);
-        updatedNote.setNoteContent(updateNotedContent);
-        updatedNote.setNoteLastUpdated(DateUtil.getCurrentTime());
-        updatedNote.setIsFavorite(noteIsFavoriteExtra);
-        database.updateNote(updatedNote);
-        closeActivity();
+        // Match title and content fields string with title and content extras
+        return titleInField.equals(noteTitleExtra) && contentInField.equals(noteContentExtra);
     }
 
     private void closeActivity() {

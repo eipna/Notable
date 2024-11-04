@@ -130,7 +130,6 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
         values.put(COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
-        values.put(COLUMN_NOTE_IS_FAVORITE, note.getIsFavorite());
         getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(note.getNoteId())});
         close();
     }
