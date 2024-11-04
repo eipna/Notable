@@ -7,6 +7,17 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/notePropertiesWordCount"
+        android:text="Word Count: 420"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="?attr/colorPrimaryInverse"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="16dp"/>
+
+    <TextView
         android:id="@+id/notePropertiesDateCreated"
         android:text="Date Created: October 03 2024"
         android:layout_width="match_parent"

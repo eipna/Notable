@@ -117,6 +117,7 @@ public class UpdateActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("DefaultLocale")
     private void showNotePropertiesDialog() {
         // Get activity layout inflater
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -128,8 +129,12 @@ public class UpdateActivity extends AppCompatActivity {
         // Get all text views in custom properties dialog
         TextView dateCreatedProperty = propertiesDialog.findViewById(R.id.notePropertiesDateCreated);
         TextView lastUpdatedProperty = propertiesDialog.findViewById(R.id.notePropertiesLastUpdated);
+        TextView wordCountProperty = propertiesDialog.findViewById(R.id.notePropertiesWordCount);
 
         // Set text to note properties text views
+        final int wordCount = getWordCount(Objects.requireNonNull(binding.noteInput.getText()).toString());
+        wordCountProperty.setText(String.format("Word Count: %d", wordCount));
+
         dateCreatedProperty.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra)));
         lastUpdatedProperty.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteLastUpdatedExtra)));
 
@@ -147,6 +152,12 @@ public class UpdateActivity extends AppCompatActivity {
         Objects.requireNonNull(notePropertiesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
 
         notePropertiesDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
+    }
+
+    // Get number of words from note content
+    private int getWordCount(String string) {
+        String[] words = string.split(" ");
+        return words.length;
     }
 
     @Override
