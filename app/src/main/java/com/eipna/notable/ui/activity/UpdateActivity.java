@@ -252,7 +252,6 @@ public class UpdateActivity extends AppCompatActivity {
         if (isNoteUnchanged()) {
             closeActivity();
         } else {
-            NoteModel note = new NoteModel();
             String updatedTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
             String updatedNote = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
@@ -266,10 +265,12 @@ public class UpdateActivity extends AppCompatActivity {
                 updatedNote = NoteModel.EMPTY_NOTE;
             }
 
+            NoteModel note = new NoteModel();
             note.setNoteId(noteIdExtra);
             note.setNoteTitle(updatedTitle);
             note.setNoteContent(updatedNote);
             note.setNoteLastUpdated(DateUtil.getCurrentTime());
+
             database.updateNote(note);
             closeActivity();
         }

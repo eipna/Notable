@@ -48,7 +48,6 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     public void createNote() {
-        NoteModel newNote = new NoteModel();
         String title = Objects.requireNonNull(binding.titleInput.getText()).toString();
         String note = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
@@ -62,12 +61,14 @@ public class CreateActivity extends AppCompatActivity {
             note = NoteModel.EMPTY_NOTE;
         }
 
+        NoteModel newNote = new NoteModel();
         newNote.setNoteTitle(title);
         newNote.setNoteContent(note);
         newNote.setNoteDateCreated(DateUtil.getCurrentTime());
         newNote.setNoteLastUpdated(DateUtil.getCurrentTime());
         newNote.setNoteStatus(NoteModel.STATUS_DEFAULT);
         newNote.setIsFavorite(NoteModel.NOT_FAVORITE);
+
         database.createNote(newNote);
         closeActivity();
     }
