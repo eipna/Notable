@@ -9,8 +9,20 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/options_multi_unarchive"
+        android:title="Unarchive"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/unarchive"/>
+
+    <item
         android:id="@+id/options_multi_trash"
         android:icon="@drawable/delete"
         android:title="Trash"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/options_multi_restore"
+        android:icon="@drawable/restore"
+        app:showAsAction="ifRoom"
+        android:title="Restore"/>
 </menu>
