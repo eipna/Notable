@@ -54,10 +54,8 @@ public class CreateActivity extends AppCompatActivity {
 
         // Error handling for title and note fields
         if (title.isEmpty()) {
-            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
-        }
-
-        if (content.isEmpty()) {
+            title = NoteModel.EMPTY_TITLE;
+        } else if (content.isEmpty()) {
             content = NoteModel.EMPTY_NOTE;
         }
 

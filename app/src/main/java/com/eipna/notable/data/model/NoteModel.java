@@ -1,5 +1,7 @@
 package com.eipna.notable.data.model;
 
+import com.eipna.notable.util.DateUtil;
+
 public class NoteModel {
 
     private int noteId;
@@ -17,6 +19,7 @@ public class NoteModel {
     public static final int IS_FAVORITE = 1;
     public static final int NOT_FAVORITE = 0;
 
+    public static final String EMPTY_TITLE = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
     public static final String EMPTY_NOTE = "Empty note.";
 
     public NoteModel() {

@@ -258,10 +258,8 @@ public class UpdateActivity extends AppCompatActivity {
 
             // Error handling for title and note fields
             if (updateNoteTitle.isEmpty()) {
-                updateNoteTitle = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
-            }
-
-            if (updateNotedContent.isEmpty()) {
+                updateNoteTitle = NoteModel.EMPTY_TITLE;
+            } else if (updateNotedContent.isEmpty()) {
                 updateNotedContent = NoteModel.EMPTY_NOTE;
             }
 
