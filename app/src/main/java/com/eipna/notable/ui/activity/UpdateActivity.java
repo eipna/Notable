@@ -168,7 +168,6 @@ public class UpdateActivity extends AppCompatActivity {
 
     private void showDeleteDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this)
-                .setView(R.layout.dialog_properties)
                 .setTitle("Permanently Delete Note")
                 .setMessage("This operation will permanently delete the note from your device.")
                 .setNegativeButton("Cancel", null)
