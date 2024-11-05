@@ -10,21 +10,11 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        app:titleTextColor="?attr/colorPrimaryInverse"
         app:layout_constraintTop_toTopOf="parent"
-        app:title=" "
         app:popupTheme="@style/PopupMenuStyle"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-        <TextView
-            android:text="Updating note"
-            android:textSize="23sp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textColor="?attr/colorPrimaryInverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="?attr/actionBarSize"/>
 
     <ScrollView
         app:layout_constraintTop_toTopOf="parent"

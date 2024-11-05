@@ -15,30 +15,37 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.activity.FavoriteActivity"
+            android:label="Favorite"
             android:parentActivityName=".ui.activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activity.TrashActivity"
+            android:label="Trash"
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.ArchiveActivity"
+            android:label="Archive"
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.SettingsActivity"
+            android:label="Settings"
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.UpdateActivity"
+            android:label="Edit Note"
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.CreateActivity"
+            android:label="New Note"
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.MainActivity"
+            android:label="Notable"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
