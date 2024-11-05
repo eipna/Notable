@@ -43,7 +43,7 @@
                 android:hint="Title goes here"
                 android:background="@null"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="?attr/colorPrimaryInverse"
                 android:paddingStart="12dp"
                 android:paddingBottom="12dp"

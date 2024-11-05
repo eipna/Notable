@@ -44,7 +44,7 @@
                 android:background="@null"
                 android:textStyle="bold"
                 android:textColor="?attr/colorPrimaryInverse"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:paddingStart="12dp"
                 android:paddingBottom="12dp"
                 android:fontFamily="sans-serif"
