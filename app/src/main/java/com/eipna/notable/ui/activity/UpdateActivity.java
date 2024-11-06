@@ -12,14 +12,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.model.NoteModel;
-import com.eipna.notable.databinding.ActivityUpdateBinding;
 import com.eipna.notable.util.DateUtil;
 
 import java.util.Objects;
@@ -188,7 +186,7 @@ public class UpdateActivity extends AppCompatActivity {
         final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
 
         @SuppressLint("InflateParams")
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_title_message, null);
 
         TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
         titleTV.setVisibility(View.GONE);

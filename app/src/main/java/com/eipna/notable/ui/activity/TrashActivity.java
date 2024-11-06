@@ -1,7 +1,6 @@
 package com.eipna.notable.ui.activity;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -24,7 +23,6 @@ import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
-import com.eipna.notable.databinding.ActivityTrashBinding;
 import com.eipna.notable.ui.adapter.NoteAdapter;
 import com.eipna.notable.util.SharedPrefsUtil;
 
@@ -91,7 +89,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
 
         @SuppressLint("InflateParams")
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_title_message, null);
 
         TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
         titleTV.setVisibility(View.GONE);
