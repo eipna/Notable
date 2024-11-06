@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.databinding.ActivityUpdateBinding;
 import com.eipna.notable.util.DateUtil;
 
 import java.util.Objects;
@@ -117,45 +119,43 @@ public class UpdateActivity extends AppCompatActivity {
         return true;
     }
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void showNotePropertiesDialog() {
-        // Get activity layout inflater
-        LayoutInflater inflater = LayoutInflater.from(this);
-
-        // Get dialog properties view or layout
-        @SuppressLint("InflateParams")
-        View propertiesDialog = inflater.inflate(R.layout.dialog_properties, null);
-
-        // Get all text views in custom properties dialog
-        TextView dateCreatedProperty = propertiesDialog.findViewById(R.id.notePropertiesDateCreated);
-        TextView lastUpdatedProperty = propertiesDialog.findViewById(R.id.notePropertiesLastUpdated);
-        TextView wordCountProperty = propertiesDialog.findViewById(R.id.notePropertiesWordCount);
-
-        // Set text to note properties text views
+        final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
         final int wordCount = getWordCount(Objects.requireNonNull(binding.noteInput.getText()).toString());
-        wordCountProperty.setText(String.format("Word Count: %d", wordCount));
 
-        dateCreatedProperty.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra)));
-        lastUpdatedProperty.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteLastUpdatedExtra)));
+        @SuppressLint("InflateParams")
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_properties, null);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle("Properties")
-                .setView(propertiesDialog)
-                .setNegativeButton("Go Back", null);
+        TextView titleTV = dialogView.findViewById(R.id.dialogPropertiesTitle);
+        titleTV.setText("Properties");
 
-        AlertDialog notePropertiesDialog = builder.create();
-        notePropertiesDialog.show();
+        TextView wordCountTV = dialogView.findViewById(R.id.dialogPropertiesWordCount);
+        wordCountTV.setText(String.format("Word Count: %d", wordCount));
 
-        WindowManager.LayoutParams layoutParams = Objects.requireNonNull(notePropertiesDialog.getWindow()).getAttributes();
+        TextView dateCreatedTV = dialogView.findViewById(R.id.dialogPropertiesDateCreated);
+        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra)));
+
+        TextView lastUpdatedTV = dialogView.findViewById(R.id.dialogPropertiesLastUpdated);
+        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteLastUpdatedExtra)));
+
+        AlertDialog.Builder propertiesDialogBuilder = new AlertDialog.Builder(this);
+        propertiesDialogBuilder.setView(dialogView);
+        propertiesDialogBuilder.setPositiveButton("Back", (dialogInterface, i) -> dialogInterface.dismiss());
+
+        AlertDialog propertiesDialog = propertiesDialogBuilder.create();
+        propertiesDialog.show();
+
+        WindowManager.LayoutParams layoutParams = Objects.requireNonNull(propertiesDialog.getWindow()).getAttributes();
         layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
-        notePropertiesDialog.getWindow().setAttributes(layoutParams);
+        propertiesDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
-        Objects.requireNonNull(notePropertiesDialog.getWindow()).setWindowAnimations(0);
-        Objects.requireNonNull(notePropertiesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+        Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        propertiesDialog.getWindow().setWindowAnimations(0);
+        propertiesDialog.getWindow().setBackgroundDrawable(dialogBG);
 
-        notePropertiesDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
+        propertiesDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
     }
 
     // Get number of words from note content
