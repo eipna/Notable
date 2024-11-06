@@ -18,8 +18,14 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eipna.notable.R;
@@ -232,23 +238,54 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        @SuppressLint("ResourceType")
+        @SuppressLint({"ResourceType", "SetTextI18n"})
         private void showLibrariesDialog() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
-                    .setTitle("Libraries")
-                    .setItems(R.array.libraries, (dialogInterface, item) -> linkLauncher(item));
+            final int colorInvert = getResources().getColor(R.color.primary_invert, requireContext().getTheme());
+            String[] libraries = getResources().getStringArray(R.array.libraries);
 
-            AlertDialog librariesDialog = builder.create();
+            @SuppressLint("InflateParams")
+            View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_libraries, null);
+
+            TextView titleTV = dialogView.findViewById(R.id.dialogLibrariesTitle);
+            titleTV.setText("Libraries");
+            titleTV.setTextColor(colorInvert);
+
+            ListView listView = dialogView.findViewById(R.id.dialogLibrariesList);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, libraries) {
+                @NonNull
+                @Override
+                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                    View view = super.getView(position, convertView, parent);
+
+                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                    textView.setTextColor(colorInvert);
+                    return textView;
+                }
+            };
+            listView.setAdapter(adapter);
+
+            AlertDialog.Builder librariesDialogBuilder = new AlertDialog.Builder(requireContext());
+            librariesDialogBuilder.setView(dialogView);
+            librariesDialogBuilder.setPositiveButton("Back", (dialogInterface, i) -> dialogInterface.dismiss());
+
+            AlertDialog librariesDialog = librariesDialogBuilder.create();
             librariesDialog.show();
 
+            listView.setOnItemClickListener((adapterView, view, i, l) -> {
+                linkLauncher(i);
+                librariesDialog.dismiss();
+            });
+
             WindowManager.LayoutParams layoutParams = Objects.requireNonNull(librariesDialog.getWindow()).getAttributes();
-            layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+            layoutParams.width = (int) (requireContext().getResources().getDisplayMetrics().widthPixels * 0.9);
             librariesDialog.getWindow().setAttributes(layoutParams);
 
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
+            Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
             Objects.requireNonNull(librariesDialog.getWindow()).setWindowAnimations(0);
-            Objects.requireNonNull(librariesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+            librariesDialog.getWindow().setBackgroundDrawable(dialogBG);
+
+            librariesDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
         }
 
         private void linkLauncher(int item) {
