@@ -191,11 +191,10 @@ public class UpdateActivity extends AppCompatActivity {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
 
         TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
-        titleTV.setText("Delete Note");
-        titleTV.setTextColor(colorInvert);
+        titleTV.setVisibility(View.GONE);
 
         TextView messageTV = dialogView.findViewById(R.id.dialogMessage);
-        messageTV.setText("This will permanently delete the note from your device");
+        messageTV.setText("Are you sure you want to permanently delete this note?");
         messageTV.setTextColor(colorInvert);
 
         AlertDialog.Builder deleteDialogBuilder = new AlertDialog.Builder(this);
