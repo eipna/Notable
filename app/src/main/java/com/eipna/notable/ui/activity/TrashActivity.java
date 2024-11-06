@@ -1,13 +1,16 @@
 package com.eipna.notable.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -83,21 +86,33 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         return true;
     }
 
+    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
     private void showClearDialog() {
-        @SuppressLint("NotifyDataSetChanged")
-        AlertDialog.Builder builder = new AlertDialog.Builder(TrashActivity.this)
-                .setTitle("Clear Notes")
-                .setMessage("This operation will clear all notes inside your trash")
-                .setNegativeButton("Cancel", null)
-                .setPositiveButton("Clear", (dialogInterface, i) -> {
-                    database.clearTrashNotes();
-                    notes.clear();
-                    adapter.notifyDataSetChanged();
-                    invalidateOptionsMenu();
-                    updateNoteList();
-                });
+        final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
 
-        AlertDialog clearDialog = builder.create();
+        @SuppressLint("InflateParams")
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
+
+        TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
+        titleTV.setText("Clear Trashed Notes");
+        titleTV.setTextColor(colorInvert);
+
+        TextView messageTV = dialogView.findViewById(R.id.dialogMessage);
+        messageTV.setText("This is clear all notes inside your trash");
+        messageTV.setTextColor(colorInvert);
+
+        AlertDialog.Builder clearDialogBuilder = new AlertDialog.Builder(this);
+        clearDialogBuilder.setView(dialogView);
+        clearDialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
+        clearDialogBuilder.setPositiveButton("Clear", (dialogInterface, i) -> {
+            database.clearTrashNotes();
+            notes.clear();
+            adapter.notifyDataSetChanged();
+            invalidateOptionsMenu();
+            updateNoteList();
+        });
+
+        AlertDialog clearDialog = clearDialogBuilder.create();
         clearDialog.show();
 
         WindowManager.LayoutParams layoutParams = Objects.requireNonNull(clearDialog.getWindow()).getAttributes();
@@ -105,12 +120,12 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         clearDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
-        Objects.requireNonNull(clearDialog.getWindow()).setWindowAnimations(0);
-        Objects.requireNonNull(clearDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+        Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        clearDialog.getWindow().setWindowAnimations(0);
+        clearDialog.getWindow().setBackgroundDrawable(dialogBG);
 
-        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
-        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
+        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInvert);
+        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
     }
 
     private void updateNoteList() {
