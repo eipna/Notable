@@ -183,31 +183,43 @@ public class UpdateActivity extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("SetTextI18n")
     private void showDeleteDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this)
-                .setTitle("Permanently Delete Note")
-                .setMessage("This operation will permanently delete the note from your device.")
-                .setNegativeButton("Cancel", null)
-                .setPositiveButton("Delete", (dialogInterface, i) -> {
-                    database.deleteNote(noteIdExtra);
-                    closeActivity();
-                });
+        final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
 
-        AlertDialog deleteDialog = builder.create();
+        @SuppressLint("InflateParams")
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
+
+        TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
+        titleTV.setText("Delete Note");
+        titleTV.setTextColor(colorInvert);
+
+        TextView messageTV = dialogView.findViewById(R.id.dialogMessage);
+        messageTV.setText("This will permanently delete the note from your device");
+        messageTV.setTextColor(colorInvert);
+
+        AlertDialog.Builder deleteDialogBuilder = new AlertDialog.Builder(this);
+        deleteDialogBuilder.setView(dialogView);
+        deleteDialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
+        deleteDialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
+            database.deleteNote(noteIdExtra);
+            closeActivity();
+        });
+
+        AlertDialog deleteDialog = deleteDialogBuilder.create();
         deleteDialog.show();
 
-        // Makes the alert dialog window smaller
         WindowManager.LayoutParams layoutParams = Objects.requireNonNull(deleteDialog.getWindow()).getAttributes();
         layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
         deleteDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
-        Objects.requireNonNull(deleteDialog.getWindow()).setWindowAnimations(0);
-        Objects.requireNonNull(deleteDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
+        Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        deleteDialog.getWindow().setWindowAnimations(0);
+        deleteDialog.getWindow().setBackgroundDrawable(dialogBG);
 
-        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
-        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
+        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
+        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInvert);
     }
 
     @Override
