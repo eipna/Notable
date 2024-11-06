@@ -28,6 +28,11 @@
         <item name="android:tint">@color/dark_grey</item>
     </style>
 
+    <!-- Custom style for collapsed toolbar -->
+    <style name="CollapsedToolbarStyle">
+        <item name="android:textSize">37sp</item>
+    </style>
+
     <!-- Custom global colors -->
     <color name="dialog_button">@color/dark_grey</color>
 </resources>

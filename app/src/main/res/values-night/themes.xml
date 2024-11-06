@@ -28,6 +28,11 @@
         <item name="android:tint">?attr/colorPrimaryInverse</item>
     </style>
 
+    <!-- Custom style for collapsed toolbar -->
+    <style name="CollapsedToolbarStyle">
+        <item name="android:textSize">37sp</item>
+    </style>
+
     <!-- Custom global colors -->
     <color name="dialog_button">@color/ghost_white</color>
 </resources>

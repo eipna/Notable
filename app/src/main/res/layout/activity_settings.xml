@@ -13,15 +13,30 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            app:titleTextColor="?attr/colorPrimaryInverse"
-            app:popupTheme="@style/PopupMenuStyle"
-            android:background="?attr/colorPrimary"
-            app:layout_constraintTop_toTopOf="parent"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            app:layout_scrollFlags="scroll|enterAlways"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/dark_grey"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+            android:background="?attr/colorPrimary"
+            app:expandedTitleTextColor="?attr/colorPrimaryInverse"
+            app:expandedTitleTextAppearance="@style/CollapsedToolbarStyle"
+            app:title="Settings">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_collapseMode="parallax"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                app:titleTextColor="?attr/colorPrimaryInverse"
+                app:popupTheme="@style/PopupMenuStyle"
+                android:background="?attr/colorPrimary"
+                android:layout_width="match_parent"
+                app:layout_collapseMode="pin"
+                android:layout_height="?attr/actionBarSize"/>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
