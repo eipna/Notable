@@ -34,5 +34,6 @@
     </style>
 
     <!-- Custom global colors -->
-    <color name="dialog_button">@color/ghost_white</color>
+    <color name="primary">@color/dark_grey</color>
+    <color name="primary_invert">@color/ghost_white</color>
 </resources>

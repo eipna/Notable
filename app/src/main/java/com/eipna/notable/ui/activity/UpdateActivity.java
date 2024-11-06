@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.eipna.notable.R;
@@ -152,7 +151,7 @@ public class UpdateActivity extends AppCompatActivity {
         Objects.requireNonNull(notePropertiesDialog.getWindow()).setWindowAnimations(0);
         Objects.requireNonNull(notePropertiesDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
 
-        notePropertiesDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
+        notePropertiesDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
     }
 
     // Get number of words from note content
@@ -196,8 +195,8 @@ public class UpdateActivity extends AppCompatActivity {
         Objects.requireNonNull(deleteDialog.getWindow()).setWindowAnimations(0);
         Objects.requireNonNull(deleteDialog.getWindow()).setBackgroundDrawable(popupMenuBG);
 
-        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
-        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.dialog_button, getTheme()));
+        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
+        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.primary_invert, getTheme()));
     }
 
     @Override
