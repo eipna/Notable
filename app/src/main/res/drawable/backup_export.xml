@@ -1,4 +1,4 @@
-<vector android:height="24dp" android:viewportHeight="1920" android:tint="?attr/colorPrimaryInverse"
+<vector android:height="24dp" android:viewportHeight="1920" android:tint="@color/primary_invert"
     android:viewportWidth="1920" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#000000" android:fillType="evenOdd" android:pathData="M1352.7,169L1352.7,733.7h564.7v1016.5L675,1750.1v-677.6h-458.9l273,273 -80,79.8L-0,1016.1l409.2,-409.3 80,79.8 -273,272.9h458.9L675,169h677.6ZM1352.7,959.5L788,959.5v112.9h564.7v-112.9Z"/>
     <path android:fillColor="#000000" android:fillType="evenOdd" android:pathData="M1465.6,620.8h434.8L1465.7,185.8z"/>

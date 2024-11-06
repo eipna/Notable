@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:textColor="?attr/colorPrimaryInverse"
+        android:textColor="@color/primary_invert"
         android:layout_marginBottom="8dp"
         android:paddingStart="24dp"
         android:paddingEnd="16dp"/>
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
-        android:textColor="?attr/colorPrimaryInverse"
+        android:textColor="@color/primary_invert"
         android:layout_marginBottom="8dp"
         android:paddingStart="24dp"
         android:paddingEnd="16dp"/>
@@ -33,7 +33,7 @@
         android:text="Last Updated: October 03 2024"
         android:paddingStart="24dp"
         android:paddingEnd="16dp"
-        android:textColor="?attr/colorPrimaryInverse"
+        android:textColor="@color/primary_invert"
         android:fontFamily="sans-serif-medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

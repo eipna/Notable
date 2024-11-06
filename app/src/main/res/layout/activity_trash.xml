@@ -5,18 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="@color/primary"
     tools:context=".ui.activity.TrashActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:background="?attr/colorPrimary"
+        android:background="@color/primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            app:titleTextColor="?attr/colorPrimaryInverse"
-            android:background="?attr/colorPrimary"
+            app:titleTextColor="@color/primary_invert"
+            android:background="@color/primary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/PopupMenuStyle"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
         <TextView
             android:text="Your trash is clean :D"
             android:textStyle="bold"
-            android:textColor="?attr/colorPrimaryInverse"
+            android:textColor="@color/primary_invert"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

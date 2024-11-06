@@ -1,10 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.Notable" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Changes color of status bar -->
-        <item name="colorPrimary">@color/ghost_white</item>
-
-        <!-- Custom inverted color theme -->
-        <item name="colorPrimaryInverse">@color/dark_grey</item>
+        <item name="android:statusBarColor">@color/primary</item>
 
         <!-- Changes color of preference category title text -->
         <item name="colorAccent">@color/dark_grey</item>
@@ -20,12 +17,12 @@
     <!-- Custom theme for popup menus -->
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
         <item name="popupMenuBackground">@drawable/popup_menu</item>
-        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:textColor">@color/primary_invert</item>
     </style>
 
     <!-- Custom theme/color for kebab/more options icon -->
     <style name="OverFlowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:tint">@color/dark_grey</item>
+        <item name="android:tint">@color/primary_invert</item>
     </style>
 
     <!-- Custom style for collapsed toolbar -->

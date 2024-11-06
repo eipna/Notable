@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.CreateActivity"
-    android:background="?attr/colorPrimary">
+    android:background="@color/primary">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="?attr/colorPrimaryInverse"
+        app:titleTextColor="@color/primary_invert"
         app:popupTheme="@style/PopupMenuStyle"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
@@ -34,7 +34,7 @@
                 android:background="@null"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="?attr/colorPrimaryInverse"
+                android:textColor="@color/primary_invert"
                 android:paddingStart="12dp"
                 android:paddingBottom="12dp"
                 android:fontFamily="sans-serif"
@@ -50,7 +50,7 @@
                 android:paddingEnd="12dp"
                 android:layout_marginTop="16dp"
                 android:textSize="15sp"
-                android:textColor="?attr/colorPrimaryInverse"
+                android:textColor="@color/primary_invert"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

@@ -6,20 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.SettingsActivity"
-    android:background="?attr/colorPrimary">
+    android:background="@color/primary">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary">
+        android:background="@color/primary">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:contentScrim="@color/dark_grey"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            android:background="?attr/colorPrimary"
-            app:expandedTitleTextColor="?attr/colorPrimaryInverse"
+            android:background="@color/primary"
+            app:collapsedTitleTextColor="@color/primary_invert"
+            app:expandedTitleTextColor="@color/primary_invert"
             app:expandedTitleTextAppearance="@style/CollapsedToolbarStyle"
             app:title="Settings">
 
@@ -30,9 +31,9 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                app:titleTextColor="?attr/colorPrimaryInverse"
+                app:titleTextColor="@color/primary_invert"
                 app:popupTheme="@style/PopupMenuStyle"
-                android:background="?attr/colorPrimary"
+                android:background="@color/primary"
                 android:layout_width="match_parent"
                 app:layout_collapseMode="pin"
                 android:layout_height="?attr/actionBarSize"/>

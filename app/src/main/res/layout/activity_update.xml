@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="@color/primary"
     tools:context=".ui.activity.UpdateActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        app:titleTextColor="?attr/colorPrimaryInverse"
+        app:titleTextColor="@color/primary_invert"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/PopupMenuStyle"
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:hint="Title goes here"
                 android:background="@null"
                 android:textStyle="bold"
-                android:textColor="?attr/colorPrimaryInverse"
+                android:textColor="@color/primary_invert"
                 android:textSize="20sp"
                 android:paddingStart="12dp"
                 android:paddingBottom="12dp"
@@ -49,7 +49,7 @@
                 android:paddingEnd="12dp"
                 android:inputType="textMultiLine"
                 android:layout_marginTop="16dp"
-                android:textColor="?attr/colorPrimaryInverse"
+                android:textColor="@color/primary_invert"
                 android:textSize="15sp"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
