@@ -19,6 +19,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.eipna.notable.R;
@@ -239,6 +240,10 @@ public class SettingsActivity extends AppCompatActivity {
 
             AlertDialog librariesDialog = builder.create();
             librariesDialog.show();
+
+            WindowManager.LayoutParams layoutParams = Objects.requireNonNull(librariesDialog.getWindow()).getAttributes();
+            layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+            librariesDialog.getWindow().setAttributes(layoutParams);
 
             @SuppressLint("UseCompatLoadingForDrawables")
             Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.eipna.notable.R;
@@ -146,6 +148,10 @@ public class UpdateActivity extends AppCompatActivity {
         AlertDialog notePropertiesDialog = builder.create();
         notePropertiesDialog.show();
 
+        WindowManager.LayoutParams layoutParams = Objects.requireNonNull(notePropertiesDialog.getWindow()).getAttributes();
+        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+        notePropertiesDialog.getWindow().setAttributes(layoutParams);
+
         @SuppressLint("UseCompatLoadingForDrawables")
         Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
         Objects.requireNonNull(notePropertiesDialog.getWindow()).setWindowAnimations(0);
@@ -189,6 +195,11 @@ public class UpdateActivity extends AppCompatActivity {
 
         AlertDialog deleteDialog = builder.create();
         deleteDialog.show();
+
+        // Makes the alert dialog window smaller
+        WindowManager.LayoutParams layoutParams = Objects.requireNonNull(deleteDialog.getWindow()).getAttributes();
+        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+        deleteDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
         Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());

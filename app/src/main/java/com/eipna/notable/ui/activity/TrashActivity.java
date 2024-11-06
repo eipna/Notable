@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -98,6 +99,10 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
         AlertDialog clearDialog = builder.create();
         clearDialog.show();
+
+        WindowManager.LayoutParams layoutParams = Objects.requireNonNull(clearDialog.getWindow()).getAttributes();
+        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+        clearDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
         Drawable popupMenuBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
