@@ -94,11 +94,10 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.layout_dialog, null);
 
         TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
-        titleTV.setText("Clear Trashed Notes");
-        titleTV.setTextColor(colorInvert);
+        titleTV.setVisibility(View.GONE);
 
         TextView messageTV = dialogView.findViewById(R.id.dialogMessage);
-        messageTV.setText("This is clear all notes inside your trash");
+        messageTV.setText("This action cannot be undone, and all trashed notes will be lost forever.");
         messageTV.setTextColor(colorInvert);
 
         AlertDialog.Builder clearDialogBuilder = new AlertDialog.Builder(this);
