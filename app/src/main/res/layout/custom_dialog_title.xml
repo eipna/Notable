@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Dialog Title"
+    android:textColor="@color/primary_invert"
+    android:fontFamily="sans-serif-medium"
+    android:textSize="20sp"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp"
+    android:id="@+id/customDialogTitle"/>
