@@ -183,40 +183,40 @@ public class UpdateActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void showDeleteDialog() {
-        final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
+        final int colorInverted = getResources().getColor(R.color.primary_invert, getTheme());
 
         @SuppressLint("InflateParams")
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_title_message, null);
+        View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.custom_dialog_title, null);
 
-        TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
+        TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
         titleTV.setVisibility(View.GONE);
 
-        TextView messageTV = dialogView.findViewById(R.id.dialogMessage);
-        messageTV.setText("Are you sure you want to permanently delete this note?");
-        messageTV.setTextColor(colorInvert);
-
-        AlertDialog.Builder deleteDialogBuilder = new AlertDialog.Builder(this);
-        deleteDialogBuilder.setView(dialogView);
-        deleteDialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
-        deleteDialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setCustomTitle(customDialogTitle);
+        dialogBuilder.setMessage("Are you sure you want to permanently delete this note?");
+        dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
             database.deleteNote(noteIdExtra);
             closeActivity();
         });
 
-        AlertDialog deleteDialog = deleteDialogBuilder.create();
+        AlertDialog deleteDialog = dialogBuilder.create();
         deleteDialog.show();
 
+        TextView messageText = deleteDialog.findViewById(android.R.id.message);
+        Objects.requireNonNull(messageText).setTextColor(colorInverted);
+
         WindowManager.LayoutParams layoutParams = Objects.requireNonNull(deleteDialog.getWindow()).getAttributes();
-        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.86);
         deleteDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.popup_menu, getTheme());
         deleteDialog.getWindow().setWindowAnimations(0);
-        deleteDialog.getWindow().setBackgroundDrawable(dialogBG);
+        deleteDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
-        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
-        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInvert);
+        deleteDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInverted);
+        deleteDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInverted);
     }
 
     @Override
