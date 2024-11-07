@@ -1,6 +1,7 @@
 package com.eipna.notable.ui.activity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -87,43 +88,49 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
     private void showClearDialog() {
-        final int colorInvert = getResources().getColor(R.color.primary_invert, getTheme());
+        final int colorInverted = getResources().getColor(R.color.primary_invert, getTheme());
 
         @SuppressLint("InflateParams")
-        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_title_message, null);
+        View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.custom_dialog_title, null);
 
-        TextView titleTV = dialogView.findViewById(R.id.dialogTitle);
+        TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
         titleTV.setVisibility(View.GONE);
 
-        TextView messageTV = dialogView.findViewById(R.id.dialogMessage);
-        messageTV.setText("This action cannot be undone, and all trashed notes will be lost forever.");
-        messageTV.setTextColor(colorInvert);
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        dialogBuilder.setCustomTitle(titleTV);
+        dialogBuilder.setMessage("This action cannot be undone, and all trashed notes will be lost forever.");
+        dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
+        dialogBuilder.setPositiveButton("Clear", (dialogInterface, i) -> clear());
 
-        AlertDialog.Builder clearDialogBuilder = new AlertDialog.Builder(this);
-        clearDialogBuilder.setView(dialogView);
-        clearDialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
-        clearDialogBuilder.setPositiveButton("Clear", (dialogInterface, i) -> {
-            database.clearTrashNotes();
-            notes.clear();
-            adapter.notifyDataSetChanged();
-            invalidateOptionsMenu();
-            updateNoteList();
-        });
-
-        AlertDialog clearDialog = clearDialogBuilder.create();
+        AlertDialog clearDialog = dialogBuilder.create();
         clearDialog.show();
 
+        TextView messageTV = clearDialog.findViewById(android.R.id.message);
+        Objects.requireNonNull(messageTV).setTextColor(colorInverted);
+
         WindowManager.LayoutParams layoutParams = Objects.requireNonNull(clearDialog.getWindow()).getAttributes();
-        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.9);
+        layoutParams.width = (int) (getResources().getDisplayMetrics().widthPixels * 0.86);
         clearDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.popup_menu, getTheme());
         clearDialog.getWindow().setWindowAnimations(0);
-        clearDialog.getWindow().setBackgroundDrawable(dialogBG);
+        clearDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
-        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInvert);
-        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
+        clearDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInverted);
+        clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInverted);
+    }
+
+    /* Clears all trashed notes in database
+    *  Clears all notes in notes array list
+    *  Updates the note adapter
+    *  Updates the options menu */
+    @SuppressLint("NotifyDataSetChanged")
+    private void clear() {
+        database.clearTrashNotes();
+        notes.clear();
+        adapter.notifyDataSetChanged();
+        updateNoteList();
     }
 
     private void updateNoteList() {
