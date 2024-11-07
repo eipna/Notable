@@ -1,8 +1,13 @@
 package com.eipna.notable.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.eipna.notable.util.DateUtil;
 
-public class NoteModel {
+public class NoteModel implements Parcelable {
 
     private int noteId;
     private String noteTitle;
@@ -86,5 +91,43 @@ public class NoteModel {
 
     public void setIsFavorite(int isFavorite) {
         this.isFavorite = isFavorite;
+    }
+
+    protected NoteModel(Parcel parcel) {
+        this.noteId = parcel.readInt();
+        this.noteTitle = parcel.readString();
+        this.noteContent = parcel.readString();
+        this.noteDateCreated = parcel.readLong();
+        this.noteLastUpdated = parcel.readLong();
+        this.noteStatus = parcel.readInt();
+        this.isFavorite = parcel.readInt();
+    }
+
+    public static final Creator<NoteModel> CREATOR = new Creator<NoteModel>() {
+        @Override
+        public NoteModel createFromParcel(Parcel parcel) {
+            return new NoteModel(parcel);
+        }
+
+        @Override
+        public NoteModel[] newArray(int size) {
+            return new NoteModel[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel destination, int flags) {
+        destination.writeInt(this.noteId);
+        destination.writeString(this.noteTitle);
+        destination.writeString(this.noteContent);
+        destination.writeLong(this.noteDateCreated);
+        destination.writeLong(this.noteLastUpdated);
+        destination.writeInt(this.noteStatus);
+        destination.writeInt(this.isFavorite);
     }
 }
