@@ -10,6 +10,8 @@
 
     <item
         android:id="@+id/options_update_share"
+        android:icon="@drawable/share"
+        app:showAsAction="ifRoom"
         android:title="Share" />
 
     <item
