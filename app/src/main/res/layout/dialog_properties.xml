@@ -9,16 +9,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/dialogPropertiesTitle"
-        android:text="Dialog Title"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/primary_invert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/dialogPropertiesWordCount"
+        android:id="@+id/wordCountProperty"
         android:text="Word Count: 420"
         android:layout_marginTop="12dp"
         android:layout_width="match_parent"
@@ -28,7 +19,7 @@
         android:layout_marginBottom="8dp"/>
 
     <TextView
-        android:id="@+id/dialogPropertiesDateCreated"
+        android:id="@+id/dateCreatedProperty"
         android:text="Date Created: October 03 2024"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,7 +28,7 @@
         android:layout_marginBottom="8dp"/>
 
     <TextView
-        android:id="@+id/dialogPropertiesLastUpdated"
+        android:id="@+id/lastUpdatedProperty"
         android:text="Last Updated: October 03 2024"
         android:textColor="@color/primary_invert"
         android:fontFamily="sans-serif-medium"
