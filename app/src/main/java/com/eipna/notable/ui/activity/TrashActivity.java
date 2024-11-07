@@ -170,15 +170,9 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     @Override
     public void onNoteClick(int position) {
-        NoteModel note = notes.get(position);
+        NoteModel selectedNote = notes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("NOTE_ID", note.getNoteId());
-        updateNoteIntent.putExtra("NOTE_TITLE", note.getNoteTitle());
-        updateNoteIntent.putExtra("NOTE_CONTENT", note.getNoteContent());
-        updateNoteIntent.putExtra("NOTE_DATE_CREATED", note.getNoteDateCreated());
-        updateNoteIntent.putExtra("NOTE_LAST_UPDATED", note.getNoteLastUpdated());
-        updateNoteIntent.putExtra("NOTE_STATUS", note.getNoteStatus());
-        updateNoteIntent.putExtra("NOTE_FAVORITE", note.getIsFavorite());
+        updateNoteIntent.putExtra("NOTE", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 

@@ -28,15 +28,7 @@ public class UpdateActivity extends AppCompatActivity {
     private ActivityUpdateBinding binding;
     private Database database;
 
-    private int noteIdExtra;
-    private int noteStatusExtra;
-    private int noteIsFavoriteExtra;
-
-    private String noteTitleExtra;
-    private String noteContentExtra;
-
-    private long noteDateCreatedExtra;
-    private long noteLastUpdatedExtra;
+    private NoteModel currentNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,25 +37,16 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         database = new Database(UpdateActivity.this);
-        setNoteExtras();
+        currentNote = getIntent().getParcelableExtra("NOTE");
 
-        binding.titleInput.setText(noteTitleExtra);
-        binding.noteInput.setText(noteContentExtra);
+        assert currentNote != null;
+        binding.titleInput.setText(currentNote.getNoteTitle());
+        binding.noteInput.setText(currentNote.getNoteContent());
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    private void setNoteExtras() {
-        noteIdExtra = getIntent().getIntExtra("NOTE_ID", -1);
-        noteTitleExtra = getIntent().getStringExtra("NOTE_TITLE");
-        noteContentExtra = getIntent().getStringExtra("NOTE_CONTENT");
-        noteDateCreatedExtra = getIntent().getLongExtra("NOTE_DATE_CREATED", -1);
-        noteStatusExtra = getIntent().getIntExtra("NOTE_STATUS", -1);
-        noteIsFavoriteExtra = getIntent().getIntExtra("NOTE_FAVORITE", -1);
-        noteLastUpdatedExtra = getIntent().getLongExtra("NOTE_LAST_UPDATED", -1);
     }
 
     @Override
@@ -73,34 +56,34 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.options_update_favorite) {
-            switch (noteIsFavoriteExtra) {
+            switch (currentNote.getIsFavorite()) {
                 case NoteModel.IS_FAVORITE:
-                    noteIsFavoriteExtra = NoteModel.NOT_FAVORITE;
+                    currentNote.setIsFavorite(NoteModel.NOT_FAVORITE);
                     break;
                 case NoteModel.NOT_FAVORITE:
-                    noteIsFavoriteExtra = NoteModel.IS_FAVORITE;
+                    currentNote.setIsFavorite(NoteModel.IS_FAVORITE);
                     break;
             }
             invalidateOptionsMenu();
         }
 
         if (item.getItemId() == R.id.options_update_archive) {
-            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_ARCHIVED);
+            database.alterNoteStatus(currentNote.getNoteId(), NoteModel.STATUS_ARCHIVED);
             closeActivity();
         }
 
         if (item.getItemId() == R.id.options_update_unarchive) {
-            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_DEFAULT);
+            database.alterNoteStatus(currentNote.getNoteId(), NoteModel.STATUS_DEFAULT);
             closeActivity();
         }
 
         if (item.getItemId() == R.id.options_update_Trash) {
-            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_DELETED);
+            database.alterNoteStatus(currentNote.getNoteId(), NoteModel.STATUS_DELETED);
             closeActivity();
         }
 
         if (item.getItemId() == R.id.options_update_restore) {
-            database.alterNoteStatus(noteIdExtra, NoteModel.STATUS_DEFAULT);
+            database.alterNoteStatus(currentNote.getNoteId(), NoteModel.STATUS_DEFAULT);
             closeActivity();
         }
 
@@ -136,10 +119,10 @@ public class UpdateActivity extends AppCompatActivity {
         wordCountTV.setText(String.format("Word Count: %d", noteWordCount));
 
         TextView dateCreatedTV = customDialogLibraries.findViewById(R.id.dateCreatedProperty);
-        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteDateCreatedExtra)));
+        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, currentNote.getNoteDateCreated())));
 
         TextView lastUpdatedTV = customDialogLibraries.findViewById(R.id.lastUpdatedProperty);
-        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, noteLastUpdatedExtra)));
+        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, currentNote.getNoteLastUpdated())));
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setCustomTitle(titleTV);
@@ -172,7 +155,7 @@ public class UpdateActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        switch (noteIsFavoriteExtra) {
+        switch (currentNote.getIsFavorite()) {
             case NoteModel.IS_FAVORITE:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
@@ -202,7 +185,7 @@ public class UpdateActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Are you sure you want to permanently delete this note?");
         dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
-            database.deleteNote(noteIdExtra);
+            database.deleteNote(currentNote.getNoteId());
             closeActivity();
         });
 
@@ -229,7 +212,7 @@ public class UpdateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
 
-        switch (noteStatusExtra) {
+        switch (currentNote.getNoteStatus()) {
             case NoteModel.STATUS_DEFAULT:
                 menu.findItem(R.id.options_update_unarchive).setVisible(false);
                 menu.findItem(R.id.options_update_restore).setVisible(false);
@@ -246,18 +229,18 @@ public class UpdateActivity extends AppCompatActivity {
                 break;
         }
 
-        switch (noteIsFavoriteExtra) {
+        switch (currentNote.getIsFavorite()) {
             case NoteModel.IS_FAVORITE:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
-                database.alterNoteFavorite(noteIdExtra, NoteModel.IS_FAVORITE);
+                database.alterNoteFavorite(currentNote.getNoteId(), NoteModel.IS_FAVORITE);
                 break;
             case NoteModel.NOT_FAVORITE:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
-                database.alterNoteFavorite(noteIdExtra, NoteModel.NOT_FAVORITE);
+                database.alterNoteFavorite(currentNote.getNoteId(), NoteModel.NOT_FAVORITE);
                 break;
         }
         return true;
@@ -291,7 +274,7 @@ public class UpdateActivity extends AppCompatActivity {
             }
 
             NoteModel note = new NoteModel();
-            note.setNoteId(noteIdExtra);
+            note.setNoteId(currentNote.getNoteId());
             note.setNoteTitle(updatedTitle);
             note.setNoteContent(updatedNote);
             note.setNoteLastUpdated(DateUtil.getCurrentTime());
@@ -307,7 +290,7 @@ public class UpdateActivity extends AppCompatActivity {
         String contentInField = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
         // Match title and content fields string with title and content extras
-        return titleInField.equals(noteTitleExtra) && contentInField.equals(noteContentExtra);
+        return titleInField.equals(currentNote.getNoteTitle()) && contentInField.equals(currentNote.getNoteContent());
     }
 
     private void closeActivity() {
