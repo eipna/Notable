@@ -14,6 +14,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -240,52 +241,32 @@ public class SettingsActivity extends AppCompatActivity {
 
         @SuppressLint({"ResourceType", "SetTextI18n"})
         private void showLibrariesDialog() {
-            final int colorInvert = getResources().getColor(R.color.primary_invert, requireContext().getTheme());
-            String[] libraries = getResources().getStringArray(R.array.libraries);
+            final int colorInverted = getResources().getColor(R.color.primary_invert, requireContext().getTheme());
 
             @SuppressLint("InflateParams")
-            View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_libraries, null);
+            View customDialogTitle = LayoutInflater.from(requireContext()).inflate(R.layout.custom_dialog_title, null);
 
-            TextView titleTV = dialogView.findViewById(R.id.dialogLibrariesTitle);
+            TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
             titleTV.setText("Libraries");
-            titleTV.setTextColor(colorInvert);
 
-            ListView listView = dialogView.findViewById(R.id.dialogLibrariesList);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, libraries) {
-                @NonNull
-                @Override
-                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                    View view = super.getView(position, convertView, parent);
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
+            dialogBuilder.setCustomTitle(titleTV);
+            dialogBuilder.setItems(R.array.libraries, (dialogInterface, i) -> linkLauncher(i));
+            dialogBuilder.setPositiveButton("Back", (dialogInterface, i) -> dialogInterface.dismiss());
 
-                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
-                    textView.setTextColor(colorInvert);
-                    return textView;
-                }
-            };
-            listView.setAdapter(adapter);
-
-            AlertDialog.Builder librariesDialogBuilder = new AlertDialog.Builder(requireContext());
-            librariesDialogBuilder.setView(dialogView);
-            librariesDialogBuilder.setPositiveButton("Back", (dialogInterface, i) -> dialogInterface.dismiss());
-
-            AlertDialog librariesDialog = librariesDialogBuilder.create();
+            AlertDialog librariesDialog = dialogBuilder.create();
             librariesDialog.show();
 
-            listView.setOnItemClickListener((adapterView, view, i, l) -> {
-                linkLauncher(i);
-                librariesDialog.dismiss();
-            });
-
             WindowManager.LayoutParams layoutParams = Objects.requireNonNull(librariesDialog.getWindow()).getAttributes();
-            layoutParams.width = (int) (requireContext().getResources().getDisplayMetrics().widthPixels * 0.9);
+            layoutParams.width = (int) (requireContext().getResources().getDisplayMetrics().widthPixels * 0.86);
             librariesDialog.getWindow().setAttributes(layoutParams);
 
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable dialogBG = getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
-            Objects.requireNonNull(librariesDialog.getWindow()).setWindowAnimations(0);
-            librariesDialog.getWindow().setBackgroundDrawable(dialogBG);
+            Drawable dialogBackground = requireContext().getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
+            librariesDialog.getWindow().setWindowAnimations(0);
+            librariesDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
-            librariesDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInvert);
+            librariesDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInverted);
         }
 
         private void linkLauncher(int item) {
