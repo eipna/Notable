@@ -36,6 +36,7 @@
                 android:textSize="20sp"
                 android:textColor="@color/primary_invert"
                 android:paddingStart="12dp"
+                android:paddingEnd="12dp"
                 android:paddingBottom="12dp"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
