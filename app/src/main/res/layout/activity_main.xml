@@ -61,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/FABStyle"
+        android:src="@drawable/edit"
         android:importantForAccessibility="no"
         tools:ignore="RtlHardcoded" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

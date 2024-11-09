@@ -41,7 +41,6 @@
 
     <!-- Style for FABs (Floating Action Button) -->
     <style name="FABStyle">
-        <item name="android:src">@drawable/edit</item>
         <item name="backgroundTint">#4A4A4A</item>
         <item name="tint">#DCDCDC</item>
     </style>
