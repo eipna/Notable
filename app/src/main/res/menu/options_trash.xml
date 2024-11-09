@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/options_trash_clear"
-        android:title="Clear All"
+        android:title="@string/menu_clear"
         android:icon="@drawable/delete"
         app:showAsAction="ifRoom"/>
 

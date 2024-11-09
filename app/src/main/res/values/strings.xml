@@ -6,6 +6,18 @@
     <string name="link_github">https://github.com/eipna/Notable</string>
     <string name="link_pretty_time">https://www.ocpsoft.org/prettytime/</string>
 
+    <string name="menu_share">Share</string>
+    <string name="menu_favorite">Favorite</string>
+    <string name="menu_properties">Properties</string>
+    <string name="menu_archive">Archive</string>
+    <string name="menu_unarchive">Unarchive</string>
+    <string name="menu_trash">Trash</string>
+    <string name="menu_restore">Restore</string>
+    <string name="menu_delete">Delete</string>
+    <string name="menu_clear">Clear All</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_settings">Settings</string>
+
     <string name="lorem_ipsum">Lorem ipsum odor amet, consectetuer adipiscing elit.
         At volutpat donec potenti libero ante; dictumst litora. Netus netus posuere
         augue tempor potenti risus. Per ultricies massa sit posuere imperdiet vulputate

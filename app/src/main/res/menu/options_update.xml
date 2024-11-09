@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/options_update_favorite"
-        android:title="Favorite"
+        android:title="@string/menu_favorite"
         android:icon="@drawable/heart_not_filled"
         app:showAsAction="ifRoom"/>
 
@@ -12,30 +12,30 @@
         android:id="@+id/options_update_share"
         android:icon="@drawable/share"
         app:showAsAction="ifRoom"
-        android:title="Share" />
+        android:title="@string/menu_share" />
 
     <item
         android:id="@+id/options_update_archive"
-        android:title="Archive"/>
+        android:title="@string/menu_archive"/>
 
     <item
         android:id="@+id/options_update_unarchive"
-        android:title="Unarchive"/>
+        android:title="@string/menu_unarchive"/>
 
     <item
         android:id="@+id/options_update_Trash"
-        android:title="Trash"/>
+        android:title="@string/menu_trash"/>
 
     <item
         android:id="@+id/options_update_restore"
-        android:title="Restore"/>
+        android:title="@string/menu_restore"/>
 
     <item
         android:id="@+id/options_update_delete"
-        android:title="Delete"/>
+        android:title="@string/menu_delete"/>
 
     <item
         android:id="@+id/options_update_properties"
-        android:title="Properties"/>
+        android:title="@string/menu_properties"/>
 
 </menu>

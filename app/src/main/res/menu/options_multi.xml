@@ -5,24 +5,24 @@
     <item
         android:id="@+id/options_multi_archive"
         android:icon="@drawable/archive"
-        android:title="Archive"
+        android:title="@string/menu_archive"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/options_multi_unarchive"
-        android:title="Unarchive"
+        android:title="@string/menu_unarchive"
         app:showAsAction="ifRoom"
         android:icon="@drawable/unarchive"/>
 
     <item
         android:id="@+id/options_multi_trash"
         android:icon="@drawable/delete"
-        android:title="Trash"
+        android:title="@string/menu_trash"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/options_multi_restore"
         android:icon="@drawable/restore"
         app:showAsAction="ifRoom"
-        android:title="Restore"/>
+        android:title="@string/menu_restore"/>
 </menu>

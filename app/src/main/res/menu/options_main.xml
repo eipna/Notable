@@ -4,25 +4,25 @@
 
     <item
         android:id="@+id/options_main_search"
-        android:title="Search"
+        android:title="@string/menu_search"
         android:icon="@drawable/search"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <item
         android:id="@+id/options_main_favorite"
-        android:title="Favorite"/>
+        android:title="@string/menu_favorite"/>
 
     <item
         android:id="@+id/options_main_archive"
-        android:title="Archive"/>
+        android:title="@string/menu_archive"/>
 
     <item
         android:id="@+id/options_main_trash"
-        android:title="Trash"/>
+        android:title="@string/menu_trash"/>
 
     <item
         android:id="@+id/options_main_settings"
-        android:title="Settings"/>
+        android:title="@string/menu_settings"/>
 
 </menu>
