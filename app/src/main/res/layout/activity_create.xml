@@ -37,6 +37,7 @@
                 android:textColor="@color/primary_invert"
                 android:paddingHorizontal="18dp"
                 android:paddingBottom="12dp"
+                android:textColorHint="@color/primary_invert"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -48,6 +49,7 @@
                 android:inputType="textMultiLine"
                 android:paddingHorizontal="18dp"
                 android:layout_marginTop="16dp"
+                android:textColorHint="@color/primary_invert"
                 android:textSize="15sp"
                 android:textColor="@color/primary_invert"
                 android:fontFamily="sans-serif"
