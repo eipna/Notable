@@ -33,6 +33,12 @@
         <item name="android:textSize">37sp</item>
     </style>
 
+    <!-- Custom style for toolbar drop shadow -->
+    <style name="DropShadowStyle">
+        <item name="android:background">@drawable/drop_shadow</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
     <!-- Custom global colors -->
     <color name="primary">@color/ghost_white</color>
     <color name="primary_invert">@color/dark_grey</color>
