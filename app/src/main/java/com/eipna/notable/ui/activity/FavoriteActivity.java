@@ -1,18 +1,15 @@
 package com.eipna.notable.ui.activity;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.eipna.notable.R;
-import com.eipna.notable.custom.ItemSpacingDecoration;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
@@ -62,18 +59,15 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
         listLayout.setStackFromEnd(true);
 
         final int SPAN_COUNT = 2;
-        final int ITEM_SPACING = 0;
         StaggeredGridLayoutManager gridLayout = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
 
         switch (display) {
             case "list":
                 binding.noteList.setLayoutManager(listLayout);
-                binding.noteList.addItemDecoration(new ItemSpacingDecoration(ITEM_SPACING));
                 binding.noteList.setAdapter(adapter);
                 break;
             case "grid":
                 binding.noteList.setLayoutManager(gridLayout);
-                binding.noteList.addItemDecoration(new ItemSpacingDecoration(ITEM_SPACING));
                 binding.noteList.setAdapter(adapter);
                 break;
         }

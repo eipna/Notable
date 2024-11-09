@@ -20,10 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
-import com.eipna.notable.custom.ItemSpacingDecoration;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.databinding.ActivityTrashBinding;
 import com.eipna.notable.ui.adapter.NoteAdapter;
 import com.eipna.notable.util.SharedPrefsUtil;
 
@@ -149,18 +149,15 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         listLayout.setStackFromEnd(true);
 
         final int SPAN_COUNT = 2;
-        final int ITEM_SPACING = 0;
         StaggeredGridLayoutManager gridLayout = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
 
         switch (display) {
             case "list":
                 binding.noteList.setLayoutManager(listLayout);
-                binding.noteList.addItemDecoration(new ItemSpacingDecoration(ITEM_SPACING));
                 binding.noteList.setAdapter(adapter);
                 break;
             case "grid":
                 binding.noteList.setLayoutManager(gridLayout);
-                binding.noteList.addItemDecoration(new ItemSpacingDecoration(ITEM_SPACING));
                 binding.noteList.setAdapter(adapter);
                 break;
         }
