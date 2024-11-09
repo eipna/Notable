@@ -2,52 +2,52 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        app:title="Appearance"
+        app:title="@string/pref_category_appearance"
         app:iconSpaceReserved="false">
 
         <ListPreference
             android:key="list_theme"
-            app:title="Theme"
+            app:title="@string/pref_title_theme"
             android:layout="@layout/view_preference"
-            app:summary="Change between light mode or dark mode or follow the current system theme"
+            app:summary="@string/pref_summary_theme"
             android:entries="@array/preference_list_theme"
             android:entryValues="@array/preference_list_theme_values"
             app:icon="@drawable/sun"/>
 
         <ListPreference
             android:key="list_display"
-            android:title="Display Style"
+            android:title="@string/pref_title_display"
             app:icon="@drawable/note"
             android:layout="@layout/view_preference"
             android:entries="@array/preference_list_display"
             android:entryValues="@array/preference_list_display_values"
-            app:summary="Choose how your notes are displayed"/>
+            app:summary="@string/pref_summary_display"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Backup"
+        app:title="@string/pref_category_backup"
         app:iconSpaceReserved="false">
 
         <Preference
             android:key="prefs_import"
-            app:title="Import Notes"
+            app:title="@string/pref_title_import"
             android:icon="@drawable/backup_import"
             android:layout="@layout/view_preference"/>
 
         <Preference
             android:key="prefs_export"
-            app:title="Export Notes"
+            app:title="@string/pref_title_import"
             android:icon="@drawable/backup_export"
             android:layout="@layout/view_preference"/>
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="About"
+        app:title="@string/pref_category_about"
         app:iconSpaceReserved="false">
 
         <Preference
-            app:title="Github"
-            app:summary="eipna"
+            app:title="@string/pref_title_github"
+            app:summary="@string/pref_summary_github"
             app:icon="@drawable/link"
             android:layout="@layout/view_preference">
 
@@ -58,14 +58,14 @@
 
         <Preference
             android:key="prefs_libraries"
-            android:title="Libraries"
+            android:title="@string/pref_title_libraries"
             android:icon="@drawable/link"
             android:layout="@layout/view_preference"/>
 
         <Preference
             android:key="prefs_version"
-            app:title="Version"
-            app:summary="@string/app_version"
+            app:title="@string/pref_title_version"
+            app:summary="@string/pref_summary_version"
             app:icon="@drawable/info"
             android:layout="@layout/view_preference"/>
     </PreferenceCategory>
