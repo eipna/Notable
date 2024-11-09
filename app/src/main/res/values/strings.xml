@@ -26,7 +26,9 @@
     <string name="hint_note_title">Title goes here</string>
     <string name="hint_note_content">Jot your notes here…</string>
 
-    <string name="lorem_ipsum">Lorem ipsum odor amet, consectetuer adipiscing elit.
+    <string name="template_note_title">Lorem Ipsum.</string>
+    <string name="template_note_update">a few moments ago</string>
+    <string name="template_note_content">Lorem ipsum odor amet, consectetuer adipiscing elit.
         At volutpat donec potenti libero ante; dictumst litora. Netus netus posuere
         augue tempor potenti risus. Per ultricies massa sit posuere imperdiet vulputate
         senectus. Penatibus torquent potenti integer luctus diam donec accumsan

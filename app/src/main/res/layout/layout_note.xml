@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/noteTitle"
-            android:text="Lorem Ipsum."
+            android:text="@string/template_note_title"
             android:textSize="15sp"
             android:textStyle="bold"
             android:maxLines="3"
@@ -38,7 +38,7 @@
 
         <TextView
             android:id="@+id/noteContent"
-            android:text="@string/lorem_ipsum"
+            android:text="@string/template_note_content"
             android:maxLines="5"
             android:textSize="13sp"
             android:textColor="@color/primary_invert"
@@ -63,7 +63,7 @@
 
             <TextView
                 android:id="@+id/noteLastUpdated"
-                android:text="a few moments ago"
+                android:text="@string/template_note_update"
                 android:textSize="11sp"
                 android:textColor="@color/primary_invert"
                 android:fontFamily="sans-serif-medium"
