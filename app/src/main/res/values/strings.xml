@@ -23,6 +23,9 @@
     <string name="empty_notes_main">No notes to see here.</string>
     <string name="empty_notes_trash">Your trash is clean :D</string>
 
+    <string name="hint_note_title">Title goes here</string>
+    <string name="hint_note_content">Jot your notes here…</string>
+
     <string name="lorem_ipsum">Lorem ipsum odor amet, consectetuer adipiscing elit.
         At volutpat donec potenti libero ante; dictumst litora. Netus netus posuere
         augue tempor potenti risus. Per ultricies massa sit posuere imperdiet vulputate
