@@ -14,7 +14,6 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -22,17 +21,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.model.NoteModel;
-import com.eipna.notable.databinding.ActivitySettingsBinding;
 import com.eipna.notable.util.SharedPrefsUtil;
 
 import org.json.JSONArray;
@@ -244,7 +239,7 @@ public class SettingsActivity extends AppCompatActivity {
             final int colorInverted = getResources().getColor(R.color.primary_invert, requireContext().getTheme());
 
             @SuppressLint("InflateParams")
-            View customDialogTitle = LayoutInflater.from(requireContext()).inflate(R.layout.custom_dialog_title, null);
+            View customDialogTitle = LayoutInflater.from(requireContext()).inflate(R.layout.view_dialog_title, null);
 
             TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
             titleTV.setText("Libraries");
