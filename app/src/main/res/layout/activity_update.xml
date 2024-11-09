@@ -31,7 +31,9 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:paddingTop="12dp"
+            android:paddingTop="21dp"
+            android:paddingHorizontal="18dp"
+            android:paddingBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -43,8 +45,7 @@
                 android:textColor="@color/primary_invert"
                 android:textColorHint="@color/primary_invert"
                 android:textSize="20sp"
-                android:paddingHorizontal="18dp"
-                android:paddingBottom="12dp"
+                android:layout_marginBottom="12dp"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -53,7 +54,6 @@
                 android:id="@+id/noteInput"
                 android:hint="@string/hint_note_content"
                 android:background="@null"
-                android:paddingHorizontal="18dp"
                 android:inputType="textMultiLine"
                 android:layout_marginTop="10dp"
                 android:textColorHint="@color/primary_invert"

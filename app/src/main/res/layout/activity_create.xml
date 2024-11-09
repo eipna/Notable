@@ -26,6 +26,9 @@
     <ScrollView
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="?attr/actionBarSize"
+        android:paddingTop="21dp"
+        android:paddingHorizontal="18dp"
+        android:paddingBottom="16dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,8 +45,7 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="@color/primary_invert"
-                android:paddingHorizontal="18dp"
-                android:paddingBottom="12dp"
+                android:layout_marginBottom="12dp"
                 android:textColorHint="@color/primary_invert"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
@@ -54,8 +56,6 @@
                 android:hint="@string/hint_note_content"
                 android:background="@null"
                 android:inputType="textMultiLine"
-                android:paddingHorizontal="18dp"
-                android:layout_marginTop="10dp"
                 android:textColorHint="@color/primary_invert"
                 android:textSize="15sp"
                 android:textColor="@color/primary_invert"
