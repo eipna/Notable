@@ -9,7 +9,6 @@
 
     <TextView
         android:id="@+id/wordCountProperty"
-        android:text="Word Count: 420"
         android:layout_marginTop="16dp"
         android:textSize="13sp"
         android:layout_width="match_parent"
@@ -19,7 +18,6 @@
 
     <TextView
         android:id="@+id/dateCreatedProperty"
-        android:text="Date Created: October 03 2024"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="13sp"
@@ -28,8 +26,7 @@
 
     <TextView
         android:id="@+id/lastUpdatedProperty"
-        android:text="Last Updated: October 03 2024"
-        android:textSize="13dp"
+        android:textSize="13sp"
         android:textColor="@color/primary_invert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
