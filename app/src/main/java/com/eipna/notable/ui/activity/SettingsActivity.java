@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.eipna.notable.R;
 import com.eipna.notable.data.Database;
 import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.databinding.ActivitySettingsBinding;
 import com.eipna.notable.util.SharedPrefsUtil;
 
 import org.json.JSONArray;

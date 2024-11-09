@@ -35,12 +35,12 @@
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.UpdateActivity"
-            android:label="Edit Note"
+            android:label=" "
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
             android:name=".ui.activity.CreateActivity"
-            android:label="New Note"
+            android:label=" "
             android:exported="false"
             android:parentActivityName=".ui.activity.MainActivity" />
         <activity
