@@ -58,11 +58,9 @@
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/add"
-        android:backgroundTint="@color/primary_invert"
-        app:tint="@color/primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Create new note"
-        tools:ignore="HardcodedText" />
+        style="@style/FABStyle"
+        android:importantForAccessibility="no"
+        tools:ignore="RtlHardcoded" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

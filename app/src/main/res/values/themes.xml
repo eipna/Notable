@@ -39,6 +39,13 @@
         <item name="android:visibility">visible</item>
     </style>
 
+    <!-- Style for FABs (Floating Action Button) -->
+    <style name="FABStyle">
+        <item name="android:src">@drawable/edit</item>
+        <item name="backgroundTint">#4A4A4A</item>
+        <item name="tint">#DCDCDC</item>
+    </style>
+
     <!-- Custom global colors -->
     <color name="primary">@color/ghost_white</color>
     <color name="primary_invert">@color/dark_grey</color>
