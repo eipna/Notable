@@ -240,7 +240,7 @@ public class SettingsActivity extends AppCompatActivity {
             final int colorInverted = getResources().getColor(R.color.primary_invert, requireContext().getTheme());
 
             @SuppressLint("InflateParams")
-            View customDialogTitle = LayoutInflater.from(requireContext()).inflate(R.layout.view_dialog_title, null);
+            View customDialogTitle = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_custom_title, null);
 
             TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
             titleTV.setText("Libraries");

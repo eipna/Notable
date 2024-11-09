@@ -107,10 +107,10 @@ public class UpdateActivity extends AppCompatActivity {
         final int noteWordCount = getWordCount(Objects.requireNonNull(binding.noteInput.getText()).toString());
 
         @SuppressLint("InflateParams")
-        View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.view_dialog_title, null);
+        View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.dialog_custom_title, null);
 
         @SuppressLint("InflateParams")
-        View customDialogLibraries = LayoutInflater.from(this).inflate(R.layout.view_dialog_properties, null);
+        View customDialogLibraries = LayoutInflater.from(this).inflate(R.layout.dialog_note_properties, null);
 
         TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
         titleTV.setText("Properties");
@@ -175,7 +175,7 @@ public class UpdateActivity extends AppCompatActivity {
         final int colorInverted = getResources().getColor(R.color.primary_invert, getTheme());
 
         @SuppressLint("InflateParams")
-        View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.view_dialog_title, null);
+        View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.dialog_custom_title, null);
 
         TextView titleTV = customDialogTitle.findViewById(R.id.customDialogTitle);
         titleTV.setVisibility(View.GONE);
