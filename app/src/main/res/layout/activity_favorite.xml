@@ -40,7 +40,7 @@
             android:layout_height="230dp"/>
 
         <TextView
-            android:text="No favorite notes to explore."
+            android:text="@string/empty_notes_favorite"
             android:textStyle="bold"
             android:textColor="@color/primary_invert"
             android:layout_gravity="center"

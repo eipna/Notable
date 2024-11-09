@@ -45,7 +45,7 @@
             android:layout_height="250dp"/>
 
         <TextView
-            android:text="The archive is empty."
+            android:text="@string/empty_notes_archive"
             android:textStyle="bold"
             android:textColor="@color/primary_invert"
             android:layout_gravity="center"

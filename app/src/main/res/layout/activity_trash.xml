@@ -39,7 +39,7 @@
             android:layout_height="280dp"/>
 
         <TextView
-            android:text="Your trash is clean :D"
+            android:text="@string/empty_notes_trash"
             android:textStyle="bold"
             android:textColor="@color/primary_invert"
             android:layout_gravity="center"
