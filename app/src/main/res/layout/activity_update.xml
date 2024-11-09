@@ -30,7 +30,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/titleInput"
-                android:hint="Title goes here"
+                android:hint="@string/hint_note_title"
                 android:background="@null"
                 android:textStyle="bold"
                 android:textColor="@color/primary_invert"
@@ -43,7 +43,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/noteInput"
-                android:hint="Jot your notes here..."
+                android:hint="@string/hint_note_content"
                 android:background="@null"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
