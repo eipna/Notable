@@ -44,7 +44,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/primary_invert"
                 android:textColorHint="@color/primary_invert"
-                android:textSize="20sp"
+                android:textSize="21sp"
                 android:layout_marginBottom="12dp"
                 android:fontFamily="sans-serif"
                 android:layout_width="match_parent"
