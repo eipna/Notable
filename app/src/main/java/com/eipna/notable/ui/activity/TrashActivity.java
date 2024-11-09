@@ -112,7 +112,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         clearDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBackground = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.dialog, getTheme());
         clearDialog.getWindow().setWindowAnimations(0);
         clearDialog.getWindow().setBackgroundDrawable(dialogBackground);
 

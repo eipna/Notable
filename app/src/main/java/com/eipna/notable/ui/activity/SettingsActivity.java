@@ -258,7 +258,7 @@ public class SettingsActivity extends AppCompatActivity {
             librariesDialog.getWindow().setAttributes(layoutParams);
 
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable dialogBackground = requireContext().getResources().getDrawable(R.drawable.popup_menu, requireContext().getTheme());
+            Drawable dialogBackground = requireContext().getResources().getDrawable(R.drawable.dialog, requireContext().getTheme());
             librariesDialog.getWindow().setWindowAnimations(0);
             librariesDialog.getWindow().setBackgroundDrawable(dialogBackground);
 

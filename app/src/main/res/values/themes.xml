@@ -20,7 +20,7 @@
     <!-- Custom theme for popup menus -->
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
         <item name="popupMenuBackground">@drawable/popup_menu</item>
-        <item name="android:textColor">@color/primary_invert</item>
+        <item name="android:textColor">@color/popup_menu_text</item>
     </style>
 
     <!-- Custom theme/color for kebab/more options icon -->
@@ -42,4 +42,6 @@
     <!-- Custom global colors -->
     <color name="primary">@color/ghost_white</color>
     <color name="primary_invert">@color/dark_grey</color>
+    <color name="popup_menu_bg">#ECECEC</color>
+    <color name="popup_menu_text">#2E2E2E</color>
 </resources>

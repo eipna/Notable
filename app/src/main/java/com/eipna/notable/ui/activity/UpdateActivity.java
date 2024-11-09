@@ -140,7 +140,7 @@ public class UpdateActivity extends AppCompatActivity {
         propertiesDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBackground = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.dialog, getTheme());
         propertiesDialog.getWindow().setWindowAnimations(0);
         propertiesDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
@@ -200,7 +200,7 @@ public class UpdateActivity extends AppCompatActivity {
         deleteDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBackground = getResources().getDrawable(R.drawable.popup_menu, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.dialog, getTheme());
         deleteDialog.getWindow().setWindowAnimations(0);
         deleteDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
