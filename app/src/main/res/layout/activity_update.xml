@@ -48,7 +48,7 @@
                 android:background="@null"
                 android:paddingHorizontal="18dp"
                 android:inputType="textMultiLine"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:textColorHint="@color/primary_invert"
                 android:textColor="@color/primary_invert"
                 android:textSize="15sp"
