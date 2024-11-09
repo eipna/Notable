@@ -1,11 +1,14 @@
 <resources>
+    <!-- Application Details -->
     <string name="app_name">Notable</string>
     <string name="app_version">1.0.0</string>
     <string name="app_easter_egg">You are now a developer :D</string>
 
+    <!-- External Links -->
     <string name="link_github">https://github.com/eipna/Notable</string>
     <string name="link_pretty_time">https://www.ocpsoft.org/prettytime/</string>
 
+    <!-- Option Menus -->
     <string name="menu_share">Share</string>
     <string name="menu_favorite">Favorite</string>
     <string name="menu_properties">Properties</string>
@@ -18,14 +21,17 @@
     <string name="menu_search">Search</string>
     <string name="menu_settings">Settings</string>
 
+    <!-- Text that shows up when the recycler view is empty -->
     <string name="empty_notes_archive">The archive is empty.</string>
     <string name="empty_notes_favorite">No favorite notes to explore.</string>
     <string name="empty_notes_main">No notes to see here.</string>
     <string name="empty_notes_trash">Your trash is clean :D</string>
 
+    <!-- Note fields hints -->
     <string name="hint_note_title">Title goes here</string>
     <string name="hint_note_content">Jot your notes here…</string>
 
+    <!-- Text placeholder for custom note view -->
     <string name="template_note_title">Lorem Ipsum.</string>
     <string name="template_note_update">a few moments ago</string>
     <string name="template_note_content">Lorem ipsum odor amet, consectetuer adipiscing elit.
@@ -38,6 +44,7 @@
         elementum himenaeos dis vel at magna litora donec. Odio interdum fames
         molestie taciti sodales tempor vel diam tellus.</string>
 
+    <!-- Titles and summaries for preferences -->
     <string name="pref_category_appearance">Appearance</string>
     <string name="pref_title_theme">Theme</string>
     <string name="pref_summary_theme">Change between light mode or dark mode or follow the current system theme</string>
@@ -55,6 +62,7 @@
     <string name="pref_title_version">Version</string>
     <string name="pref_summary_version">@string/app_version</string>
 
+    <!-- String arrays for lists (Eg. ListPreference) -->
     <string-array name="libraries">
         <item>PrettyTime</item>
     </string-array>
