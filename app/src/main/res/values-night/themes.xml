@@ -8,6 +8,9 @@
 
         <!-- Sets a custom theme for the overflow button -->
         <item name="actionOverflowButtonStyle">@style/OverFlowButtonStyle</item>
+
+        <!-- Sets a the icon for the home as up button in toolbar -->
+        <item name="homeAsUpIndicator">@drawable/arrow_back</item>
     </style>
 
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
