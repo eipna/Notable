@@ -36,7 +36,7 @@
 
         <Preference
             android:key="prefs_export"
-            app:title="@string/pref_title_import"
+            app:title="@string/pref_title_export"
             android:icon="@drawable/backup_export"
             android:layout="@layout/layout_preference"/>
     </PreferenceCategory>
