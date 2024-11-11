@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.data.Database;
-import com.eipna.notable.data.interfaces.NoteListener;
+import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
 import com.eipna.notable.ui.adapter.NoteAdapter;

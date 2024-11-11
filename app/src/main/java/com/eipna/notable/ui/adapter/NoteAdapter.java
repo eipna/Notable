@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
-import com.eipna.notable.data.interfaces.NoteListener;
+import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.data.model.NoteModel;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.eipna.notable.data.interfaces;
+package com.eipna.notable.interfaces;
 
 public interface NoteListener {
     void onNoteClick(int position);
