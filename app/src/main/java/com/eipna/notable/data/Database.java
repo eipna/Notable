@@ -26,8 +26,8 @@ public class Database extends SQLiteOpenHelper {
     private static final String COLUMN_NOTE_CONTENT = "content";
     private static final String COLUMN_NOTE_DATE_CREATED = "date_created";
     private static final String COLUMN_NOTE_LAST_UPDATED = "last_updated";
-    private static final String COLUMN_NOTE_DATE_STATUS = "status";
-    private static final String COLUMN_NOTE_IS_FAVORITE = "is_favorite";
+    private static final String COLUMN_NOTE_STATUS = "status";
+    private static final String COLUMN_NOTE_FAVORITE = "is_favorite";
 
     public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,8 +41,8 @@ public class Database extends SQLiteOpenHelper {
                 COLUMN_NOTE_CONTENT + " TEXT, " +
                 COLUMN_NOTE_DATE_CREATED + " LONG, " +
                 COLUMN_NOTE_LAST_UPDATED + " LONG, " +
-                COLUMN_NOTE_DATE_STATUS + " INTEGER, " +
-                COLUMN_NOTE_IS_FAVORITE + " INTEGER)";
+                COLUMN_NOTE_STATUS + " INTEGER, " +
+                COLUMN_NOTE_FAVORITE + " INTEGER)";
         sqLiteDatabase.execSQL(noteQuery);
     }
 
@@ -58,8 +58,8 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
         values.put(COLUMN_NOTE_DATE_CREATED, note.getNoteDateCreated());
         values.put(COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
-        values.put(COLUMN_NOTE_DATE_STATUS, note.getNoteStatus());
-        values.put(COLUMN_NOTE_IS_FAVORITE, note.getIsFavorite());
+        values.put(COLUMN_NOTE_STATUS, note.getNoteStatus());
+        values.put(COLUMN_NOTE_FAVORITE, note.getIsFavorite());
         getWritableDatabase().insert(TABLE_NOTE, null, values);
         close();
     }
@@ -67,7 +67,7 @@ public class Database extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public ArrayList<NoteModel> readNotes(int noteStatus) {
         ArrayList<NoteModel> notes = new ArrayList<>();
-        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_DATE_STATUS + " = " + noteStatus;
+        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATUS + " = " + noteStatus;
 
         @SuppressLint("Recycle")
         Cursor cursor = getReadableDatabase().rawQuery(readNotesQuery, null);
@@ -79,8 +79,8 @@ public class Database extends SQLiteOpenHelper {
                 note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
                 note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
                 note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_DATE_STATUS)));
-                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_IS_FAVORITE)));
+                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
+                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 notes.add(note);
             } while (cursor.moveToNext());
         }
@@ -91,7 +91,7 @@ public class Database extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public ArrayList<NoteModel> readFavoriteNotes() {
         ArrayList<NoteModel> favoriteNotes = new ArrayList<>();
-        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_IS_FAVORITE + " = " + NoteModel.FAVORITE_YES;
+        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_FAVORITE + " = " + NoteModel.FAVORITE_YES;
 
         @SuppressLint("Recycle")
         Cursor cursor = getReadableDatabase().rawQuery(readFavoriteNotes, null);
@@ -103,8 +103,8 @@ public class Database extends SQLiteOpenHelper {
                 note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
                 note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
                 note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_DATE_STATUS)));
-                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_IS_FAVORITE)));
+                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
+                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 favoriteNotes.add(note);
             } while (cursor.moveToNext());
         }
@@ -127,8 +127,8 @@ public class Database extends SQLiteOpenHelper {
                 note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
                 note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
                 note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_DATE_STATUS)));
-                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_IS_FAVORITE)));
+                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
+                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 allNotes.add(note);
             } while (cursor.moveToNext());
         }
@@ -152,20 +152,20 @@ public class Database extends SQLiteOpenHelper {
 
     public void alterNoteStatus(int noteId, int newNoteStatus) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_DATE_STATUS, newNoteStatus);
+        values.put(COLUMN_NOTE_STATUS, newNoteStatus);
         getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
         close();
     }
 
     public void alterNoteFavorite(int noteId, int newValue) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_IS_FAVORITE, newValue);
+        values.put(COLUMN_NOTE_FAVORITE, newValue);
         getWritableDatabase().update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
         close();
     }
 
     public void clearTrashNotes() {
-        getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_DATE_STATUS + " = ?", new String[]{String.valueOf(NoteModel.STATUS_DELETED)});
+        getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_STATUS + " = ?", new String[]{String.valueOf(NoteModel.STATUS_DELETED)});
         close();
     }
 }
