@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 
 import com.eipna.notable.data.model.NoteModel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
@@ -92,7 +91,7 @@ public class Database extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public ArrayList<NoteModel> readFavoriteNotes() {
         ArrayList<NoteModel> favoriteNotes = new ArrayList<>();
-        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_IS_FAVORITE + " = " + NoteModel.IS_FAVORITE;
+        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_IS_FAVORITE + " = " + NoteModel.FAVORITE_YES;
 
         @SuppressLint("Recycle")
         Cursor cursor = getReadableDatabase().rawQuery(readFavoriteNotes, null);

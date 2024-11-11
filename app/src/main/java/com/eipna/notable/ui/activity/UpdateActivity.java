@@ -57,11 +57,11 @@ public class UpdateActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.options_update_favorite) {
             switch (currentNote.getIsFavorite()) {
-                case NoteModel.IS_FAVORITE:
-                    currentNote.setIsFavorite(NoteModel.NOT_FAVORITE);
+                case NoteModel.FAVORITE_YES:
+                    currentNote.setIsFavorite(NoteModel.FAVORITE_NO);
                     break;
-                case NoteModel.NOT_FAVORITE:
-                    currentNote.setIsFavorite(NoteModel.IS_FAVORITE);
+                case NoteModel.FAVORITE_NO:
+                    currentNote.setIsFavorite(NoteModel.FAVORITE_YES);
                     break;
             }
             invalidateOptionsMenu();
@@ -156,12 +156,12 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         switch (currentNote.getIsFavorite()) {
-            case NoteModel.IS_FAVORITE:
+            case NoteModel.FAVORITE_YES:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
                 break;
-            case NoteModel.NOT_FAVORITE:
+            case NoteModel.FAVORITE_NO:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
@@ -230,17 +230,17 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         switch (currentNote.getIsFavorite()) {
-            case NoteModel.IS_FAVORITE:
+            case NoteModel.FAVORITE_YES:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
-                database.alterNoteFavorite(currentNote.getNoteId(), NoteModel.IS_FAVORITE);
+                database.alterNoteFavorite(currentNote.getNoteId(), NoteModel.FAVORITE_YES);
                 break;
-            case NoteModel.NOT_FAVORITE:
+            case NoteModel.FAVORITE_NO:
                 @SuppressLint("UseCompatLoadingForDrawables")
                 Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
                 menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
-                database.alterNoteFavorite(currentNote.getNoteId(), NoteModel.NOT_FAVORITE);
+                database.alterNoteFavorite(currentNote.getNoteId(), NoteModel.FAVORITE_NO);
                 break;
         }
         return true;
