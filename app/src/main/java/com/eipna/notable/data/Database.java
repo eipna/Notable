@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.eipna.notable.data.model.NoteModel;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
@@ -64,62 +65,73 @@ public class Database extends SQLiteOpenHelper {
         close();
     }
 
-    public ArrayList<NoteModel> readNotes(int status) {
-        final ArrayList<NoteModel> notes = new ArrayList<>();
-        String readQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_DATE_STATUS + " = ?";
+    @SuppressLint("Range")
+    public ArrayList<NoteModel> readNotes(int noteStatus) {
+        ArrayList<NoteModel> notes = new ArrayList<>();
+        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_DATE_STATUS + " = " + noteStatus;
 
         @SuppressLint("Recycle")
-        Cursor cursor = getReadableDatabase().rawQuery(readQuery, new String[]{String.valueOf(status)});
-        while (cursor.moveToNext()) {
-            NoteModel note = new NoteModel();
-            note.setNoteId(cursor.getInt(0));
-            note.setNoteTitle(cursor.getString(1));
-            note.setNoteContent(cursor.getString(2));
-            note.setNoteDateCreated(cursor.getLong(3));
-            note.setNoteLastUpdated(cursor.getLong(4));
-            note.setNoteStatus(cursor.getInt(5));
-            note.setIsFavorite(cursor.getInt(6));
-            notes.add(note);
+        Cursor cursor = getReadableDatabase().rawQuery(readNotesQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                NoteModel note = new NoteModel();
+                note.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                note.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_DATE_STATUS)));
+                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_IS_FAVORITE)));
+                notes.add(note);
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return notes;
     }
 
+    @SuppressLint("Range")
     public ArrayList<NoteModel> readFavoriteNotes() {
-        final ArrayList<NoteModel> notes = new ArrayList<>();
-        String readQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_IS_FAVORITE + " = ?";
+        ArrayList<NoteModel> favoriteNotes = new ArrayList<>();
+        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_IS_FAVORITE + " = " + NoteModel.IS_FAVORITE;
 
-        Cursor cursor = getReadableDatabase().rawQuery(readQuery, new String[]{String.valueOf(NoteModel.IS_FAVORITE)});
-        while (cursor.moveToNext()) {
-            NoteModel note = new NoteModel();
-            note.setNoteId(cursor.getInt(0));
-            note.setNoteTitle(cursor.getString(1));
-            note.setNoteContent(cursor.getString(2));
-            note.setNoteDateCreated(cursor.getLong(3));
-            note.setNoteLastUpdated(cursor.getLong(4));
-            note.setNoteStatus(cursor.getInt(5));
-            note.setIsFavorite(cursor.getInt(6));
-            notes.add(note);
+        @SuppressLint("Recycle")
+        Cursor cursor = getReadableDatabase().rawQuery(readFavoriteNotes, null);
+        if (cursor.moveToFirst()) {
+            do {
+                NoteModel note = new NoteModel();
+                note.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                note.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_DATE_STATUS)));
+                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_IS_FAVORITE)));
+                favoriteNotes.add(note);
+            } while (cursor.moveToNext());
         }
         cursor.close();
-        return notes;
+        return favoriteNotes;
     }
 
+    @SuppressLint("Range")
     public ArrayList<NoteModel> readAllNotes() {
-        final ArrayList<NoteModel> allNotes = new ArrayList<>();
-        String readQuery = "SELECT * FROM " + TABLE_NOTE;
+        ArrayList<NoteModel> allNotes = new ArrayList<>();
+        String readAllNotesQuery = "SELECT * FROM " + TABLE_NOTE;
 
-        Cursor cursor = getReadableDatabase().rawQuery(readQuery, null);
-        while (cursor.moveToNext()) {
-            NoteModel note = new NoteModel();
-            note.setNoteId(cursor.getInt(0));
-            note.setNoteTitle(cursor.getString(1));
-            note.setNoteContent(cursor.getString(2));
-            note.setNoteDateCreated(cursor.getLong(3));
-            note.setNoteLastUpdated(cursor.getLong(4));
-            note.setNoteStatus(cursor.getInt(5));
-            note.setIsFavorite(cursor.getInt(6));
-            allNotes.add(note);
+        @SuppressLint("Recycle")
+        Cursor cursor = getReadableDatabase().rawQuery(readAllNotesQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                NoteModel note = new NoteModel();
+                note.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                note.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_DATE_STATUS)));
+                note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_IS_FAVORITE)));
+                allNotes.add(note);
+            } while (cursor.moveToNext());
         }
         cursor.close();
         return allNotes;
