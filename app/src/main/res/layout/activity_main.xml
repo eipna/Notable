@@ -53,14 +53,18 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/createNote"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/edit"
+        app:icon="@drawable/edit"
+        app:iconTint="@color/FAB_text"
+        android:textColor="@color/FAB_text"
+        android:backgroundTint="@color/FAB_bg"
+        android:text="@string/EFAB_create_note"
         android:importantForAccessibility="no"
         tools:ignore="RtlHardcoded" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

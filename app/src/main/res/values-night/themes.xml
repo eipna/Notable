@@ -42,6 +42,10 @@
     <!-- Custom global colors -->
     <color name="primary">@color/dark_grey</color>
     <color name="primary_invert">@color/ghost_white</color>
+
     <color name="popup_menu_bg">#292929</color>
     <color name="popup_menu_text">#E1E1E1</color>
+
+    <color name="FAB_bg">#3C3C3C</color>
+    <color name="FAB_text">#BFBFBF</color>
 </resources>

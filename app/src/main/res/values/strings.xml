@@ -31,6 +31,9 @@
     <string name="hint_note_title">Title goes here</string>
     <string name="hint_note_content">Jot your notes here…</string>
 
+    <!-- Components (Eg. Button Names) -->
+    <string name="EFAB_create_note">Jot Down</string>
+
     <!-- Text placeholder for custom note view -->
     <string name="template_note_title">Lorem Ipsum.</string>
     <string name="template_note_update">a few moments ago</string>

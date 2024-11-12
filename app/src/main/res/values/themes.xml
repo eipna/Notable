@@ -45,4 +45,7 @@
 
     <color name="popup_menu_bg">#ECECEC</color>
     <color name="popup_menu_text">#2E2E2E</color>
+
+    <color name="FAB_bg">#333333</color>
+    <color name="FAB_text">#DCDCDC</color>
 </resources>
