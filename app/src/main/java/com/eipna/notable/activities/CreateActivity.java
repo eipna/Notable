@@ -66,7 +66,7 @@ public class CreateActivity extends AppCompatActivity {
         newNote.setNoteContent(note);
         newNote.setNoteDateCreated(DateUtil.getCurrentTime());
         newNote.setNoteLastUpdated(DateUtil.getCurrentTime());
-        newNote.setNoteStatus(NoteModel.STATUS_DEFAULT);
+        newNote.setNoteState(NoteModel.STATUS_DEFAULT);
         newNote.setIsFavorite(NoteModel.FAVORITE_NO);
 
         database.createNote(newNote);

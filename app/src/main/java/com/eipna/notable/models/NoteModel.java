@@ -14,7 +14,7 @@ public class NoteModel implements Parcelable {
     private String noteContent;
     private long noteDateCreated;
     private long noteLastUpdated;
-    private int noteStatus;
+    private int noteState;
     private int isFavorite;
 
     public static final int STATUS_DEFAULT = 1;
@@ -33,7 +33,7 @@ public class NoteModel implements Parcelable {
         this.noteContent = null;
         this.noteDateCreated = -1;
         this.noteLastUpdated = -1;
-        this.noteStatus = -1;
+        this.noteState = -1;
         this.isFavorite = -1;
     }
 
@@ -77,12 +77,12 @@ public class NoteModel implements Parcelable {
         this.noteContent = noteContent;
     }
 
-    public int getNoteStatus() {
-        return noteStatus;
+    public int getNoteState() {
+        return noteState;
     }
 
-    public void setNoteStatus(int noteStatus) {
-        this.noteStatus = noteStatus;
+    public void setNoteState(int noteState) {
+        this.noteState = noteState;
     }
 
     public int getIsFavorite() {
@@ -99,7 +99,7 @@ public class NoteModel implements Parcelable {
         this.noteContent = parcel.readString();
         this.noteDateCreated = parcel.readLong();
         this.noteLastUpdated = parcel.readLong();
-        this.noteStatus = parcel.readInt();
+        this.noteState = parcel.readInt();
         this.isFavorite = parcel.readInt();
     }
 
@@ -127,7 +127,7 @@ public class NoteModel implements Parcelable {
         destination.writeString(this.noteContent);
         destination.writeLong(this.noteDateCreated);
         destination.writeLong(this.noteLastUpdated);
-        destination.writeInt(this.noteStatus);
+        destination.writeInt(this.noteState);
         destination.writeInt(this.isFavorite);
     }
 }

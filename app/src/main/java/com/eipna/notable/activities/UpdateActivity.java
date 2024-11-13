@@ -212,7 +212,7 @@ public class UpdateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
 
-        switch (currentNote.getNoteStatus()) {
+        switch (currentNote.getNoteState()) {
             case NoteModel.STATUS_DEFAULT:
                 menu.findItem(R.id.options_update_unarchive).setVisible(false);
                 menu.findItem(R.id.options_update_restore).setVisible(false);

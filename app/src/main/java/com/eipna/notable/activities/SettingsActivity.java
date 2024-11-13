@@ -184,7 +184,7 @@ public class SettingsActivity extends AppCompatActivity {
                         note.setNoteContent(object.getString("content"));
                         note.setNoteDateCreated(object.getLong("date_created"));
                         note.setNoteLastUpdated(object.getLong("date_edited"));
-                        note.setNoteStatus(object.getInt("status"));
+                        note.setNoteState(object.getInt("status"));
                         note.setIsFavorite(object.getInt("is_favorite"));
                         database.createNote(note);
                     }
@@ -208,7 +208,7 @@ public class SettingsActivity extends AppCompatActivity {
                     object.put("content", note.getNoteContent());
                     object.put("date_created", note.getNoteDateCreated());
                     object.put("date_edited", note.getNoteLastUpdated());
-                    object.put("status", note.getNoteStatus());
+                    object.put("status", note.getNoteState());
                     object.put("is_favorite", note.getIsFavorite());
                     jsonArray.put(object);
                 }

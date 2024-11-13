@@ -58,7 +58,7 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
         values.put(COLUMN_NOTE_DATE_CREATED, note.getNoteDateCreated());
         values.put(COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
-        values.put(COLUMN_NOTE_STATUS, note.getNoteStatus());
+        values.put(COLUMN_NOTE_STATUS, note.getNoteState());
         values.put(COLUMN_NOTE_FAVORITE, note.getIsFavorite());
         getWritableDatabase().insert(TABLE_NOTE, null, values);
         close();
@@ -79,7 +79,7 @@ public class Database extends SQLiteOpenHelper {
                 note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
                 note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
                 note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
+                note.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
                 note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 notes.add(note);
             } while (cursor.moveToNext());
@@ -103,7 +103,7 @@ public class Database extends SQLiteOpenHelper {
                 note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
                 note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
                 note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
+                note.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
                 note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 favoriteNotes.add(note);
             } while (cursor.moveToNext());
@@ -127,7 +127,7 @@ public class Database extends SQLiteOpenHelper {
                 note.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
                 note.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
                 note.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                note.setNoteStatus(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
+                note.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATUS)));
                 note.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 allNotes.add(note);
             } while (cursor.moveToNext());
