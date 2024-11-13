@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.utils.DateUtil;
 
 public class NoteModel implements Parcelable {
@@ -31,10 +32,10 @@ public class NoteModel implements Parcelable {
         this.noteId = -1;
         this.noteTitle = null;
         this.noteContent = null;
-        this.noteDateCreated = -1;
-        this.noteLastUpdated = -1;
-        this.noteState = -1;
-        this.isFavorite = -1;
+        this.noteDateCreated = DateUtil.getCurrentTime();
+        this.noteLastUpdated = DateUtil.getCurrentTime();
+        this.noteState = NoteState.ACTIVE.getValue();
+        this.isFavorite = NoteState.FAVORITE_NO.getValue();
     }
 
     public int getNoteId() {
