@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
 import com.eipna.notable.Database;
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityTrashBinding;
@@ -133,7 +134,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     }
 
     private void updateNoteList() {
-        notes = database.readNotes(NoteModel.STATUS_DELETED);
+        notes = database.readNotes(NoteState.DELETED.getValue());
         invalidateOptionsMenu();
         binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
 

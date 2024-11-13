@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
 
 import java.util.ArrayList;
@@ -91,7 +92,7 @@ public class Database extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public ArrayList<NoteModel> readFavoriteNotes() {
         ArrayList<NoteModel> favoriteNotes = new ArrayList<>();
-        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_FAVORITE + " = " + NoteModel.FAVORITE_YES;
+        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_FAVORITE + " = " + NoteState.FAVORITE_YES.getValue();
 
         @SuppressLint("Recycle")
         Cursor cursor = getReadableDatabase().rawQuery(readFavoriteNotes, null);
@@ -165,7 +166,8 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void clearTrashNotes() {
-        getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_STATUS + " = ?", new String[]{String.valueOf(NoteModel.STATUS_DELETED)});
+        int deletedState = NoteState.DELETED.getValue();
+        getWritableDatabase().delete(TABLE_NOTE, COLUMN_NOTE_STATUS + " = ?", new String[]{String.valueOf(deletedState)});
         close();
     }
 }
