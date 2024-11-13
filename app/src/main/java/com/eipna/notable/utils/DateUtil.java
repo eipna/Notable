@@ -7,8 +7,6 @@ import java.util.Date;
 
 public final class DateUtil {
 
-    public static final String PATTERN_DETAILED_TIME = "MMMM dd yyyy hh:mm a";
-
     public static long getCurrentTime() {
         return System.currentTimeMillis();
     }
