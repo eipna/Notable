@@ -53,12 +53,12 @@ public class CreateActivity extends AppCompatActivity {
 
         // Sets title as empty title placeholder if field is blank
         if (title.isEmpty()) {
-            title = NoteModel.EMPTY_TITLE;
+            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));;
         }
 
         // Sets note as empty note placeholder if field is blank
         if (note.isEmpty()) {
-            note = NoteModel.EMPTY_NOTE;
+            note = "Empty content.";
         }
 
         NoteModel newNote = new NoteModel();

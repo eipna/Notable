@@ -253,12 +253,12 @@ public class UpdateActivity extends AppCompatActivity {
 
             // Sets title as empty title placeholder if field is blank
             if (updatedTitle.isEmpty()) {
-                updatedTitle = NoteModel.EMPTY_TITLE;
+                updatedTitle = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));;
             }
 
             // Sets note as empty note placeholder if field is blank
             if (updatedNote.isEmpty()) {
-                updatedNote = NoteModel.EMPTY_NOTE;
+                updatedNote = "Empty content.";
             }
 
             NoteModel note = new NoteModel();

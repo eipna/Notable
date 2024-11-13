@@ -18,9 +18,6 @@ public class NoteModel implements Parcelable {
     private int noteState;
     private int isFavorite;
 
-    public static final String EMPTY_TITLE = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
-    public static final String EMPTY_NOTE = "Empty note.";
-
     public NoteModel() {
         this.noteId = -1;
         this.noteTitle = null;
