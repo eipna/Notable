@@ -1,5 +1,7 @@
 package com.eipna.notable.constants;
 
+import androidx.annotation.NonNull;
+
 public enum DateTimePattern {
     DETAILED_WITH_TIME("MMMM dd yyyy hh:mm a"),
     DETAILED_WITHOUT_TIME("MMMM dd, yyyy"),
@@ -14,7 +16,9 @@ public enum DateTimePattern {
         this.pattern = pattern;
     }
 
-    public String getPattern() {
+    @NonNull
+    @Override
+    public String toString() {
         return pattern;
     }
 }
