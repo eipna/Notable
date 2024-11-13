@@ -1,11 +1,11 @@
-package com.eipna.notable.data.model;
+package com.eipna.notable.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.eipna.notable.util.DateUtil;
+import com.eipna.notable.utils.DateUtil;
 
 public class NoteModel implements Parcelable {
 

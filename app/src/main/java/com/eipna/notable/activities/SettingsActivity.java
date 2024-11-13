@@ -1,4 +1,4 @@
-package com.eipna.notable.ui.activity;
+package com.eipna.notable.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -26,10 +26,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eipna.notable.R;
-import com.eipna.notable.data.Database;
-import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.Database;
+import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivitySettingsBinding;
-import com.eipna.notable.util.SharedPrefsUtil;
+import com.eipna.notable.utils.SharedPrefsUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;

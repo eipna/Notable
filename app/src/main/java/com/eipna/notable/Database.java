@@ -1,4 +1,4 @@
-package com.eipna.notable.data;
+package com.eipna.notable;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.models.NoteModel;
 
 import java.util.ArrayList;
 

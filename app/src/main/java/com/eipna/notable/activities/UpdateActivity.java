@@ -1,4 +1,4 @@
-package com.eipna.notable.ui.activity;
+package com.eipna.notable.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eipna.notable.R;
-import com.eipna.notable.data.Database;
-import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.Database;
+import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityUpdateBinding;
-import com.eipna.notable.util.DateUtil;
+import com.eipna.notable.utils.DateUtil;
 
 import java.util.Objects;
 

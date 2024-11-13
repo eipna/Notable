@@ -1,4 +1,4 @@
-package com.eipna.notable.ui.adapter;
+package com.eipna.notable.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
 import com.eipna.notable.interfaces.NoteListener;
-import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.models.NoteModel;
 
 import java.util.ArrayList;
 import java.util.Date;

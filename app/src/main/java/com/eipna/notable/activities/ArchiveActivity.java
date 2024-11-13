@@ -1,4 +1,4 @@
-package com.eipna.notable.ui.activity;
+package com.eipna.notable.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.data.Database;
+import com.eipna.notable.Database;
 import com.eipna.notable.interfaces.NoteListener;
-import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityArchiveBinding;
-import com.eipna.notable.ui.adapter.NoteAdapter;
-import com.eipna.notable.util.SharedPrefsUtil;
+import com.eipna.notable.adapters.NoteAdapter;
+import com.eipna.notable.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;
 

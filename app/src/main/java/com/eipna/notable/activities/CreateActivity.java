@@ -1,4 +1,4 @@
-package com.eipna.notable.ui.activity;
+package com.eipna.notable.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
-import com.eipna.notable.data.Database;
-import com.eipna.notable.data.model.NoteModel;
+import com.eipna.notable.Database;
+import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityCreateBinding;
-import com.eipna.notable.util.DateUtil;
+import com.eipna.notable.utils.DateUtil;
 
 import java.util.Objects;
 

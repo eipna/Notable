@@ -1,4 +1,4 @@
-package com.eipna.notable.util;
+package com.eipna.notable.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -4,15 +4,15 @@ import android.app.Application;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.eipna.notable.util.SharedPrefsUtil;
+import com.eipna.notable.utils.SharedPrefsUtil;
 
-public class App extends Application {
+public class NotableApp extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        SharedPrefsUtil sharedPrefs = new SharedPrefsUtil(App.this);
+        SharedPrefsUtil sharedPrefs = new SharedPrefsUtil(NotableApp.this);
 
         String themePrefs = sharedPrefs.getString("THEME", "system");
         switch (themePrefs) {
