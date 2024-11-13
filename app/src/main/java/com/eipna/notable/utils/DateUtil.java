@@ -2,6 +2,8 @@ package com.eipna.notable.utils;
 
 import android.annotation.SuppressLint;
 
+import com.eipna.notable.constants.DateTimePattern;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,9 +13,9 @@ public final class DateUtil {
         return System.currentTimeMillis();
     }
 
-    public static String getDateString(String pattern, long timestamp) {
+    public static String getDateString(DateTimePattern pattern, long timestamp) {
         @SuppressLint("SimpleDateFormat")
-        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(pattern.toString());
         return dateFormat.format(new Date(timestamp));
     }
 }

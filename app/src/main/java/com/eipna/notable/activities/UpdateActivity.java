@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.eipna.notable.R;
 import com.eipna.notable.Database;
+import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityUpdateBinding;
@@ -117,10 +118,10 @@ public class UpdateActivity extends AppCompatActivity {
         wordCountTV.setText(String.format("Word Count: %d", noteWordCount));
 
         TextView dateCreatedTV = customDialogLibraries.findViewById(R.id.dateCreatedProperty);
-        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, currentNote.getNoteDateCreated())));
+        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateTimePattern.DETAILED_WITH_TIME, currentNote.getNoteDateCreated())));
 
         TextView lastUpdatedTV = customDialogLibraries.findViewById(R.id.lastUpdatedProperty);
-        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, currentNote.getNoteLastUpdated())));
+        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateTimePattern.DETAILED_WITH_TIME, currentNote.getNoteLastUpdated())));
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setCustomTitle(titleTV);
@@ -253,7 +254,7 @@ public class UpdateActivity extends AppCompatActivity {
 
             // Sets title as empty title placeholder if field is blank
             if (updatedTitle.isEmpty()) {
-                updatedTitle = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));;
+                updatedTitle = String.format("Note %s", DateUtil.getDateString(DateTimePattern.MONTH_DAY_YEAR, DateUtil.getCurrentTime()));
             }
 
             // Sets note as empty note placeholder if field is blank

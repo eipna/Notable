@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
 import com.eipna.notable.Database;
+import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityCreateBinding;
 import com.eipna.notable.utils.DateUtil;
@@ -53,7 +54,7 @@ public class CreateActivity extends AppCompatActivity {
 
         // Sets title as empty title placeholder if field is blank
         if (title.isEmpty()) {
-            title = String.format("Note %s", DateUtil.getDateString(DateUtil.PATTERN_DETAILED_TIME, DateUtil.getCurrentTime()));
+            title = String.format("Note %s", DateUtil.getDateString(DateTimePattern.MONTH_DAY_YEAR, DateUtil.getCurrentTime()));
         }
 
         // Sets note as empty note placeholder if field is blank
