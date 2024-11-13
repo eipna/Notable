@@ -249,7 +249,7 @@ public class UpdateActivity extends AppCompatActivity {
             closeActivity();
         } else {
             String updatedTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-            String updatedNote = Objects.requireNonNull(binding.noteInput.getText()).toString();
+            String updatedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
             // Sets title as empty title placeholder if field is blank
             if (updatedTitle.isEmpty()) {
@@ -257,14 +257,14 @@ public class UpdateActivity extends AppCompatActivity {
             }
 
             // Sets note as empty note placeholder if field is blank
-            if (updatedNote.isEmpty()) {
-                updatedNote = "Empty content.";
+            if (updatedContent.isEmpty()) {
+                updatedContent = "Empty content.";
             }
 
             NoteModel note = new NoteModel();
             note.setNoteId(currentNote.getNoteId());
             note.setNoteTitle(updatedTitle);
-            note.setNoteContent(updatedNote);
+            note.setNoteContent(updatedContent);
             note.setNoteLastUpdated(DateUtil.getCurrentTime());
 
             database.updateNote(note);
