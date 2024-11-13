@@ -51,6 +51,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noteList"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        style="@style/RecyclerStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

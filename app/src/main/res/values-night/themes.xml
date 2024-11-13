@@ -39,6 +39,12 @@
         <item name="android:visibility">invisible</item>
     </style>
 
+    <!-- Custom configuration for recycler views -->
+    <style name="RecyclerStyle">
+        <item name="android:layout_marginEnd">6dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+    </style>
+
     <!-- Custom global colors -->
     <color name="primary">@color/dark_grey</color>
     <color name="primary_invert">@color/ghost_white</color>
