@@ -32,7 +32,7 @@
     <string name="hint_note_content">Jot your notes here…</string>
 
     <!-- Components (Eg. Button Names) -->
-    <string name="EFAB_create_note">Jot Down</string>
+    <string name="btn_create_note">Jot Down</string>
 
     <!-- Text placeholder for custom note view -->
     <string name="template_note_title">Lorem Ipsum.</string>
