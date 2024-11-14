@@ -52,6 +52,23 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.noteTitle.setText(currentNote.getNoteTitle());
         holder.noteContent.setText(currentNote.getNoteContent());
         holder.noteLastUpdated.setText(prettyTime.format(new Date(currentNote.getNoteLastUpdated())));
+
+        holder.itemView.setOnClickListener(view -> {
+            if (listener != null) {
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onNoteClick(position);
+                }
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(view -> {
+            if (listener != null) {
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onNoteLongClick(position);
+                }
+            }
+            return true;
+        });
     }
 
     @Override
@@ -70,25 +87,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             noteTitle = itemView.findViewById(R.id.noteTitle);
             noteContent = itemView.findViewById(R.id.noteContent);
             noteLastUpdated = itemView.findViewById(R.id.noteLastUpdated);
-
-            itemView.setOnClickListener(view -> {
-                if (listener != null) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onNoteClick(position);
-                    }
-                }
-            });
-
-            itemView.setOnLongClickListener(view -> {
-                if (listener != null) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onNoteLongClick(position);
-                    }
-                }
-                return true;
-            });
         }
     }
 }
