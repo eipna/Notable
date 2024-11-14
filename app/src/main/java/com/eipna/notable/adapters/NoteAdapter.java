@@ -5,8 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,10 +14,10 @@ import com.eipna.notable.R;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 import java.util.ArrayList;
 import java.util.Date;
-
-import org.ocpsoft.prettytime.*;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
@@ -54,10 +52,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.noteTitle.setText(currentNote.getNoteTitle());
         holder.noteContent.setText(currentNote.getNoteContent());
         holder.noteLastUpdated.setText(prettyTime.format(new Date(currentNote.getNoteLastUpdated())));
-
-        // Load custom fade-in animation
-        Animation fadeInAnime = AnimationUtils.loadAnimation(context, R.anim.fade_in);
-        holder.itemView.startAnimation(fadeInAnime);
     }
 
     @Override
