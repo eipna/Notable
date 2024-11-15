@@ -26,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eipna.notable.R;
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivitySettingsBinding;
 import com.eipna.notable.utils.SharedPrefsUtil;
@@ -174,7 +174,7 @@ public class SettingsActivity extends AppCompatActivity {
                     inputStream.close();
 
                     final JSONArray jsonArray = new JSONArray(builder.toString());
-                    final Database database = new Database(requireContext());
+                    final AppDatabase appDatabase = new AppDatabase(requireContext());
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         final JSONObject object = jsonArray.getJSONObject(i);
@@ -186,7 +186,7 @@ public class SettingsActivity extends AppCompatActivity {
                         note.setNoteLastUpdated(object.getLong("date_edited"));
                         note.setNoteState(object.getInt("status"));
                         note.setIsFavorite(object.getInt("is_favorite"));
-                        database.createNote(note);
+                        appDatabase.createNote(note);
                     }
                     Toast.makeText(requireContext(), "Import successful", Toast.LENGTH_SHORT).show();
                 }
@@ -198,9 +198,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         private void exportNotes(Uri uri) {
             try {
-                final Database database = new Database(requireContext());
+                final AppDatabase appDatabase = new AppDatabase(requireContext());
                 final JSONArray jsonArray = new JSONArray();
-                final ArrayList<NoteModel> notes = database.readAllNotes();
+                final ArrayList<NoteModel> notes = appDatabase.readAllNotes();
 
                 for (NoteModel note : notes) {
                     final JSONObject object = new JSONObject();

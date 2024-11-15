@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
@@ -23,7 +23,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
 
     private ActivityFavoriteBinding binding;
     private SharedPrefsUtil sharedPrefs;
-    private Database database;
+    private AppDatabase appDatabase;
     private ArrayList<NoteModel> notes;
     private NoteAdapter noteAdapter;
 
@@ -32,7 +32,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
         super.onCreate(savedInstanceState);
         binding = ActivityFavoriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        database = new Database(FavoriteActivity.this);
+        appDatabase = new AppDatabase(FavoriteActivity.this);
         sharedPrefs = new SharedPrefsUtil(FavoriteActivity.this);
 
         updateNoteList();
@@ -44,7 +44,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     }
 
     private void updateNoteList() {
-        notes = database.readFavoriteNotes();
+        notes = appDatabase.readFavoriteNotes();
         binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
 
         noteAdapter = new NoteAdapter(this, this, notes);

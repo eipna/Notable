@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
@@ -34,7 +34,7 @@ import java.util.Objects;
 public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityTrashBinding binding;
-    private Database database;
+    private AppDatabase appDatabase;
     private ArrayList<NoteModel> notes;
     private NoteAdapter noteAdapter;
     private SharedPrefsUtil sharedPrefs;
@@ -44,7 +44,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         super.onCreate(savedInstanceState);
         binding = ActivityTrashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        database = new Database(TrashActivity.this);
+        appDatabase = new AppDatabase(TrashActivity.this);
         sharedPrefs = new SharedPrefsUtil(TrashActivity.this);
 
         updateNoteList();
@@ -127,14 +127,14 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     *  Updates the options menu */
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
-        database.clearTrashNotes();
+        appDatabase.clearTrashNotes();
         notes.clear();
         noteAdapter.notifyDataSetChanged();
         updateNoteList();
     }
 
     private void updateNoteList() {
-        notes = database.readNotes(NoteState.DELETED.getValue());
+        notes = appDatabase.readNotes(NoteState.DELETED.getValue());
         invalidateOptionsMenu();
         binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
 

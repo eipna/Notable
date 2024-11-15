@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class ArchiveActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityArchiveBinding binding;
-    private Database database;
+    private AppDatabase appDatabase;
     private ArrayList<NoteModel> notes;
     private NoteAdapter noteAdapter;
     private SharedPrefsUtil sharedPrefs;
@@ -33,7 +33,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
         super.onCreate(savedInstanceState);
         binding = ActivityArchiveBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        database = new Database(ArchiveActivity.this);
+        appDatabase = new AppDatabase(ArchiveActivity.this);
         sharedPrefs = new SharedPrefsUtil(ArchiveActivity.this);
 
         updateNoteList();
@@ -51,7 +51,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
     });
 
     private void updateNoteList() {
-        notes = database.readNotes(NoteState.ARCHIVED.getValue());
+        notes = appDatabase.readNotes(NoteState.ARCHIVED.getValue());
         binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
 
         noteAdapter = new NoteAdapter(this, this, notes);

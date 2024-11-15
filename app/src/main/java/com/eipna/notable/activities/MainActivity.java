@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityMainBinding binding;
-    private Database database;
+    private AppDatabase appDatabase;
     private ArrayList<NoteModel> notes;
     private NoteAdapter noteAdapter;
     private SharedPrefsUtil sharedPrefs;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
-        database = new Database(MainActivity.this);
+        appDatabase = new AppDatabase(MainActivity.this);
         sharedPrefs = new SharedPrefsUtil(MainActivity.this);
 
         updateNoteList();
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     }
 
     private void updateNoteList() {
-        notes = database.readNotes(NoteState.ACTIVE.getValue());
+        notes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
         binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
 
         noteAdapter = new NoteAdapter(this, this, notes);

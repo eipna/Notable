@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityCreateBinding;
@@ -19,14 +19,14 @@ import java.util.Objects;
 public class CreateActivity extends AppCompatActivity {
 
     private ActivityCreateBinding binding;
-    private Database database;
+    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        database = new Database(CreateActivity.this);
+        appDatabase = new AppDatabase(CreateActivity.this);
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
@@ -66,7 +66,7 @@ public class CreateActivity extends AppCompatActivity {
         newNote.setNoteTitle(title);
         newNote.setNoteContent(content);
 
-        database.createNote(newNote);
+        appDatabase.createNote(newNote);
         closeActivity();
     }
 

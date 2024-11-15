@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eipna.notable.R;
-import com.eipna.notable.Database;
+import com.eipna.notable.AppDatabase;
 import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
@@ -28,7 +28,7 @@ import java.util.Objects;
 public class UpdateActivity extends AppCompatActivity {
 
     private ActivityUpdateBinding binding;
-    private Database database;
+    private AppDatabase appDatabase;
 
     private NoteModel currentNote;
 
@@ -38,7 +38,7 @@ public class UpdateActivity extends AppCompatActivity {
         binding = ActivityUpdateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        database = new Database(UpdateActivity.this);
+        appDatabase = new AppDatabase(UpdateActivity.this);
         currentNote = getIntent().getParcelableExtra("NOTE");
 
         assert currentNote != null;
@@ -67,22 +67,22 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.options_update_archive) {
-            database.alterNoteStatus(currentNote.getNoteId(), NoteState.ARCHIVED.getValue());
+            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.ARCHIVED.getValue());
             closeActivity();
         }
 
         if (item.getItemId() == R.id.options_update_unarchive) {
-            database.alterNoteStatus(currentNote.getNoteId(), NoteState.ACTIVE.getValue());
+            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.ACTIVE.getValue());
             closeActivity();
         }
 
         if (item.getItemId() == R.id.options_update_Trash) {
-            database.alterNoteStatus(currentNote.getNoteId(), NoteState.DELETED.getValue());
+            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.DELETED.getValue());
             closeActivity();
         }
 
         if (item.getItemId() == R.id.options_update_restore) {
-            database.alterNoteStatus(currentNote.getNoteId(), NoteState.ACTIVE.getValue());
+            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.ACTIVE.getValue());
             closeActivity();
         }
 
@@ -181,7 +181,7 @@ public class UpdateActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Are you sure you want to permanently delete this note?");
         dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
-            database.deleteNote(currentNote.getNoteId());
+            appDatabase.deleteNote(currentNote.getNoteId());
             closeActivity();
         });
 
@@ -225,12 +225,12 @@ public class UpdateActivity extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
-            database.alterNoteFavorite(currentNote.getNoteId(), NoteState.FAVORITE_YES.getValue());
+            appDatabase.alterNoteFavorite(currentNote.getNoteId(), NoteState.FAVORITE_YES.getValue());
         } else {
             @SuppressLint("UseCompatLoadingForDrawables")
             Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
-            database.alterNoteFavorite(currentNote.getNoteId(), NoteState.FAVORITE_NO.getValue());
+            appDatabase.alterNoteFavorite(currentNote.getNoteId(), NoteState.FAVORITE_NO.getValue());
         }
         return true;
     }
@@ -268,7 +268,7 @@ public class UpdateActivity extends AppCompatActivity {
             note.setNoteContent(updatedContent);
             note.setNoteLastUpdated(DateUtil.getCurrentTime());
 
-            database.updateNote(note);
+            appDatabase.updateNote(note);
             closeActivity();
         }
     }
