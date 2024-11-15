@@ -23,12 +23,12 @@ public class AppDatabase extends SQLiteOpenHelper {
     // Note table and columns
     private static final String TABLE_NOTE = "notes";
     private static final String COLUMN_NOTE_ID = "note_id";
-    private static final String COLUMN_NOTE_TITLE = "title";
-    private static final String COLUMN_NOTE_CONTENT = "content";
-    private static final String COLUMN_NOTE_DATE_CREATED = "date_created";
-    private static final String COLUMN_NOTE_LAST_UPDATED = "last_updated";
-    private static final String COLUMN_NOTE_STATE = "state";
-    private static final String COLUMN_NOTE_FAVORITE = "is_favorite";
+    public static final String COLUMN_NOTE_TITLE = "title";
+    public static final String COLUMN_NOTE_CONTENT = "content";
+    public static final String COLUMN_NOTE_DATE_CREATED = "date_created";
+    public static final String COLUMN_NOTE_LAST_UPDATED = "last_updated";
+    public static final String COLUMN_NOTE_STATE = "state";
+    public static final String COLUMN_NOTE_FAVORITE = "is_favorite";
 
     public AppDatabase(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
