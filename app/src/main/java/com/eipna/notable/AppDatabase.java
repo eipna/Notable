@@ -21,8 +21,8 @@ public class AppDatabase extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Note table and columns
-    private static final String TABLE_NOTE = "notes";
-    private static final String COLUMN_NOTE_ID = "note_id";
+    public static final String TABLE_NOTE = "notes";
+    public static final String COLUMN_NOTE_ID = "note_id";
     public static final String COLUMN_NOTE_TITLE = "title";
     public static final String COLUMN_NOTE_CONTENT = "content";
     public static final String COLUMN_NOTE_DATE_CREATED = "date_created";
