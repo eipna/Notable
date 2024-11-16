@@ -6,7 +6,7 @@
         app:iconSpaceReserved="false">
 
         <ListPreference
-            android:key="list_theme"
+            android:key="settings_app_theme"
             app:title="@string/pref_title_theme"
             android:layout="@layout/layout_preference"
             app:summary="@string/pref_summary_theme"
@@ -15,7 +15,7 @@
             app:icon="@drawable/sun"/>
 
         <ListPreference
-            android:key="list_display"
+            android:key="settings_note_layout"
             android:title="@string/pref_title_display"
             app:icon="@drawable/note"
             android:layout="@layout/layout_preference"
@@ -29,13 +29,13 @@
         app:iconSpaceReserved="false">
 
         <Preference
-            android:key="prefs_import"
+            android:key="settings_import"
             app:title="@string/pref_title_import"
             android:icon="@drawable/backup_import"
             android:layout="@layout/layout_preference"/>
 
         <Preference
-            android:key="prefs_export"
+            android:key="settings_export"
             app:title="@string/pref_title_export"
             android:icon="@drawable/backup_export"
             android:layout="@layout/layout_preference"/>
@@ -57,13 +57,13 @@
         </Preference>
 
         <Preference
-            android:key="prefs_libraries"
+            android:key="settings_libraries_dialog"
             android:title="@string/pref_title_libraries"
             android:icon="@drawable/link"
             android:layout="@layout/layout_preference"/>
 
         <Preference
-            android:key="prefs_version"
+            android:key="settings_app_version"
             app:title="@string/pref_title_version"
             app:summary="@string/pref_summary_version"
             app:icon="@drawable/info"

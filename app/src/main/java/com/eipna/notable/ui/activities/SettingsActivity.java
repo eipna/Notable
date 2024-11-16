@@ -280,17 +280,17 @@ public class SettingsActivity extends AppCompatActivity {
         private void setPreferences() {
             sharedPrefs = new SharedPrefsUtil(requireContext());
 
-            prefsVersion = findPreference("prefs_version");
-            prefsLibraries = findPreference("prefs_libraries");
-            prefsExport = findPreference("prefs_export");
-            prefsImport = findPreference("prefs_import");
+            prefsVersion = findPreference("settings_app_version");
+            prefsLibraries = findPreference("settings_libraries_dialog");
+            prefsExport = findPreference("settings_export");
+            prefsImport = findPreference("settings_export");
 
             // If no shared preference found, use default values instead
             prefsTheme = sharedPrefs.getString("THEME", "system");
             prefsDisplay = sharedPrefs.getString("DISPLAY", "list");
 
-            listTheme = findPreference("list_theme");
-            listDisplay = findPreference("list_display");
+            listTheme = findPreference("settings_app_theme");
+            listDisplay = findPreference("settings_note_layout");
         }
 
         private void setDisplay(String display) {
