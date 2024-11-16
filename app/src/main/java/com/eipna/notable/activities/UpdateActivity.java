@@ -287,4 +287,10 @@ public class UpdateActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
 }

@@ -92,4 +92,10 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
     public void onNoteLongClick(int position) {
         // Do nothing at the moment
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
 }

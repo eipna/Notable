@@ -75,4 +75,10 @@ public class CreateActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
+    }
 }
