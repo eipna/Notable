@@ -2,7 +2,7 @@ package com.eipna.notable.utils;
 
 import android.annotation.SuppressLint;
 
-import com.eipna.notable.constants.DateTimePattern;
+import com.eipna.notable.enums.DateTimePattern;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package com.eipna.notable.constants;
+package com.eipna.notable.enums;
 
 import androidx.annotation.NonNull;
 

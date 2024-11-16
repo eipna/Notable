@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.eipna.notable.R;
 import com.eipna.notable.AppDatabase;
-import com.eipna.notable.constants.DateTimePattern;
-import com.eipna.notable.constants.NoteState;
+import com.eipna.notable.enums.DateTimePattern;
+import com.eipna.notable.enums.NoteState;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityUpdateBinding;
 import com.eipna.notable.utils.DateUtil;
