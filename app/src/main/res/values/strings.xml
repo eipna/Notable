@@ -64,29 +64,4 @@
     <string name="pref_title_libraries">Libraries</string>
     <string name="pref_title_version">Version</string>
     <string name="pref_summary_version">@string/app_version</string>
-
-    <!-- String arrays for lists (Eg. ListPreference) -->
-    <string-array name="libraries">
-        <item>PrettyTime</item>
-    </string-array>
-
-    <string-array name="preference_list_theme">
-        <item>Follow System</item>
-        <item>Light Mode</item>
-        <item>Dark Mode</item>
-    </string-array>
-    <string-array name="preference_list_theme_values">
-        <item>system</item>
-        <item>light</item>
-        <item>dark</item>
-    </string-array>
-
-    <string-array name="preference_list_display">
-        <item>Show notes by list</item>
-        <item>Show notes by grids</item>
-    </string-array>
-    <string-array name="preference_list_display_values">
-        <item>list</item>
-        <item>grid</item>
-    </string-array>
 </resources>
