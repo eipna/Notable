@@ -1,4 +1,4 @@
-package com.eipna.notable.activities;
+package com.eipna.notable.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import com.eipna.notable.AppDatabase;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
-import com.eipna.notable.adapters.NoteAdapter;
+import com.eipna.notable.ui.adapters.NoteAdapter;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;

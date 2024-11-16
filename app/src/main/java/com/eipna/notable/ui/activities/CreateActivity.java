@@ -1,4 +1,4 @@
-package com.eipna.notable.activities;
+package com.eipna.notable.ui.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:context=".activities.TrashActivity">
+    tools:context=".ui.activities.TrashActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:background="@color/primary"

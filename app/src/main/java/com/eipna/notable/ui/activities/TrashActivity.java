@@ -1,4 +1,4 @@
-package com.eipna.notable.activities;
+package com.eipna.notable.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -25,7 +25,7 @@ import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityTrashBinding;
-import com.eipna.notable.adapters.NoteAdapter;
+import com.eipna.notable.ui.adapters.NoteAdapter;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;

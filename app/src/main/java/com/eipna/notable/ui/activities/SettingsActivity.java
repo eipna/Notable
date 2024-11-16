@@ -1,4 +1,4 @@
-package com.eipna.notable.activities;
+package com.eipna.notable.ui.activities;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;

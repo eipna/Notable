@@ -14,37 +14,37 @@
         android:theme="@style/Theme.Notable"
         tools:targetApi="31">
         <activity
-            android:name=".activities.FavoriteActivity"
+            android:name=".ui.activities.FavoriteActivity"
             android:label="Favorite"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName=".ui.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.TrashActivity"
+            android:name=".ui.activities.TrashActivity"
             android:label="Trash"
             android:exported="false"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".ui.activities.MainActivity" />
         <activity
-            android:name=".activities.ArchiveActivity"
+            android:name=".ui.activities.ArchiveActivity"
             android:label="Archive"
             android:exported="false"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".ui.activities.MainActivity" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name=".ui.activities.SettingsActivity"
             android:label="Settings"
             android:exported="false"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".ui.activities.MainActivity" />
         <activity
-            android:name=".activities.UpdateActivity"
+            android:name=".ui.activities.UpdateActivity"
             android:label=" "
             android:exported="false"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".ui.activities.MainActivity" />
         <activity
-            android:name=".activities.CreateActivity"
+            android:name=".ui.activities.CreateActivity"
             android:label=" "
             android:exported="false"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName=".ui.activities.MainActivity" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="Notable"
             android:exported="true">
             <intent-filter>
