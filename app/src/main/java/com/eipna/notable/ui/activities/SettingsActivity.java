@@ -76,27 +76,29 @@ public class SettingsActivity extends AppCompatActivity {
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
-        private ListPreference settingsAppTheme;
-        private ListPreference settingsNoteLayout;
-
-        private Preference settingsAppVersion;
-        private Preference settingsLibrariesDialog;
-        private Preference settingsExport;
-        private Preference settingsImport;
-
-        private SharedPrefsUtil sharedPrefs;
+        private SharedPrefsUtil prefs;
 
         private int easterEggCounter;
-        private String defTheme;
-        private String defNoteLayout;
 
         @Override
         public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
             setPreferencesFromResource(R.xml.preferences, rootKey);
+            prefs = new SharedPrefsUtil(requireContext());
 
-            setPreferences();
+            Preference settingsAppVersion = findPreference("settings_app_version");
+            Preference settingsLibrariesDialog = findPreference("settings_libraries_dialog");
+            Preference settingsExport = findPreference("settings_export");
+            Preference settingsImport = findPreference("settings_export");
 
-            // Little easter egg :D
+            // If no shared preference found, use default values instead
+            String defTheme = prefs.getString("THEME", "system");
+            String defNoteLayout = prefs.getString("DISPLAY", "list");
+
+            ListPreference settingsAppTheme = findPreference("settings_app_theme");
+            ListPreference settingsNoteLayout = findPreference("settings_note_layout");
+
+            // Application easter egg :D
+            assert settingsAppVersion != null;
             settingsAppVersion.setOnPreferenceClickListener(preference -> {
                 easterEggCounter++;
                 if (easterEggCounter == 5) {
@@ -105,6 +107,7 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             });
 
+            assert settingsAppTheme != null;
             settingsAppTheme.setNegativeButtonText(""); // Removes negative button
             settingsAppTheme.setValue(defTheme);
             settingsAppTheme.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -112,6 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             });
 
+            assert settingsNoteLayout != null;
             settingsNoteLayout.setNegativeButtonText("");
             settingsNoteLayout.setValue(defNoteLayout);
             settingsNoteLayout.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -119,17 +123,20 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             });
 
+            assert settingsLibrariesDialog != null;
             settingsLibrariesDialog.setOnPreferenceClickListener(preference -> {
                 showLibrariesDialog();
                 return true;
             });
 
+            assert settingsExport != null;
             settingsExport.setOnPreferenceClickListener(preference -> {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
                 exportLauncher.launch(intent);
                 return true;
             });
 
+            assert settingsImport != null;
             settingsImport.setOnPreferenceClickListener(preference -> {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/json");
@@ -277,29 +284,13 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        private void setPreferences() {
-            sharedPrefs = new SharedPrefsUtil(requireContext());
-
-            settingsAppVersion = findPreference("settings_app_version");
-            settingsLibrariesDialog = findPreference("settings_libraries_dialog");
-            settingsExport = findPreference("settings_export");
-            settingsImport = findPreference("settings_export");
-
-            // If no shared preference found, use default values instead
-            defTheme = sharedPrefs.getString("THEME", "system");
-            defNoteLayout = sharedPrefs.getString("DISPLAY", "list");
-
-            settingsAppTheme = findPreference("settings_app_theme");
-            settingsNoteLayout = findPreference("settings_note_layout");
-        }
-
         private void setDisplay(String display) {
             switch (display) {
                 case "list":
-                    sharedPrefs.setString("DISPLAY", "list");
+                    prefs.setString("DISPLAY", "list");
                     break;
                 case "grid":
-                    sharedPrefs.setString("DISPLAY", "grid");
+                    prefs.setString("DISPLAY", "grid");
                     break;
             }
         }
@@ -308,15 +299,15 @@ public class SettingsActivity extends AppCompatActivity {
             switch (theme) {
                 case "system":
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    sharedPrefs.setString("THEME", "system");
+                    prefs.setString("THEME", "system");
                     break;
                 case "light":
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    sharedPrefs.setString("THEME", "light");
+                    prefs.setString("THEME", "light");
                     break;
                 case "dark":
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    sharedPrefs.setString("THEME", "dark");
+                    prefs.setString("THEME", "dark");
                     break;
             }
         }
