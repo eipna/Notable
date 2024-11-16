@@ -91,8 +91,8 @@ public class SettingsActivity extends AppCompatActivity {
             Preference settingsImport = findPreference("settings_export");
 
             // If no shared preference found, use default values instead
-            String defTheme = prefs.getString("THEME", "system");
-            String defNoteLayout = prefs.getString("DISPLAY", "list");
+            String defTheme = prefs.getString("prefs_app_theme", "system");
+            String defNoteLayout = prefs.getString("prefs_note_layout", "list");
 
             ListPreference settingsAppTheme = findPreference("settings_app_theme");
             ListPreference settingsNoteLayout = findPreference("settings_note_layout");
@@ -287,10 +287,10 @@ public class SettingsActivity extends AppCompatActivity {
         private void setDisplay(String display) {
             switch (display) {
                 case "list":
-                    prefs.setString("DISPLAY", "list");
+                    prefs.setString("prefs_note_layout", "list");
                     break;
                 case "grid":
-                    prefs.setString("DISPLAY", "grid");
+                    prefs.setString("prefs_note_layout", "grid");
                     break;
             }
         }
@@ -299,15 +299,15 @@ public class SettingsActivity extends AppCompatActivity {
             switch (theme) {
                 case "system":
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    prefs.setString("THEME", "system");
+                    prefs.setString("prefs_app_theme", "system");
                     break;
                 case "light":
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    prefs.setString("THEME", "light");
+                    prefs.setString("prefs_app_theme", "light");
                     break;
                 case "dark":
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    prefs.setString("THEME", "dark");
+                    prefs.setString("prefs_app_theme", "dark");
                     break;
             }
         }

@@ -11,10 +11,8 @@ public class NotableApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         SharedPrefsUtil sharedPrefs = new SharedPrefsUtil(NotableApp.this);
-
-        String themePrefs = sharedPrefs.getString("THEME", "system");
+        String themePrefs = sharedPrefs.getString("prefs_app_theme", "system");
         switch (themePrefs) {
             case "system":
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);

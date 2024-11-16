@@ -52,7 +52,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     }
 
     private void updateNoteDisplay() {
-        String display = sharedPrefs.getString("DISPLAY", "list");
+        String display = sharedPrefs.getString("prefs_note_layout", "list");
         switch (display) {
             case "list":
                 binding.noteList.setLayoutManager(new LinearLayoutManager(this));
