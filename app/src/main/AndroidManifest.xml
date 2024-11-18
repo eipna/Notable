@@ -45,7 +45,7 @@
             android:parentActivityName=".ui.activities.MainActivity" />
         <activity
             android:name=".ui.activities.MainActivity"
-            android:label="Notable"
+            android:label="Notes"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
