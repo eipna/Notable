@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
     private void queryNotesFromSearch(String query) {
         final ArrayList<NoteModel> queriedNotes = new ArrayList<>();
         for (NoteModel note : activeNotes) {
-            if (note.getNoteTitle().toLowerCase().contains(query.toLowerCase())) {
+            if (note.getTitle().toLowerCase().contains(query.toLowerCase())) {
                 queriedNotes.add(note);
             }
         }

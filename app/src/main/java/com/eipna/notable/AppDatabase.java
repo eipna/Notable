@@ -56,11 +56,11 @@ public class AppDatabase extends SQLiteOpenHelper {
     public void createNote(NoteModel createdNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_TITLE, createdNote.getNoteTitle());
-        values.put(COLUMN_NOTE_CONTENT, createdNote.getNoteContent());
-        values.put(COLUMN_NOTE_DATE_CREATED, createdNote.getNoteDateCreated());
-        values.put(COLUMN_NOTE_LAST_UPDATED, createdNote.getNoteLastUpdated());
-        values.put(COLUMN_NOTE_STATE, createdNote.getNoteState());
+        values.put(COLUMN_NOTE_TITLE, createdNote.getTitle());
+        values.put(COLUMN_NOTE_CONTENT, createdNote.getContent());
+        values.put(COLUMN_NOTE_DATE_CREATED, createdNote.getDateCreated());
+        values.put(COLUMN_NOTE_LAST_UPDATED, createdNote.getLastUpdated());
+        values.put(COLUMN_NOTE_STATE, createdNote.getState());
         values.put(COLUMN_NOTE_FAVORITE, createdNote.getIsFavorite());
         db.insert(TABLE_NOTE, null, values);
         db.close();
@@ -77,12 +77,12 @@ public class AppDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
+                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 notes.add(retrievedNote);
             } while (cursor.moveToNext());
@@ -102,12 +102,12 @@ public class AppDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
+                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 notes.add(retrievedNote);
             } while (cursor.moveToNext());
@@ -127,12 +127,12 @@ public class AppDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
+                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 notes.add(retrievedNote);
             } while (cursor.moveToNext());
@@ -152,12 +152,12 @@ public class AppDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
+                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 favoriteNotes.add(retrievedNote);
             } while (cursor.moveToNext());
@@ -177,12 +177,12 @@ public class AppDatabase extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setNoteId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setNoteTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setNoteContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setNoteDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setNoteLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setNoteState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
+                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
                 allNotes.add(retrievedNote);
             } while (cursor.moveToNext());
@@ -194,12 +194,12 @@ public class AppDatabase extends SQLiteOpenHelper {
     public void updateNote(NoteModel updatedNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_TITLE, updatedNote.getNoteTitle());
-        values.put(COLUMN_NOTE_CONTENT, updatedNote.getNoteContent());
-        values.put(COLUMN_NOTE_STATE, updatedNote.getNoteState());
+        values.put(COLUMN_NOTE_TITLE, updatedNote.getTitle());
+        values.put(COLUMN_NOTE_CONTENT, updatedNote.getContent());
+        values.put(COLUMN_NOTE_STATE, updatedNote.getState());
         values.put(COLUMN_NOTE_FAVORITE, updatedNote.getIsFavorite());
-        values.put(COLUMN_NOTE_LAST_UPDATED, updatedNote.getNoteLastUpdated());
-        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getNoteId())});
+        values.put(COLUMN_NOTE_LAST_UPDATED, updatedNote.getLastUpdated());
+        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getId())});
         db.close();
     }
 

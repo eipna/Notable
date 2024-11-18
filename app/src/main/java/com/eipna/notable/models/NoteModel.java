@@ -12,73 +12,73 @@ import java.util.Comparator;
 
 public class NoteModel implements Parcelable {
 
-    private int noteId;
-    private String noteTitle;
-    private String noteContent;
-    private long noteDateCreated;
-    private long noteLastUpdated;
-    private int noteState;
+    private int Id;
+    private String title;
+    private String content;
+    private long dateCreated;
+    private long lastUpdated;
+    private int state;
     private int isFavorite;
 
     public static final String EMPTY_TITLE = "Empty title";
     public static final String EMPTY_CONTENT = "Nothing to see here.";
 
     public NoteModel() {
-        this.noteId = -1;
-        this.noteTitle = null;
-        this.noteContent = null;
-        this.noteDateCreated = DateUtil.getCurrentTime();
-        this.noteLastUpdated = DateUtil.getCurrentTime();
-        this.noteState = NoteState.ACTIVE.getValue();
+        this.Id = -1;
+        this.title = null;
+        this.content = null;
+        this.dateCreated = DateUtil.getCurrentTime();
+        this.lastUpdated = DateUtil.getCurrentTime();
+        this.state = NoteState.ACTIVE.getValue();
         this.isFavorite = NoteState.FAVORITE_NO.getValue();
     }
 
-    public int getNoteId() {
-        return noteId;
+    public int getId() {
+        return Id;
     }
 
-    public void setNoteId(int noteId) {
-        this.noteId = noteId;
+    public void setId(int id) {
+        this.Id = id;
     }
 
-    public String getNoteTitle() {
-        return noteTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public long getNoteDateCreated() {
-        return noteDateCreated;
+    public long getDateCreated() {
+        return dateCreated;
     }
 
-    public void setNoteDateCreated(long noteDateCreated) {
-        this.noteDateCreated = noteDateCreated;
+    public void setDateCreated(long dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public long getNoteLastUpdated() {
-        return noteLastUpdated;
+    public long getLastUpdated() {
+        return lastUpdated;
     }
 
-    public void setNoteLastUpdated(long noteLastUpdated) {
-        this.noteLastUpdated = noteLastUpdated;
+    public void setLastUpdated(long lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
-    public void setNoteTitle(String noteTitle) {
-        this.noteTitle = noteTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getNoteContent() {
-        return noteContent;
+    public String getContent() {
+        return content;
     }
 
-    public void setNoteContent(String noteContent) {
-        this.noteContent = noteContent;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public int getNoteState() {
-        return noteState;
+    public int getState() {
+        return state;
     }
 
-    public void setNoteState(int noteState) {
-        this.noteState = noteState;
+    public void setState(int state) {
+        this.state = state;
     }
 
     public int getIsFavorite() {
@@ -89,25 +89,25 @@ public class NoteModel implements Parcelable {
         this.isFavorite = isFavorite;
     }
 
-    public static final Comparator<NoteModel> SORT_TITLE_ASCENDING = Comparator.comparing(note0 -> note0.getNoteTitle().toLowerCase());
+    public static final Comparator<NoteModel> SORT_TITLE_ASCENDING = Comparator.comparing(note0 -> note0.getTitle().toLowerCase());
 
-    public static final Comparator<NoteModel> SORT_TITLE_DESCENDING = (note01, note02) -> note02.getNoteTitle().toLowerCase().compareTo(note01.getNoteTitle().toLowerCase());
+    public static final Comparator<NoteModel> SORT_TITLE_DESCENDING = (note01, note02) -> note02.getTitle().toLowerCase().compareTo(note01.getTitle().toLowerCase());
 
-    public static final Comparator<NoteModel> SORT_DATE_CREATED_ASCENDING = Comparator.comparingLong(NoteModel::getNoteDateCreated);
+    public static final Comparator<NoteModel> SORT_DATE_CREATED_ASCENDING = Comparator.comparingLong(NoteModel::getDateCreated);
 
-    public static final Comparator<NoteModel> SORT_DATE_CREATED_DESCENDING = (note01, note02) -> Long.compare(note02.getNoteDateCreated(), note01.getNoteDateCreated());
+    public static final Comparator<NoteModel> SORT_DATE_CREATED_DESCENDING = (note01, note02) -> Long.compare(note02.getDateCreated(), note01.getDateCreated());
 
-    public static final Comparator<NoteModel> SORT_LAST_UPDATED_ASCENDING = Comparator.comparingLong(NoteModel::getNoteLastUpdated);
+    public static final Comparator<NoteModel> SORT_LAST_UPDATED_ASCENDING = Comparator.comparingLong(NoteModel::getLastUpdated);
 
-    public static final Comparator<NoteModel> SORT_LAST_UPDATED_DESCENDING = (note01, note02) -> Long.compare(note02.getNoteLastUpdated(), note01.getNoteLastUpdated());
+    public static final Comparator<NoteModel> SORT_LAST_UPDATED_DESCENDING = (note01, note02) -> Long.compare(note02.getLastUpdated(), note01.getLastUpdated());
 
     protected NoteModel(Parcel parcel) {
-        this.noteId = parcel.readInt();
-        this.noteTitle = parcel.readString();
-        this.noteContent = parcel.readString();
-        this.noteDateCreated = parcel.readLong();
-        this.noteLastUpdated = parcel.readLong();
-        this.noteState = parcel.readInt();
+        this.Id = parcel.readInt();
+        this.title = parcel.readString();
+        this.content = parcel.readString();
+        this.dateCreated = parcel.readLong();
+        this.lastUpdated = parcel.readLong();
+        this.state = parcel.readInt();
         this.isFavorite = parcel.readInt();
     }
 
@@ -130,12 +130,12 @@ public class NoteModel implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel destination, int flags) {
-        destination.writeInt(this.noteId);
-        destination.writeString(this.noteTitle);
-        destination.writeString(this.noteContent);
-        destination.writeLong(this.noteDateCreated);
-        destination.writeLong(this.noteLastUpdated);
-        destination.writeInt(this.noteState);
+        destination.writeInt(this.Id);
+        destination.writeString(this.title);
+        destination.writeString(this.content);
+        destination.writeLong(this.dateCreated);
+        destination.writeLong(this.lastUpdated);
+        destination.writeInt(this.state);
         destination.writeInt(this.isFavorite);
     }
 }

@@ -42,8 +42,8 @@ public class UpdateActivity extends AppCompatActivity {
         currentNote = getIntent().getParcelableExtra("selected_note");
 
         assert currentNote != null;
-        String titleFromNote = currentNote.getNoteTitle();
-        String contentFromNote = currentNote.getNoteContent();
+        String titleFromNote = currentNote.getTitle();
+        String contentFromNote = currentNote.getContent();
         
         binding.titleInput.setText((titleFromNote.equals(NoteModel.EMPTY_TITLE)) ? "" : titleFromNote);
         binding.contentInput.setText((contentFromNote.equals(NoteModel.EMPTY_CONTENT) ? "" : contentFromNote));
@@ -70,22 +70,22 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.options_update_archive) {
-            currentNote.setNoteState(NoteState.ARCHIVED.getValue());
+            currentNote.setState(NoteState.ARCHIVED.getValue());
             updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_unarchive) {
-            currentNote.setNoteState(NoteState.ACTIVE.getValue());
+            currentNote.setState(NoteState.ACTIVE.getValue());
             updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_Trash) {
-            currentNote.setNoteState(NoteState.DELETED.getValue());
+            currentNote.setState(NoteState.DELETED.getValue());
             updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_restore) {
-            currentNote.setNoteState(NoteState.ACTIVE.getValue());
+            currentNote.setState(NoteState.ACTIVE.getValue());
             updateNote();
         }
 
@@ -121,10 +121,10 @@ public class UpdateActivity extends AppCompatActivity {
         wordCountTV.setText(String.format("Word Count: %d", noteWordCount));
 
         TextView dateCreatedTV = customDialogLibraries.findViewById(R.id.dateCreatedProperty);
-        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateTimePattern.DETAILED_WITH_TIME, currentNote.getNoteDateCreated())));
+        dateCreatedTV.setText(String.format("Date Created: %s", DateUtil.getDateString(DateTimePattern.DETAILED_WITH_TIME, currentNote.getDateCreated())));
 
         TextView lastUpdatedTV = customDialogLibraries.findViewById(R.id.lastUpdatedProperty);
-        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateTimePattern.DETAILED_WITH_TIME, currentNote.getNoteLastUpdated())));
+        lastUpdatedTV.setText(String.format("Last Updated: %s", DateUtil.getDateString(DateTimePattern.DETAILED_WITH_TIME, currentNote.getLastUpdated())));
 
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         dialogBuilder.setCustomTitle(titleTV);
@@ -184,7 +184,7 @@ public class UpdateActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Are you sure you want to permanently delete this note?");
         dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
-            appDatabase.deleteNote(currentNote.getNoteId());
+            appDatabase.deleteNote(currentNote.getId());
             updateNote();
         });
 
@@ -211,15 +211,15 @@ public class UpdateActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_update, menu);
 
-        if (currentNote.getNoteState() == NoteState.ACTIVE.getValue()) {
+        if (currentNote.getState() == NoteState.ACTIVE.getValue()) {
             menu.findItem(R.id.options_update_unarchive).setVisible(false);
             menu.findItem(R.id.options_update_restore).setVisible(false);
             menu.findItem(R.id.options_update_delete).setVisible(false);
-        } else if (currentNote.getNoteState() == NoteState.ARCHIVED.getValue()) {
+        } else if (currentNote.getState() == NoteState.ARCHIVED.getValue()) {
             menu.findItem(R.id.options_update_archive).setVisible(false);
             menu.findItem(R.id.options_update_restore).setVisible(false);
             menu.findItem(R.id.options_update_delete).setVisible(false);
-        } else if (currentNote.getNoteState() == NoteState.DELETED.getValue()) {
+        } else if (currentNote.getState() == NoteState.DELETED.getValue()) {
             menu.findItem(R.id.options_update_unarchive).setVisible(false);
             menu.findItem(R.id.options_update_Trash).setVisible(false);
         }
@@ -252,9 +252,9 @@ public class UpdateActivity extends AppCompatActivity {
         String updatedNoteTitle = (titleInField.isEmpty()) ? NoteModel.EMPTY_TITLE : titleInField;
         String updatedNoteContent = (contentInField.isEmpty()) ? NoteModel.EMPTY_CONTENT : contentInField;
 
-        currentNote.setNoteTitle(updatedNoteTitle);
-        currentNote.setNoteContent(updatedNoteContent);
-        currentNote.setNoteLastUpdated(DateUtil.getCurrentTime());
+        currentNote.setTitle(updatedNoteTitle);
+        currentNote.setContent(updatedNoteContent);
+        currentNote.setLastUpdated(DateUtil.getCurrentTime());
         appDatabase.updateNote(currentNote);
         closeActivity();
     }

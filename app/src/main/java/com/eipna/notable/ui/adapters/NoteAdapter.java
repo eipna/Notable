@@ -49,9 +49,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PrettyTime prettyTime = new PrettyTime();
         NoteModel currentNote = notes.get(position);
-        holder.titleTextView.setText(currentNote.getNoteTitle());
-        holder.contentTextView.setText(currentNote.getNoteContent());
-        holder.lastUpdatedTextView.setText(prettyTime.format(new Date(currentNote.getNoteLastUpdated())));
+        holder.titleTextView.setText(currentNote.getTitle());
+        holder.contentTextView.setText(currentNote.getContent());
+        holder.lastUpdatedTextView.setText(prettyTime.format(new Date(currentNote.getLastUpdated())));
 
         holder.itemView.setOnClickListener(view -> {
             if (listener != null) {

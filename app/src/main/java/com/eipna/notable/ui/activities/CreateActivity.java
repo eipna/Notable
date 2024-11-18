@@ -54,8 +54,8 @@ public class CreateActivity extends AppCompatActivity {
         String noteContent = (contentInField.isEmpty()) ? NoteModel.EMPTY_CONTENT : contentInField;
 
         NoteModel createdNote = new NoteModel();
-        createdNote.setNoteTitle(noteTitle);
-        createdNote.setNoteContent(noteContent);
+        createdNote.setTitle(noteTitle);
+        createdNote.setContent(noteContent);
         appDatabase.createNote(createdNote);
 
         Intent intent = new Intent();

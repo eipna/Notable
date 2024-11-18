@@ -197,11 +197,11 @@ public class SettingsActivity extends AppCompatActivity {
                         final JSONObject object = jsonArray.getJSONObject(i);
 
                         final NoteModel note = new NoteModel();
-                        note.setNoteTitle(object.getString(AppDatabase.COLUMN_NOTE_TITLE));
-                        note.setNoteContent(object.getString(AppDatabase.COLUMN_NOTE_CONTENT));
-                        note.setNoteDateCreated(object.getLong(AppDatabase.COLUMN_NOTE_DATE_CREATED));
-                        note.setNoteLastUpdated(object.getLong(AppDatabase.COLUMN_NOTE_LAST_UPDATED));
-                        note.setNoteState(object.getInt(AppDatabase.COLUMN_NOTE_STATE));
+                        note.setTitle(object.getString(AppDatabase.COLUMN_NOTE_TITLE));
+                        note.setContent(object.getString(AppDatabase.COLUMN_NOTE_CONTENT));
+                        note.setDateCreated(object.getLong(AppDatabase.COLUMN_NOTE_DATE_CREATED));
+                        note.setLastUpdated(object.getLong(AppDatabase.COLUMN_NOTE_LAST_UPDATED));
+                        note.setState(object.getInt(AppDatabase.COLUMN_NOTE_STATE));
                         note.setIsFavorite(object.getInt(AppDatabase.COLUMN_NOTE_FAVORITE));
                         appDatabase.createNote(note);
                     }
@@ -221,11 +221,11 @@ public class SettingsActivity extends AppCompatActivity {
 
                 for (NoteModel note : notes) {
                     final JSONObject object = new JSONObject();
-                    object.put(AppDatabase.COLUMN_NOTE_TITLE, note.getNoteTitle());
-                    object.put(AppDatabase.COLUMN_NOTE_CONTENT, note.getNoteContent());
-                    object.put(AppDatabase.COLUMN_NOTE_DATE_CREATED, note.getNoteDateCreated());
-                    object.put(AppDatabase.COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
-                    object.put(AppDatabase.COLUMN_NOTE_STATE, note.getNoteState());
+                    object.put(AppDatabase.COLUMN_NOTE_TITLE, note.getTitle());
+                    object.put(AppDatabase.COLUMN_NOTE_CONTENT, note.getContent());
+                    object.put(AppDatabase.COLUMN_NOTE_DATE_CREATED, note.getDateCreated());
+                    object.put(AppDatabase.COLUMN_NOTE_LAST_UPDATED, note.getLastUpdated());
+                    object.put(AppDatabase.COLUMN_NOTE_STATE, note.getState());
                     object.put(AppDatabase.COLUMN_NOTE_FAVORITE, note.getIsFavorite());
                     jsonArray.put(object);
                 }
