@@ -48,9 +48,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NoteModel currentNote = notes.get(position);
-        holder.titleView.setText(currentNote.getNoteTitle());
-        holder.contentView.setText(currentNote.getNoteContent());
-        holder.lastUpdatedView.setText(prettyTime.format(new Date(currentNote.getNoteLastUpdated())));
+        holder.titleTextView.setText(currentNote.getNoteTitle());
+        holder.contentTextView.setText(currentNote.getNoteContent());
+        holder.lastUpdatedTextView.setText(prettyTime.format(new Date(currentNote.getNoteLastUpdated())));
 
         holder.itemView.setOnClickListener(view -> {
             if (listener != null) {
@@ -78,15 +78,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titleView;
-        TextView contentView;
-        TextView lastUpdatedView;
+        TextView titleTextView;
+        TextView contentTextView;
+        TextView lastUpdatedTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            titleView = itemView.findViewById(R.id.noteTitle);
-            contentView = itemView.findViewById(R.id.noteContent);
-            lastUpdatedView = itemView.findViewById(R.id.noteLastUpdated);
+            titleTextView = itemView.findViewById(R.id.noteTitle);
+            contentTextView = itemView.findViewById(R.id.noteContent);
+            lastUpdatedTextView = itemView.findViewById(R.id.noteLastUpdated);
         }
     }
 }
