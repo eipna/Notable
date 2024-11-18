@@ -88,7 +88,7 @@ public class SettingsActivity extends AppCompatActivity {
             Preference settingsAppVersion = findPreference("settings_app_version");
             Preference settingsLibrariesDialog = findPreference("settings_libraries_dialog");
             Preference settingsExport = findPreference("settings_export");
-            Preference settingsImport = findPreference("settings_export");
+            Preference settingsImport = findPreference("settings_import");
 
             // If no shared preference found, use default values instead
             String defTheme = prefs.getString("prefs_app_theme", "system");
