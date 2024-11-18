@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.utils.DateUtil;
 
+import java.util.Comparator;
+
 public class NoteModel implements Parcelable {
 
     private int noteId;
@@ -86,6 +88,18 @@ public class NoteModel implements Parcelable {
     public void setIsFavorite(int isFavorite) {
         this.isFavorite = isFavorite;
     }
+
+    public static final Comparator<NoteModel> SORT_TITLE_ASCENDING = Comparator.comparing(note0 -> note0.getNoteTitle().toLowerCase());
+
+    public static final Comparator<NoteModel> SORT_TITLE_DESCENDING = (note01, note02) -> note02.getNoteTitle().toLowerCase().compareTo(note01.getNoteTitle().toLowerCase());
+
+    public static final Comparator<NoteModel> SORT_DATE_CREATED_ASCENDING = Comparator.comparingLong(NoteModel::getNoteDateCreated);
+
+    public static final Comparator<NoteModel> SORT_DATE_CREATED_DESCENING = (note01, note02) -> Long.compare(note02.getNoteDateCreated(), note01.getNoteDateCreated());
+
+    public static final Comparator<NoteModel> SORT_LAST_UPDATED_ASCENDING = Comparator.comparingLong(NoteModel::getNoteLastUpdated);
+
+    public static final Comparator<NoteModel> SORT_LAST_UPDATED_DESCENING = (note01, note02) -> Long.compare(note02.getNoteLastUpdated(), note01.getNoteLastUpdated());
 
     protected NoteModel(Parcel parcel) {
         this.noteId = parcel.readInt();
