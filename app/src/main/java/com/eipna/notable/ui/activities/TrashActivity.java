@@ -35,7 +35,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityTrashBinding binding;
     private AppDatabase appDatabase;
-    private ArrayList<NoteModel> notes;
+    private ArrayList<NoteModel> deletedNotes;
     private NoteAdapter noteAdapter;
     private SharedPrefsUtil sharedPrefs;
 
@@ -64,13 +64,13 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.options_trash, menu);
-        menu.findItem(R.id.options_trash_clear).setVisible(!notes.isEmpty());
+        menu.findItem(R.id.options_trash_clear).setVisible(!deletedNotes.isEmpty());
         return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.options_trash_clear).setVisible(!notes.isEmpty());
+        menu.findItem(R.id.options_trash_clear).setVisible(!deletedNotes.isEmpty());
         return true;
     }
 
@@ -128,17 +128,17 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
         appDatabase.clearTrashNotes();
-        notes.clear();
+        deletedNotes.clear();
         noteAdapter.notifyDataSetChanged();
         updateNoteList();
     }
 
     private void updateNoteList() {
-        notes = appDatabase.readNotes(NoteState.DELETED.getValue());
+        deletedNotes = appDatabase.readNotes(NoteState.DELETED.getValue());
         invalidateOptionsMenu();
-        binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
+        binding.emptyIndicator.setVisibility((deletedNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 
-        noteAdapter = new NoteAdapter(this, this, notes);
+        noteAdapter = new NoteAdapter(this, this, deletedNotes);
         updateNoteDisplay();
     }
 
@@ -158,7 +158,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     @Override
     public void onNoteClick(int position) {
-        NoteModel selectedNote = notes.get(position);
+        NoteModel selectedNote = deletedNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("NOTE", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);

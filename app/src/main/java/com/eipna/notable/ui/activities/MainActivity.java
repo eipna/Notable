@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityMainBinding binding;
     private AppDatabase appDatabase;
-    private ArrayList<NoteModel> notes;
+    private ArrayList<NoteModel> activeNotes;
     private NoteAdapter noteAdapter;
     private SharedPrefsUtil sharedPrefs;
 
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private void filterNotes(String query) {
         final ArrayList<NoteModel> filteredNotes = new ArrayList<>();
-        for (NoteModel note : notes) {
+        for (NoteModel note : activeNotes) {
             if (note.getNoteTitle().toLowerCase().contains(query.toLowerCase())) {
                 filteredNotes.add(note);
             }
@@ -122,10 +122,10 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     }
 
     private void updateNoteList() {
-        notes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
-        binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
+        activeNotes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
+        binding.emptyIndicator.setVisibility((activeNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 
-        noteAdapter = new NoteAdapter(this, this, notes);
+        noteAdapter = new NoteAdapter(this, this, activeNotes);
         updateNoteDisplay();
     }
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     @Override
     public void onNoteClick(int position) {
-        NoteModel selectedNote = notes.get(position);
+        NoteModel selectedNote = activeNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("NOTE", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);

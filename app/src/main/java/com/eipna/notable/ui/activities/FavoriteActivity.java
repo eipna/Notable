@@ -24,7 +24,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     private ActivityFavoriteBinding binding;
     private SharedPrefsUtil sharedPrefs;
     private AppDatabase appDatabase;
-    private ArrayList<NoteModel> notes;
+    private ArrayList<NoteModel> favoriteNotes;
     private NoteAdapter noteAdapter;
 
     @Override
@@ -44,10 +44,10 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     }
 
     private void updateNoteList() {
-        notes = appDatabase.readFavoriteNotes();
-        binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
+        favoriteNotes = appDatabase.readFavoriteNotes();
+        binding.emptyIndicator.setVisibility((favoriteNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 
-        noteAdapter = new NoteAdapter(this, this, notes);
+        noteAdapter = new NoteAdapter(this, this, favoriteNotes);
         updateNoteDisplay();
     }
 
@@ -73,7 +73,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
 
     @Override
     public void onNoteClick(int position) {
-        NoteModel selectedNote = notes.get(position);
+        NoteModel selectedNote = favoriteNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("NOTE", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);

@@ -24,7 +24,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityArchiveBinding binding;
     private AppDatabase appDatabase;
-    private ArrayList<NoteModel> notes;
+    private ArrayList<NoteModel> archivedNotes;
     private NoteAdapter noteAdapter;
     private SharedPrefsUtil sharedPrefs;
 
@@ -51,10 +51,10 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
     });
 
     private void updateNoteList() {
-        notes = appDatabase.readNotes(NoteState.ARCHIVED.getValue());
-        binding.emptyIndicator.setVisibility((notes.isEmpty()) ? View.VISIBLE : View.GONE);
+        archivedNotes = appDatabase.readNotes(NoteState.ARCHIVED.getValue());
+        binding.emptyIndicator.setVisibility((archivedNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 
-        noteAdapter = new NoteAdapter(this, this, notes);
+        noteAdapter = new NoteAdapter(this, this, archivedNotes);
         updateNoteDisplay();
     }
 
@@ -74,7 +74,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
 
     @Override
     public void onNoteClick(int position) {
-        NoteModel selectedNote = notes.get(position);
+        NoteModel selectedNote = archivedNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("NOTE", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
