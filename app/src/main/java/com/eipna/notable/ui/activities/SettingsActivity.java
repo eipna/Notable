@@ -11,6 +11,7 @@ import androidx.documentfile.provider.DocumentFile;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreferenceCompat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -90,12 +91,21 @@ public class SettingsActivity extends AppCompatActivity {
             Preference settingsExport = findPreference("settings_export");
             Preference settingsImport = findPreference("settings_import");
 
+            SwitchPreferenceCompat settingsRoundedNotes = findPreference("settings_rounded_notes");
+
             // If no shared preference found, use default values instead
             String defTheme = prefs.getString("prefs_app_theme", "system");
             String defNoteLayout = prefs.getString("prefs_note_layout", "list");
+            boolean defRoundedNotes = prefs.getBoolean("prefs_rounded_notes", true);
 
             ListPreference settingsAppTheme = findPreference("settings_app_theme");
             ListPreference settingsNoteLayout = findPreference("settings_note_layout");
+
+            settingsRoundedNotes.setChecked(defRoundedNotes);
+            settingsRoundedNotes.setOnPreferenceChangeListener((preference, newValue) -> {
+                prefs.setBoolean("prefs_rounded_notes", (boolean) newValue);
+                return true;
+            });
 
             // Application easter egg :D
             assert settingsAppVersion != null;

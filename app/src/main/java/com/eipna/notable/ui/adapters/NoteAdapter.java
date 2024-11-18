@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
 import com.eipna.notable.models.NoteModel;
+import com.eipna.notable.utils.SharedPrefsUtil;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
@@ -89,6 +90,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             titleTextView = itemView.findViewById(R.id.noteTitle);
             contentTextView = itemView.findViewById(R.id.noteContent);
             lastUpdatedTextView = itemView.findViewById(R.id.noteLastUpdated);
+
+            boolean prefsRoundedNotes = new SharedPrefsUtil(itemView.getContext()).getBoolean("prefs_rounded_notes", true);
+            noteCardView.setRadius(prefsRoundedNotes ? 32.0f : 0.0f);
         }
     }
 }
