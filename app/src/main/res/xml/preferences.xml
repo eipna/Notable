@@ -11,12 +11,12 @@
             app:summary="@string/pref_summary_theme"
             android:entries="@array/preference_list_theme"
             android:entryValues="@array/preference_list_theme_values"
-            app:icon="@drawable/sun"/>
+            app:iconSpaceReserved="false"/>
 
         <ListPreference
             android:key="settings_note_layout"
             android:title="@string/pref_title_display"
-            app:icon="@drawable/note"
+            app:iconSpaceReserved="false"
             android:entries="@array/preference_list_display"
             android:entryValues="@array/preference_list_display_values"
             app:summary="@string/pref_summary_display"/>
@@ -24,7 +24,7 @@
         <SwitchPreferenceCompat
             android:key="settings_rounded_notes"
             android:title="@string/pref_title_rounded_notes"
-            app:icon="@drawable/rounded_corner"
+            app:iconSpaceReserved="false"
             app:summary="@string/pref_summary_rounded_notes"/>
     </PreferenceCategory>
 
@@ -35,12 +35,12 @@
         <Preference
             android:key="settings_import"
             app:title="@string/pref_title_import"
-            android:icon="@drawable/backup_import" />
+            app:iconSpaceReserved="false"/>
 
         <Preference
             android:key="settings_export"
             app:title="@string/pref_title_export"
-            android:icon="@drawable/backup_export"/>
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -50,7 +50,7 @@
         <Preference
             app:title="@string/pref_title_github"
             app:summary="@string/pref_summary_github"
-            app:icon="@drawable/link">
+            app:iconSpaceReserved="false">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -60,13 +60,13 @@
         <Preference
             android:key="settings_libraries_dialog"
             android:title="@string/pref_title_libraries"
-            android:icon="@drawable/link" />
+            app:iconSpaceReserved="false"/>
 
         <Preference
             android:key="settings_app_version"
             app:title="@string/pref_title_version"
             app:summary="@string/pref_summary_version"
-            app:icon="@drawable/info" />
+            app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
