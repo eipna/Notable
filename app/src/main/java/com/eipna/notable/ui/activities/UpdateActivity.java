@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -42,8 +43,11 @@ public class UpdateActivity extends AppCompatActivity {
         currentNote = getIntent().getParcelableExtra("NOTE");
 
         assert currentNote != null;
-        binding.titleInput.setText(currentNote.getNoteTitle());
-        binding.contentInput.setText(currentNote.getNoteContent());
+        String titleFromNote = currentNote.getNoteTitle();
+        String contentFromNote = currentNote.getNoteContent();
+        
+        binding.titleInput.setText((titleFromNote.equals(NoteModel.EMPTY_TITLE)) ? "" : titleFromNote);
+        binding.contentInput.setText((contentFromNote.equals(NoteModel.EMPTY_CONTENT) ? "" : contentFromNote));
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
@@ -67,23 +71,23 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
         if (item.getItemId() == R.id.options_update_archive) {
-            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.ARCHIVED.getValue());
-            closeActivity();
+            currentNote.setNoteState(NoteState.ARCHIVED.getValue());
+            updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_unarchive) {
-            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.ACTIVE.getValue());
-            closeActivity();
+            currentNote.setNoteState(NoteState.ACTIVE.getValue());
+            updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_Trash) {
-            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.DELETED.getValue());
-            closeActivity();
+            currentNote.setNoteState(NoteState.DELETED.getValue());
+            updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_restore) {
-            appDatabase.alterNoteStatus(currentNote.getNoteId(), NoteState.ACTIVE.getValue());
-            closeActivity();
+            currentNote.setNoteState(NoteState.ACTIVE.getValue());
+            updateNote();
         }
 
         if (item.getItemId() == R.id.options_update_delete) {
@@ -225,12 +229,10 @@ public class UpdateActivity extends AppCompatActivity {
             @SuppressLint("UseCompatLoadingForDrawables")
             Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
-            appDatabase.alterNoteFavorite(currentNote.getNoteId(), NoteState.FAVORITE_YES.getValue());
         } else {
             @SuppressLint("UseCompatLoadingForDrawables")
             Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
-            appDatabase.alterNoteFavorite(currentNote.getNoteId(), NoteState.FAVORITE_NO.getValue());
         }
         return true;
     }
@@ -240,46 +242,22 @@ public class UpdateActivity extends AppCompatActivity {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(binding.contentInput.getText()).toString());
         sendIntent.setType("text/plain");
-
         Intent shareIntent = Intent.createChooser(sendIntent, null);
         startActivity(shareIntent);
     }
 
     private void updateNote() {
-        if (isNoteUnchanged()) {
-            closeActivity();
-        } else {
-            String updatedTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-            String updatedContent = Objects.requireNonNull(binding.contentInput.getText()).toString();
-
-            // Sets title as empty title placeholder if field is blank
-            if (updatedTitle.isEmpty()) {
-                updatedTitle = String.format("Note %s", DateUtil.getDateString(DateTimePattern.MONTH_DAY_YEAR, DateUtil.getCurrentTime()));
-            }
-
-            // Sets note as empty note placeholder if field is blank
-            if (updatedContent.isEmpty()) {
-                updatedContent = "Empty content.";
-            }
-
-            NoteModel note = new NoteModel();
-            note.setNoteId(currentNote.getNoteId());
-            note.setNoteTitle(updatedTitle);
-            note.setNoteContent(updatedContent);
-            note.setNoteLastUpdated(DateUtil.getCurrentTime());
-
-            appDatabase.updateNote(note);
-            closeActivity();
-        }
-    }
-
-    private boolean isNoteUnchanged() {
-        // Get string in title and content fields
         String titleInField = Objects.requireNonNull(binding.titleInput.getText()).toString();
         String contentInField = Objects.requireNonNull(binding.contentInput.getText()).toString();
 
-        // Match title and content fields string with title and content extras
-        return titleInField.equals(currentNote.getNoteTitle()) && contentInField.equals(currentNote.getNoteContent());
+        String updatedNoteTitle = (titleInField.isEmpty()) ? NoteModel.EMPTY_TITLE : titleInField;
+        String updatedNoteContent = (contentInField.isEmpty()) ? NoteModel.EMPTY_CONTENT : contentInField;
+
+        currentNote.setNoteTitle(updatedNoteTitle);
+        currentNote.setNoteContent(updatedNoteContent);
+        currentNote.setNoteLastUpdated(DateUtil.getCurrentTime());
+        appDatabase.updateNote(currentNote);
+        closeActivity();
     }
 
     private void closeActivity() {

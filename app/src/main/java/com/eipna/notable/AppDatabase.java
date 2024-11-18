@@ -146,6 +146,8 @@ public class AppDatabase extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
         values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
+        values.put(COLUMN_NOTE_STATE, note.getNoteState());
+        values.put(COLUMN_NOTE_FAVORITE, note.getIsFavorite());
         values.put(COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
         db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(note.getNoteId())});
         db.close();
@@ -154,22 +156,6 @@ public class AppDatabase extends SQLiteOpenHelper {
     public void deleteNote(int noteId) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
-        db.close();
-    }
-
-    public void alterNoteStatus(int noteId, int newNoteStatus) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_STATE, newNoteStatus);
-        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
-        db.close();
-    }
-
-    public void alterNoteFavorite(int noteId, int newValue) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_FAVORITE, newValue);
-        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
         db.close();
     }
 
