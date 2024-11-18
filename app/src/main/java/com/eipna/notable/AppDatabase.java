@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.eipna.notable.enums.NoteState;
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
 
 import java.util.ArrayList;

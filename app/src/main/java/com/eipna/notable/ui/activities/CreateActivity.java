@@ -9,10 +9,8 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
 import com.eipna.notable.AppDatabase;
-import com.eipna.notable.enums.DateTimePattern;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityCreateBinding;
-import com.eipna.notable.utils.DateUtil;
 
 import java.util.Objects;
 

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
 import com.eipna.notable.AppDatabase;
-import com.eipna.notable.enums.NoteState;
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityTrashBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;

@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import com.eipna.notable.enums.NoteState;
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.utils.DateUtil;
 
 public class NoteModel implements Parcelable {
