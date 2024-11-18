@@ -254,7 +254,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
             dialogBuilder.setCustomTitle(titleTV);
-            dialogBuilder.setItems(R.array.libraries, (dialogInterface, i) -> linkLauncher(i));
+            dialogBuilder.setItems(R.array.libraries, (dialogInterface, i) -> linkOpener(i));
             dialogBuilder.setPositiveButton("Back", (dialogInterface, i) -> dialogInterface.dismiss());
 
             AlertDialog librariesDialog = dialogBuilder.create();
@@ -272,14 +272,12 @@ public class SettingsActivity extends AppCompatActivity {
             librariesDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(colorInverted);
         }
 
-        private void linkLauncher(int item) {
+        private void linkOpener(int item) {
             final Intent intent = new Intent(Intent.ACTION_VIEW);
             final String prettyTimeLink = getResources().getString(R.string.link_pretty_time);
 
-            switch (item) {
-                case 0:
-                    intent.setData(Uri.parse(prettyTimeLink));
-                    break;
+            if (item == 0) {
+                intent.setData(Uri.parse(prettyTimeLink));
             }
             startActivity(intent);
         }
