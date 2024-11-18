@@ -55,7 +55,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/createNotes"
+        android:id="@+id/createNote"
         android:src="@drawable/edit"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="24dp"
