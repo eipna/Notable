@@ -53,27 +53,27 @@ public class AppDatabase extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void createNote(NoteModel note) {
+    public void createNote(NoteModel createdNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
-        values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
-        values.put(COLUMN_NOTE_DATE_CREATED, note.getNoteDateCreated());
-        values.put(COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
-        values.put(COLUMN_NOTE_STATE, note.getNoteState());
-        values.put(COLUMN_NOTE_FAVORITE, note.getIsFavorite());
+        values.put(COLUMN_NOTE_TITLE, createdNote.getNoteTitle());
+        values.put(COLUMN_NOTE_CONTENT, createdNote.getNoteContent());
+        values.put(COLUMN_NOTE_DATE_CREATED, createdNote.getNoteDateCreated());
+        values.put(COLUMN_NOTE_LAST_UPDATED, createdNote.getNoteLastUpdated());
+        values.put(COLUMN_NOTE_STATE, createdNote.getNoteState());
+        values.put(COLUMN_NOTE_FAVORITE, createdNote.getIsFavorite());
         db.insert(TABLE_NOTE, null, values);
         db.close();
     }
 
     @SuppressLint("Range")
-    public ArrayList<NoteModel> readNotes(int noteStatus) {
+    public ArrayList<NoteModel> readNotes(int state) {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<NoteModel> notes = new ArrayList<>();
-        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = " + noteStatus;
+        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = ?";
 
         @SuppressLint("Recycle")
-        Cursor cursor = db.rawQuery(readNotesQuery, null);
+        Cursor cursor = db.rawQuery(readNotesQuery, new String[]{String.valueOf(state)});
         if (cursor.moveToFirst()) {
             do {
                 NoteModel retrievedNote = new NoteModel();
@@ -141,15 +141,15 @@ public class AppDatabase extends SQLiteOpenHelper {
         return allNotes;
     }
 
-    public void updateNote(NoteModel note) {
+    public void updateNote(NoteModel updatedNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NOTE_TITLE, note.getNoteTitle());
-        values.put(COLUMN_NOTE_CONTENT, note.getNoteContent());
-        values.put(COLUMN_NOTE_STATE, note.getNoteState());
-        values.put(COLUMN_NOTE_FAVORITE, note.getIsFavorite());
-        values.put(COLUMN_NOTE_LAST_UPDATED, note.getNoteLastUpdated());
-        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(note.getNoteId())});
+        values.put(COLUMN_NOTE_TITLE, updatedNote.getNoteTitle());
+        values.put(COLUMN_NOTE_CONTENT, updatedNote.getNoteContent());
+        values.put(COLUMN_NOTE_STATE, updatedNote.getNoteState());
+        values.put(COLUMN_NOTE_FAVORITE, updatedNote.getIsFavorite());
+        values.put(COLUMN_NOTE_LAST_UPDATED, updatedNote.getNoteLastUpdated());
+        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getNoteId())});
         db.close();
     }
 
