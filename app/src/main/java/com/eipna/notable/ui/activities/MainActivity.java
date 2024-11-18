@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     public void onNoteClick(int position) {
         NoteModel selectedNote = activeNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("NOTE", selectedNote);
+        updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 

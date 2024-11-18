@@ -40,7 +40,7 @@ public class UpdateActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         appDatabase = new AppDatabase(UpdateActivity.this);
-        currentNote = getIntent().getParcelableExtra("NOTE");
+        currentNote = getIntent().getParcelableExtra("selected_note");
 
         assert currentNote != null;
         String titleFromNote = currentNote.getNoteTitle();
