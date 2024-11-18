@@ -23,13 +23,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     private ArrayList<NoteModel> notes;
     private final Context context;
     private final NoteAdapter.Listener listener;
-    private final PrettyTime prettyTime;
 
     public NoteAdapter(Context context, NoteAdapter.Listener listener, ArrayList<NoteModel> notes) {
         this.context = context;
         this.notes = notes;
         this.listener = listener;
-        this.prettyTime = new PrettyTime();
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -47,6 +45,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        PrettyTime prettyTime = new PrettyTime();
         NoteModel currentNote = notes.get(position);
         holder.titleTextView.setText(currentNote.getNoteTitle());
         holder.contentTextView.setText(currentNote.getNoteContent());
