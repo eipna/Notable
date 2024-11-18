@@ -18,7 +18,7 @@ public class NoteModel implements Parcelable {
     private int noteState;
     private int isFavorite;
 
-    public static final String EMPTY_TITLE = "Empty note";
+    public static final String EMPTY_TITLE = "Empty title";
     public static final String EMPTY_CONTENT = "Nothing to see here.";
 
     public NoteModel() {
