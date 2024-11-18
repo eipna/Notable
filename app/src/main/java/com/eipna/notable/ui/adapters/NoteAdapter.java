@@ -59,6 +59,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         return notes.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    public void loadNotes(ArrayList<NoteModel> newNotes) {
+        notes = newNotes;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleView;

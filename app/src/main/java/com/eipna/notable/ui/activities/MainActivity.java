@@ -14,12 +14,12 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.R;
 import com.eipna.notable.AppDatabase;
+import com.eipna.notable.R;
+import com.eipna.notable.databinding.ActivityMainBinding;
 import com.eipna.notable.enums.NoteState;
 import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
-import com.eipna.notable.databinding.ActivityMainBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     private AppDatabase appDatabase;
     private ArrayList<NoteModel> activeNotes;
     private NoteAdapter noteAdapter;
-    private SharedPrefsUtil sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,31 +38,59 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
+
         appDatabase = new AppDatabase(MainActivity.this);
-        sharedPrefs = new SharedPrefsUtil(MainActivity.this);
+        activeNotes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
+        binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
-        updateNoteList();
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
+        if (layoutMgr.equals("list")) {
+            binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
 
-        binding.createNote.setOnClickListener(view -> createNoteLauncher.launch(new Intent(MainActivity.this, CreateActivity.class)));
+        noteAdapter = new NoteAdapter(this, this, activeNotes);
+        binding.noteList.setAdapter(noteAdapter);
+
+        binding.createNote.setOnClickListener(view -> {
+            Intent createNoteIntent = new Intent(MainActivity.this, CreateActivity.class);
+            createNoteLauncher.launch(createNoteIntent);
+        });
     }
 
     private final ActivityResultLauncher<Intent> createNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteList();
+            loadNewNotes();
         }
     });
 
     private final ActivityResultLauncher<Intent> updateNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteList();
+            loadNewNotes();
         }
     });
 
     private final ActivityResultLauncher<Intent> settingsLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteList();
+            loadNoteLayout();
         }
     });
+
+    private void loadNewNotes() {
+        activeNotes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
+        binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
+        noteAdapter.loadNotes(activeNotes);
+    }
+
+    private void loadNoteLayout() {
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
+        if (layoutMgr.equals("list")) {
+            binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,8 +109,8 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                filterNotes(newText);
+            public boolean onQueryTextChange(String query) {
+                queryNotesFromSearch(query);
                 return true;
             }
         });
@@ -91,14 +118,14 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
         return true;
     }
 
-    private void filterNotes(String query) {
-        final ArrayList<NoteModel> filteredNotes = new ArrayList<>();
+    private void queryNotesFromSearch(String query) {
+        final ArrayList<NoteModel> queriedNotes = new ArrayList<>();
         for (NoteModel note : activeNotes) {
             if (note.getNoteTitle().toLowerCase().contains(query.toLowerCase())) {
-                filteredNotes.add(note);
+                queriedNotes.add(note);
             }
         }
-        noteAdapter.searchNotes(filteredNotes);
+        noteAdapter.searchNotes(queriedNotes);
     }
 
     @Override
@@ -119,28 +146,6 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
             settingsLauncher.launch(new Intent(MainActivity.this, SettingsActivity.class));
         }
         return true;
-    }
-
-    private void updateNoteList() {
-        activeNotes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
-        binding.emptyIndicator.setVisibility((activeNotes.isEmpty()) ? View.VISIBLE : View.GONE);
-
-        noteAdapter = new NoteAdapter(this, this, activeNotes);
-        updateNoteDisplay();
-    }
-
-    private void updateNoteDisplay() {
-        String display = sharedPrefs.getString("prefs_note_layout", "list");
-        switch (display) {
-            case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-            case "grid":
-                binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-        }
     }
 
     @Override
