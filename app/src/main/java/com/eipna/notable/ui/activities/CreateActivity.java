@@ -49,20 +49,15 @@ public class CreateActivity extends AppCompatActivity {
     }
 
     public void createNote() {
-        String title = Objects.requireNonNull(binding.titleInput.getText()).toString();
-        String content = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        String titleInField = Objects.requireNonNull(binding.titleInput.getText()).toString();
+        String contentInField = Objects.requireNonNull(binding.noteInput.getText()).toString();
 
-        if (title.isEmpty()) {
-            title = String.format("Note %s", DateUtil.getDateString(DateTimePattern.MONTH_DAY_YEAR, DateUtil.getCurrentTime()));
-        }
-
-        if (content.isEmpty()) {
-            content = "Empty content.";
-        }
+        String noteTitle = (titleInField.isEmpty()) ? NoteModel.EMPTY_TITLE : titleInField;
+        String noteContent = (contentInField.isEmpty()) ? NoteModel.EMPTY_CONTENT : contentInField;
 
         NoteModel createdNote = new NoteModel();
-        createdNote.setNoteTitle(title);
-        createdNote.setNoteContent(content);
+        createdNote.setNoteTitle(noteTitle);
+        createdNote.setNoteContent(noteContent);
         appDatabase.createNote(createdNote);
 
         Intent intent = new Intent();
