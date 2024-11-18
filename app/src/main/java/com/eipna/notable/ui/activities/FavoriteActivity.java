@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.AppDatabase;
-import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -19,7 +18,7 @@ import com.eipna.notable.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
-public class FavoriteActivity extends AppCompatActivity implements NoteListener {
+public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.Listener {
 
     private ActivityFavoriteBinding binding;
     private AppDatabase appDatabase;
@@ -65,21 +64,16 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     }
 
     @Override
-    public void onNoteClick(int position) {
-        NoteModel selectedNote = favoriteNotes.get(position);
-        Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("selected_note", selectedNote);
-        updateNoteLauncher.launch(updateNoteIntent);
-    }
-
-    @Override
-    public void onNoteLongClick(int position) {
-        // Do nothing at the moment;
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         binding = null;
+    }
+
+    @Override
+    public void launchUpdateActivity(int adapterPos) {
+        NoteModel selectedNote = favoriteNotes.get(adapterPos);
+        Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
+        updateNoteIntent.putExtra("selected_note", selectedNote);
+        updateNoteLauncher.launch(updateNoteIntent);
     }
 }

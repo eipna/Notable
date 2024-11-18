@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.eipna.notable.R;
 import com.eipna.notable.AppDatabase;
 import com.eipna.notable.enums.NoteState;
-import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityTrashBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -31,7 +30,7 @@ import com.eipna.notable.utils.SharedPrefsUtil;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class TrashActivity extends AppCompatActivity implements NoteListener {
+public class TrashActivity extends AppCompatActivity implements NoteAdapter.Listener {
 
     private ActivityTrashBinding binding;
     private AppDatabase appDatabase;
@@ -144,21 +143,16 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     }
 
     @Override
-    public void onNoteClick(int position) {
-        NoteModel selectedNote = deletedNotes.get(position);
-        Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("selected_note", selectedNote);
-        updateNoteLauncher.launch(updateNoteIntent);
-    }
-
-    @Override
-    public void onNoteLongClick(int position) {
-        // Do nothing at the moment
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         binding = null;
+    }
+
+    @Override
+    public void launchUpdateActivity(int adapterPos) {
+        NoteModel selectedNote = deletedNotes.get(adapterPos);
+        Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
+        updateNoteIntent.putExtra("selected_note", selectedNote);
+        updateNoteLauncher.launch(updateNoteIntent);
     }
 }
