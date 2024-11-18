@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
 
     private final ActivityResultLauncher<Intent> createNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            loadNewNotes();
+            loadNote();
         }
     });
 
     private final ActivityResultLauncher<Intent> updateNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            loadNewNotes();
+            loadNote();
         }
     });
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         }
     });
 
-    private void loadNewNotes() {
+    private void loadNote() {
         activeNotes = appDatabase.getActiveNotes();
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(activeNotes);
