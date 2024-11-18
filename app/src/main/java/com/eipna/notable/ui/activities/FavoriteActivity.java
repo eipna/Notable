@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class FavoriteActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityFavoriteBinding binding;
-    private SharedPrefsUtil sharedPrefs;
     private AppDatabase appDatabase;
     private ArrayList<NoteModel> favoriteNotes;
     private NoteAdapter noteAdapter;
@@ -32,50 +31,44 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
         super.onCreate(savedInstanceState);
         binding = ActivityFavoriteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        appDatabase = new AppDatabase(FavoriteActivity.this);
-        sharedPrefs = new SharedPrefsUtil(FavoriteActivity.this);
-
-        updateNoteList();
-
         setSupportActionBar(binding.toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-    }
 
-    private void updateNoteList() {
+        appDatabase = new AppDatabase(this);
         favoriteNotes = appDatabase.getFavoriteNotes();
-        binding.emptyIndicator.setVisibility((favoriteNotes.isEmpty()) ? View.VISIBLE : View.GONE);
+        binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
+
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
+        if (layoutMgr.equals("list")) {
+            binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
 
         noteAdapter = new NoteAdapter(this, this, favoriteNotes);
-        updateNoteDisplay();
-    }
-
-    private void updateNoteDisplay() {
-        String display = sharedPrefs.getString("prefs_note_layout", "list");
-        switch (display) {
-            case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-            case "grid":
-                binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-        }
+        binding.noteList.setAdapter(noteAdapter);
     }
 
     private final ActivityResultLauncher<Intent> updateNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteList();
+            loadNewNotes();
         }
     });
+
+    private void loadNewNotes() {
+        favoriteNotes = appDatabase.getActiveNotes();
+        binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
+        noteAdapter.loadNotes(favoriteNotes);
+    }
 
     @Override
     public void onNoteClick(int position) {
         NoteModel selectedNote = favoriteNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("NOTE", selectedNote);
+        updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 

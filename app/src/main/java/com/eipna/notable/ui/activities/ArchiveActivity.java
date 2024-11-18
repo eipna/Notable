@@ -26,57 +26,50 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
     private AppDatabase appDatabase;
     private ArrayList<NoteModel> archivedNotes;
     private NoteAdapter noteAdapter;
-    private SharedPrefsUtil sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityArchiveBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        appDatabase = new AppDatabase(ArchiveActivity.this);
-        sharedPrefs = new SharedPrefsUtil(ArchiveActivity.this);
-
-        updateNoteList();
-
         setSupportActionBar(binding.toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        appDatabase = new AppDatabase(this);
+        archivedNotes = appDatabase.getArchivedNotes();
+        binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
+
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
+        if (layoutMgr.equals("list")) {
+            binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
+
+        noteAdapter = new NoteAdapter(this, this, archivedNotes);
+        binding.noteList.setAdapter(noteAdapter);
     }
 
     private final ActivityResultLauncher<Intent> updateNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteList();
+            loadNewNotes();
         }
     });
 
-    private void updateNoteList() {
-        archivedNotes = appDatabase.getArchivedNotes();
-        binding.emptyIndicator.setVisibility((archivedNotes.isEmpty()) ? View.VISIBLE : View.GONE);
-
-        noteAdapter = new NoteAdapter(this, this, archivedNotes);
-        updateNoteDisplay();
-    }
-
-    private void updateNoteDisplay() {
-        String display = sharedPrefs.getString("prefs_note_layout", "list");
-        switch (display) {
-            case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-            case "grid":
-                binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-        }
+    private void loadNewNotes() {
+        archivedNotes = appDatabase.getActiveNotes();
+        binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
+        noteAdapter.loadNotes(archivedNotes);
     }
 
     @Override
     public void onNoteClick(int position) {
         NoteModel selectedNote = archivedNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("NOTE", selectedNote);
+        updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 

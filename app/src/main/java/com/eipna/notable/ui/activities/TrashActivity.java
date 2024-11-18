@@ -37,29 +37,45 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     private AppDatabase appDatabase;
     private ArrayList<NoteModel> deletedNotes;
     private NoteAdapter noteAdapter;
-    private SharedPrefsUtil sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTrashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        appDatabase = new AppDatabase(TrashActivity.this);
-        sharedPrefs = new SharedPrefsUtil(TrashActivity.this);
-
-        updateNoteList();
-
         setSupportActionBar(binding.toolbar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        appDatabase = new AppDatabase(this);
+        deletedNotes = appDatabase.getDeletedNotes();
+        binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
+
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
+        if (layoutMgr.equals("list")) {
+            binding.noteList.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        }
+
+        noteAdapter = new NoteAdapter(this, this, deletedNotes);
+        binding.noteList.setAdapter(noteAdapter);
     }
 
     private final ActivityResultLauncher<Intent> updateNoteLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            updateNoteList();
+            loadNewNotes();
         }
     });
+
+    private void loadNewNotes() {
+        deletedNotes = appDatabase.getActiveNotes();
+        binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
+        invalidateOptionsMenu();
+        noteAdapter.loadNotes(deletedNotes);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,46 +137,17 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
         clearDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(colorInverted);
     }
 
-    /* Clears all trashed notes in database
-    *  Clears all notes in notes array list
-    *  Updates the note adapter
-    *  Updates the options menu */
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
         appDatabase.clear(NoteState.DELETED.getValue());
-        deletedNotes.clear();
-        noteAdapter.notifyDataSetChanged();
-        updateNoteList();
-    }
-
-    private void updateNoteList() {
-        deletedNotes = appDatabase.getDeletedNotes();
-        invalidateOptionsMenu();
-        binding.emptyIndicator.setVisibility((deletedNotes.isEmpty()) ? View.VISIBLE : View.GONE);
-
-        noteAdapter = new NoteAdapter(this, this, deletedNotes);
-        updateNoteDisplay();
-    }
-
-    private void updateNoteDisplay() {
-        String display = sharedPrefs.getString("prefs_note_layout", "list");
-        switch (display) {
-            case "list":
-                binding.noteList.setLayoutManager(new LinearLayoutManager(this));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-            case "grid":
-                binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-                binding.noteList.setAdapter(noteAdapter);
-                break;
-        }
+        loadNewNotes();
     }
 
     @Override
     public void onNoteClick(int position) {
         NoteModel selectedNote = deletedNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
-        updateNoteIntent.putExtra("NOTE", selectedNote);
+        updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 

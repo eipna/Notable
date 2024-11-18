@@ -186,7 +186,7 @@ public class UpdateActivity extends AppCompatActivity {
         dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
             appDatabase.deleteNote(currentNote.getNoteId());
-            closeActivity();
+            updateNote();
         });
 
         AlertDialog deleteDialog = dialogBuilder.create();
