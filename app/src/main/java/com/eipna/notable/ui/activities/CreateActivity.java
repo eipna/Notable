@@ -34,9 +34,9 @@ public class CreateActivity extends AppCompatActivity {
         }
 
         // Set focus on note field on load
-        binding.noteInput.requestFocus();
+        binding.contentInput.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(binding.noteInput, InputMethodManager.SHOW_IMPLICIT);
+        inputMethodManager.showSoftInput(binding.contentInput, InputMethodManager.SHOW_IMPLICIT);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CreateActivity extends AppCompatActivity {
 
     public void createNote() {
         String titleInField = Objects.requireNonNull(binding.titleInput.getText()).toString();
-        String contentInField = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        String contentInField = Objects.requireNonNull(binding.contentInput.getText()).toString();
 
         String noteTitle = (titleInField.isEmpty()) ? NoteModel.EMPTY_TITLE : titleInField;
         String noteContent = (contentInField.isEmpty()) ? NoteModel.EMPTY_CONTENT : contentInField;

@@ -43,7 +43,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         assert currentNote != null;
         binding.titleInput.setText(currentNote.getNoteTitle());
-        binding.noteInput.setText(currentNote.getNoteContent());
+        binding.contentInput.setText(currentNote.getNoteContent());
 
         setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
@@ -103,7 +103,7 @@ public class UpdateActivity extends AppCompatActivity {
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void showNotePropertiesDialog() {
         final int colorInverted = getResources().getColor(R.color.primary_invert, getTheme());
-        final int noteWordCount = getWordCount(Objects.requireNonNull(binding.noteInput.getText()).toString());
+        final int noteWordCount = getWordCount(Objects.requireNonNull(binding.contentInput.getText()).toString());
 
         @SuppressLint("InflateParams")
         View customDialogTitle = LayoutInflater.from(this).inflate(R.layout.dialog_custom_title, null);
@@ -238,7 +238,7 @@ public class UpdateActivity extends AppCompatActivity {
     private void showShareIntent() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(binding.noteInput.getText()).toString());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, Objects.requireNonNull(binding.contentInput.getText()).toString());
         sendIntent.setType("text/plain");
 
         Intent shareIntent = Intent.createChooser(sendIntent, null);
@@ -250,7 +250,7 @@ public class UpdateActivity extends AppCompatActivity {
             closeActivity();
         } else {
             String updatedTitle = Objects.requireNonNull(binding.titleInput.getText()).toString();
-            String updatedContent = Objects.requireNonNull(binding.noteInput.getText()).toString();
+            String updatedContent = Objects.requireNonNull(binding.contentInput.getText()).toString();
 
             // Sets title as empty title placeholder if field is blank
             if (updatedTitle.isEmpty()) {
@@ -276,7 +276,7 @@ public class UpdateActivity extends AppCompatActivity {
     private boolean isNoteUnchanged() {
         // Get string in title and content fields
         String titleInField = Objects.requireNonNull(binding.titleInput.getText()).toString();
-        String contentInField = Objects.requireNonNull(binding.noteInput.getText()).toString();
+        String contentInField = Objects.requireNonNull(binding.contentInput.getText()).toString();
 
         // Match title and content fields string with title and content extras
         return titleInField.equals(currentNote.getNoteTitle()) && contentInField.equals(currentNote.getNoteContent());
