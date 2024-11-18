@@ -54,15 +54,15 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/createNote"
-        android:text="@string/btn_create_note"
-        android:textStyle="bold"
-        style="@style/ButtonStyle"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/createNotes"
+        android:src="@drawable/edit"
         android:layout_gravity="right|bottom"
-        android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
         tools:ignore="RtlHardcoded" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

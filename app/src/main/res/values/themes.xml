@@ -48,8 +48,7 @@
     <!-- Style for buttons -->
     <style name="ButtonStyle">
         <item name="android:backgroundTint">#424242</item>
-        <item name="android:textColor">@color/ghost_white</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="tint">#F1F1F1</item>
     </style>
 
     <!-- Custom global colors -->
