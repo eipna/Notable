@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
@@ -77,12 +78,14 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        CardView noteCardView;
         TextView titleTextView;
         TextView contentTextView;
         TextView lastUpdatedTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            noteCardView = itemView.findViewById(R.id.noteCard);
             titleTextView = itemView.findViewById(R.id.noteTitle);
             contentTextView = itemView.findViewById(R.id.noteContent);
             lastUpdatedTextView = itemView.findViewById(R.id.noteLastUpdated);
