@@ -8,7 +8,6 @@
         <ListPreference
             android:key="settings_app_theme"
             app:title="@string/pref_title_theme"
-            android:layout="@layout/layout_preference"
             app:summary="@string/pref_summary_theme"
             android:entries="@array/preference_list_theme"
             android:entryValues="@array/preference_list_theme_values"
@@ -18,7 +17,6 @@
             android:key="settings_note_layout"
             android:title="@string/pref_title_display"
             app:icon="@drawable/note"
-            android:layout="@layout/layout_preference"
             android:entries="@array/preference_list_display"
             android:entryValues="@array/preference_list_display_values"
             app:summary="@string/pref_summary_display"/>
@@ -31,14 +29,12 @@
         <Preference
             android:key="settings_import"
             app:title="@string/pref_title_import"
-            android:icon="@drawable/backup_import"
-            android:layout="@layout/layout_preference"/>
+            android:icon="@drawable/backup_import" />
 
         <Preference
             android:key="settings_export"
             app:title="@string/pref_title_export"
-            android:icon="@drawable/backup_export"
-            android:layout="@layout/layout_preference"/>
+            android:icon="@drawable/backup_export"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -48,8 +44,7 @@
         <Preference
             app:title="@string/pref_title_github"
             app:summary="@string/pref_summary_github"
-            app:icon="@drawable/link"
-            android:layout="@layout/layout_preference">
+            app:icon="@drawable/link">
 
             <intent
                 android:action="android.intent.action.VIEW"
@@ -59,15 +54,13 @@
         <Preference
             android:key="settings_libraries_dialog"
             android:title="@string/pref_title_libraries"
-            android:icon="@drawable/link"
-            android:layout="@layout/layout_preference"/>
+            android:icon="@drawable/link" />
 
         <Preference
             android:key="settings_app_version"
             app:title="@string/pref_title_version"
             app:summary="@string/pref_summary_version"
-            app:icon="@drawable/info"
-            android:layout="@layout/layout_preference"/>
+            app:icon="@drawable/info" />
     </PreferenceCategory>
 
 </PreferenceScreen>
