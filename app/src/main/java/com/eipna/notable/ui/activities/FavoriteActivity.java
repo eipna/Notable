@@ -44,7 +44,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteListener 
     }
 
     private void updateNoteList() {
-        favoriteNotes = appDatabase.readFavoriteNotes();
+        favoriteNotes = appDatabase.getFavoriteNotes();
         binding.emptyIndicator.setVisibility((favoriteNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 
         noteAdapter = new NoteAdapter(this, this, favoriteNotes);

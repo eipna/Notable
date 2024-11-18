@@ -127,14 +127,14 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
     *  Updates the options menu */
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
-        appDatabase.clearTrashNotes();
+        appDatabase.clear(NoteState.DELETED.getValue());
         deletedNotes.clear();
         noteAdapter.notifyDataSetChanged();
         updateNoteList();
     }
 
     private void updateNoteList() {
-        deletedNotes = appDatabase.readNotes(NoteState.DELETED.getValue());
+        deletedNotes = appDatabase.getDeletedNotes();
         invalidateOptionsMenu();
         binding.emptyIndicator.setVisibility((deletedNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 

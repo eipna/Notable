@@ -51,7 +51,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteListener {
     });
 
     private void updateNoteList() {
-        archivedNotes = appDatabase.readNotes(NoteState.ARCHIVED.getValue());
+        archivedNotes = appDatabase.getArchivedNotes();
         binding.emptyIndicator.setVisibility((archivedNotes.isEmpty()) ? View.VISIBLE : View.GONE);
 
         noteAdapter = new NoteAdapter(this, this, archivedNotes);

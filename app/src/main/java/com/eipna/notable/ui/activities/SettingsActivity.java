@@ -207,7 +207,7 @@ public class SettingsActivity extends AppCompatActivity {
             try {
                 final AppDatabase appDatabase = new AppDatabase(requireContext());
                 final JSONArray jsonArray = new JSONArray();
-                final ArrayList<NoteModel> notes = appDatabase.readAllNotes();
+                final ArrayList<NoteModel> notes = appDatabase.getAllNotes();
 
                 for (NoteModel note : notes) {
                     final JSONObject object = new JSONObject();

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
         setSupportActionBar(binding.toolbar);
 
         appDatabase = new AppDatabase(MainActivity.this);
-        activeNotes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
+        activeNotes = appDatabase.getActiveNotes();
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
     });
 
     private void loadNewNotes() {
-        activeNotes = appDatabase.readNotes(NoteState.ACTIVE.getValue());
+        activeNotes = appDatabase.getActiveNotes();
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(activeNotes);
     }
