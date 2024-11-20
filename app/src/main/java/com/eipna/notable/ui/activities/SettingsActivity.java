@@ -121,6 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             assert settingsAppTheme != null;
             settingsAppTheme.setNegativeButtonText(""); // Removes negative button
+            settingsAppTheme.setDialogTitle("");
             settingsAppTheme.setValue(defTheme);
             settingsAppTheme.setOnPreferenceChangeListener((preference, newValue) -> {
                 setThemePrefs((String) newValue);
@@ -129,6 +130,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             assert settingsNoteLayout != null;
             settingsNoteLayout.setNegativeButtonText("");
+            settingsNoteLayout.setDialogTitle("");
             settingsNoteLayout.setValue(defNoteLayout);
             settingsNoteLayout.setOnPreferenceChangeListener((preference, newValue) -> {
                 setListPrefs((String) newValue);
