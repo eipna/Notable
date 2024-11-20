@@ -17,6 +17,7 @@
             android:id="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@color/primary"
+            app:title="@string/toolbar_main"
             app:titleTextColor="@color/primary_invert"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/PopupMenuStyle"

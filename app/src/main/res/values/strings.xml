@@ -8,6 +8,13 @@
     <string name="link_github">https://github.com/eipna/Notable</string>
     <string name="link_pretty_time">https://www.ocpsoft.org/prettytime/</string>
 
+    <!-- Toolbar Titles -->
+    <string name="toolbar_main">All notes</string>
+    <string name="toolbar_archive">Archive</string>
+    <string name="toolbar_deleted">Trash</string>
+    <string name="toolbar_favorite">Favorite</string>
+    <string name="toolbar_settings">Settings</string>
+
     <!-- Option Menus -->
     <string name="menu_share">Share</string>
     <string name="menu_favorite">Favorite</string>
