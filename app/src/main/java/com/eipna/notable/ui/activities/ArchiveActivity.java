@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.AppDatabase;
+import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityArchiveBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -41,8 +42,8 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
         archivedNotes.addAll(appDatabase.getArchivedNotes());
         binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
-        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
-        if (layoutMgr.equals("list")) {
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
+        if (layoutMgr.equals(NoteList.LIST.getValue())) {
             binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         } else {
             binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));

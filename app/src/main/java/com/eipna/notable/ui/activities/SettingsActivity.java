@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.eipna.notable.R;
 import com.eipna.notable.AppDatabase;
 import com.eipna.notable.constants.AppTheme;
+import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivitySettingsBinding;
 import com.eipna.notable.utils.SharedPrefsUtil;
@@ -96,7 +97,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             // If no shared preference found, use default values instead
             String defTheme = prefs.getString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
-            String defNoteLayout = prefs.getString("prefs_note_layout", "list");
+            String defNoteLayout = prefs.getString("prefs_note_layout", NoteList.LIST.getValue());
             boolean defRoundedNotes = prefs.getBoolean("prefs_rounded_notes", true);
 
             ListPreference settingsAppTheme = findPreference("settings_app_theme");
@@ -293,14 +294,11 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        private void setDisplay(String display) {
-            switch (display) {
-                case "list":
-                    prefs.setString("prefs_note_layout", "list");
-                    break;
-                case "grid":
-                    prefs.setString("prefs_note_layout", "grid");
-                    break;
+        private void setDisplay(String selectedDisplay) {
+            if (selectedDisplay.equals(NoteList.LIST.getValue())) {
+                prefs.setString("prefs_note_layout", NoteList.LIST.getValue());
+            } else {
+                prefs.setString("prefs_note_layout", NoteList.GRID.getValue());
             }
         }
 

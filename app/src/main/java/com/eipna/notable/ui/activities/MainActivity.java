@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.AppDatabase;
 import com.eipna.notable.R;
+import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.databinding.ActivityMainBinding;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         activeNotes.addAll(appDatabase.getActiveNotes());
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
-        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
-        if (layoutMgr.equals("list")) {
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
+        if (layoutMgr.equals(NoteList.LIST.getValue())) {
             binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         } else {
             binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -84,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
     }
 
     private void resetAdapter() {
-        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
-        if (layoutMgr.equals("list")) {
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
+        if (layoutMgr.equals(NoteList.LIST.getValue())) {
             binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         } else {
             binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
