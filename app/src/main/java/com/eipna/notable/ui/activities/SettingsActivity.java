@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.eipna.notable.R;
 import com.eipna.notable.AppDatabase;
+import com.eipna.notable.constants.AppTheme;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivitySettingsBinding;
 import com.eipna.notable.utils.SharedPrefsUtil;
@@ -94,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
             SwitchPreferenceCompat settingsRoundedNotes = findPreference("settings_rounded_notes");
 
             // If no shared preference found, use default values instead
-            String defTheme = prefs.getString("prefs_app_theme", "system");
+            String defTheme = prefs.getString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
             String defNoteLayout = prefs.getString("prefs_note_layout", "list");
             boolean defRoundedNotes = prefs.getBoolean("prefs_rounded_notes", true);
 
@@ -303,24 +304,19 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        private void setTheme(String theme) {
-            switch (theme) {
-                case "system":
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                    prefs.setString("prefs_app_theme", "system");
-                    break;
-                case "light":
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    prefs.setString("prefs_app_theme", "light");
-                    break;
-                case "dark":
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    prefs.setString("prefs_app_theme", "dark");
-                    break;
-                case "battery_saving":
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-                    prefs.setString("prefs_app_theme", "battery_saving");
-                    break;
+        private void setTheme(String selectedTheme) {
+            if (selectedTheme.equals(AppTheme.SYSTEM_MODE.getValue())) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                prefs.setString("prefs_app_theme", "system");
+            } else if (selectedTheme.equals(AppTheme.LIGHT_MODE.getValue())) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                prefs.setString("prefs_app_theme", "light");
+            } else if (selectedTheme.equals(AppTheme.DARK_MODE.getValue())) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                prefs.setString("prefs_app_theme", "dark");
+            } else if (selectedTheme.equals(AppTheme.BATTERY_MODE.getValue())) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                prefs.setString("prefs_app_theme", "battery_saving");
             }
         }
     }

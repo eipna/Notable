@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.eipna.notable.constants.AppTheme;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
 public class NotableApp extends Application {
@@ -11,21 +12,15 @@ public class NotableApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SharedPrefsUtil sharedPrefs = new SharedPrefsUtil(NotableApp.this);
-        String themePrefs = sharedPrefs.getString("prefs_app_theme", "system");
-        switch (themePrefs) {
-            case "system":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                break;
-            case "light":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case "dark":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-            case "battery_saving":
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-                break;
+        String defAppTheme = new SharedPrefsUtil(this).getString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
+        if (defAppTheme.equals(AppTheme.SYSTEM_MODE.getValue())) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } else if (defAppTheme.equals(AppTheme.LIGHT_MODE.getValue())) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (defAppTheme.equals(AppTheme.DARK_MODE.getValue())) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (defAppTheme.equals(AppTheme.BATTERY_MODE.getValue())) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
         }
     }
 }
