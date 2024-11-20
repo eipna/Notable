@@ -37,7 +37,8 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
         }
 
         appDatabase = new AppDatabase(this);
-        favoriteNotes = appDatabase.getFavoriteNotes();
+        favoriteNotes = new ArrayList<>();
+        favoriteNotes.addAll(appDatabase.getFavoriteNotes());
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
@@ -58,7 +59,8 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
     });
 
     private void loadNewNotes() {
-        favoriteNotes = appDatabase.getActiveNotes();
+        favoriteNotes.clear();
+        favoriteNotes.addAll(appDatabase.getFavoriteNotes());
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(favoriteNotes);
     }

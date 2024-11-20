@@ -49,7 +49,8 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
         }
 
         appDatabase = new AppDatabase(this);
-        deletedNotes = appDatabase.getDeletedNotes();
+        deletedNotes = new ArrayList<>();
+        deletedNotes.addAll(appDatabase.getDeletedNotes());
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
@@ -70,7 +71,8 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
     });
 
     private void loadNewNotes() {
-        deletedNotes = appDatabase.getActiveNotes();
+        deletedNotes.clear();
+        deletedNotes.addAll(appDatabase.getDeletedNotes());
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
         invalidateOptionsMenu();
         noteAdapter.loadNotes(deletedNotes);

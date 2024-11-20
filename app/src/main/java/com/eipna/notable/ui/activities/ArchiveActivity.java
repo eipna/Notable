@@ -37,7 +37,8 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
         }
 
         appDatabase = new AppDatabase(this);
-        archivedNotes = appDatabase.getArchivedNotes();
+        archivedNotes = new ArrayList<>();
+        archivedNotes.addAll(appDatabase.getArchivedNotes());
         binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", "list");
@@ -58,7 +59,8 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
     });
 
     private void loadNewNotes() {
-        archivedNotes = appDatabase.getActiveNotes();
+        archivedNotes.clear();
+        archivedNotes.addAll(appDatabase.getArchivedNotes());
         binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(archivedNotes);
     }
