@@ -305,16 +305,16 @@ public class SettingsActivity extends AppCompatActivity {
         private void setTheme(String selectedTheme) {
             if (selectedTheme.equals(AppTheme.SYSTEM_MODE.getValue())) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                prefs.setString("prefs_app_theme", "system");
+                prefs.setString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
             } else if (selectedTheme.equals(AppTheme.LIGHT_MODE.getValue())) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                prefs.setString("prefs_app_theme", "light");
+                prefs.setString("prefs_app_theme", AppTheme.LIGHT_MODE.getValue());
             } else if (selectedTheme.equals(AppTheme.DARK_MODE.getValue())) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                prefs.setString("prefs_app_theme", "dark");
+                prefs.setString("prefs_app_theme", AppTheme.DARK_MODE.getValue());
             } else if (selectedTheme.equals(AppTheme.BATTERY_MODE.getValue())) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
-                prefs.setString("prefs_app_theme", "battery_saving");
+                prefs.setString("prefs_app_theme", AppTheme.BATTERY_MODE.getValue());
             }
         }
     }
