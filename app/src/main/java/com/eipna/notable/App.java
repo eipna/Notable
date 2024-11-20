@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.eipna.notable.constants.AppTheme;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
-public class NotableApp extends Application {
+public class App extends Application {
 
     @Override
     public void onCreate() {
