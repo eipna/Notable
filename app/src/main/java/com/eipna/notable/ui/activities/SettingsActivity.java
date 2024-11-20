@@ -123,7 +123,7 @@ public class SettingsActivity extends AppCompatActivity {
             settingsAppTheme.setNegativeButtonText(""); // Removes negative button
             settingsAppTheme.setValue(defTheme);
             settingsAppTheme.setOnPreferenceChangeListener((preference, newValue) -> {
-                setTheme((String) newValue);
+                setThemePrefs((String) newValue);
                 return true;
             });
 
@@ -131,7 +131,7 @@ public class SettingsActivity extends AppCompatActivity {
             settingsNoteLayout.setNegativeButtonText("");
             settingsNoteLayout.setValue(defNoteLayout);
             settingsNoteLayout.setOnPreferenceChangeListener((preference, newValue) -> {
-                setDisplay((String) newValue);
+                setListPrefs((String) newValue);
                 return true;
             });
 
@@ -294,7 +294,7 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        private void setDisplay(String selectedDisplay) {
+        private void setListPrefs(String selectedDisplay) {
             if (selectedDisplay.equals(NoteList.LIST.getValue())) {
                 prefs.setString("prefs_note_layout", NoteList.LIST.getValue());
             } else {
@@ -302,7 +302,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
 
-        private void setTheme(String selectedTheme) {
+        private void setThemePrefs(String selectedTheme) {
             if (selectedTheme.equals(AppTheme.SYSTEM_MODE.getValue())) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 prefs.setString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
