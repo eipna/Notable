@@ -5,14 +5,16 @@
     </string-array>
 
     <string-array name="preference_list_theme">
-        <item>Follow System</item>
         <item>Light Mode</item>
         <item>Dark Mode</item>
+        <item>Follow System</item>
+        <item>Battery Saving</item>
     </string-array>
     <string-array name="preference_list_theme_values">
-        <item>system</item>
         <item>light</item>
         <item>dark</item>
+        <item>system</item>
+        <item>battery_saving</item>
     </string-array>
 
     <string-array name="preference_list_display">

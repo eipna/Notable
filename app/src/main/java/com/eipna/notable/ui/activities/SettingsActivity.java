@@ -317,6 +317,10 @@ public class SettingsActivity extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     prefs.setString("prefs_app_theme", "dark");
                     break;
+                case "battery_saving":
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                    prefs.setString("prefs_app_theme", "battery_saving");
+                    break;
             }
         }
     }
