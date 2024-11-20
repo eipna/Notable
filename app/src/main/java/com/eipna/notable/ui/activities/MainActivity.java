@@ -14,7 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.AppDatabase;
+import com.eipna.notable.Database;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.databinding.ActivityMainBinding;
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NoteAdapter.Listener {
 
     private ActivityMainBinding binding;
-    private AppDatabase appDatabase;
+    private Database database;
     private ArrayList<NoteModel> activeNotes;
     private NoteAdapter noteAdapter;
 
@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
 
-        appDatabase = new AppDatabase(MainActivity.this);
+        database = new Database(MainActivity.this);
         activeNotes = new ArrayList<>();
-        activeNotes.addAll(appDatabase.getActiveNotes());
+        activeNotes.addAll(database.getActiveNotes());
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
 
     private void loadNote() {
         activeNotes.clear();
-        activeNotes.addAll(appDatabase.getActiveNotes());
+        activeNotes.addAll(database.getActiveNotes());
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(activeNotes);
     }

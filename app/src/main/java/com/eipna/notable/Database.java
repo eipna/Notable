@@ -14,7 +14,7 @@ import com.eipna.notable.models.NoteModel;
 
 import java.util.ArrayList;
 
-public class AppDatabase extends SQLiteOpenHelper {
+public class Database extends SQLiteOpenHelper {
 
     // Database credentials
     private static final String DATABASE_NAME = "notable.db";
@@ -30,7 +30,7 @@ public class AppDatabase extends SQLiteOpenHelper {
     public static final String COLUMN_NOTE_STATE = "state";
     public static final String COLUMN_NOTE_FAVORITE = "is_favorite";
 
-    public AppDatabase(@Nullable Context context) {
+    public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

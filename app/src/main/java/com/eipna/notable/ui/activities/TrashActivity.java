@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
-import com.eipna.notable.AppDatabase;
+import com.eipna.notable.Database;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
@@ -34,7 +34,7 @@ import java.util.Objects;
 public class TrashActivity extends AppCompatActivity implements NoteAdapter.Listener {
 
     private ActivityTrashBinding binding;
-    private AppDatabase appDatabase;
+    private Database database;
     private ArrayList<NoteModel> deletedNotes;
     private NoteAdapter noteAdapter;
 
@@ -49,9 +49,9 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        appDatabase = new AppDatabase(this);
+        database = new Database(this);
         deletedNotes = new ArrayList<>();
-        deletedNotes.addAll(appDatabase.getDeletedNotes());
+        deletedNotes.addAll(database.getDeletedNotes());
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
@@ -73,7 +73,7 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
 
     private void loadNewNotes() {
         deletedNotes.clear();
-        deletedNotes.addAll(appDatabase.getDeletedNotes());
+        deletedNotes.addAll(database.getDeletedNotes());
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
         invalidateOptionsMenu();
         noteAdapter.loadNotes(deletedNotes);
@@ -141,7 +141,7 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
 
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
-        appDatabase.clear(NoteState.DELETED.getValue());
+        database.clear(NoteState.DELETED.getValue());
         loadNewNotes();
     }
 

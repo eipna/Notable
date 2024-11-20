@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eipna.notable.R;
-import com.eipna.notable.AppDatabase;
+import com.eipna.notable.Database;
 import com.eipna.notable.constants.AppTheme;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.models.NoteModel;
@@ -195,19 +195,19 @@ public class SettingsActivity extends AppCompatActivity {
                     inputStream.close();
 
                     final JSONArray jsonArray = new JSONArray(builder.toString());
-                    final AppDatabase appDatabase = new AppDatabase(requireContext());
+                    final Database database = new Database(requireContext());
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         final JSONObject object = jsonArray.getJSONObject(i);
 
                         final NoteModel note = new NoteModel();
-                        note.setTitle(object.getString(AppDatabase.COLUMN_NOTE_TITLE));
-                        note.setContent(object.getString(AppDatabase.COLUMN_NOTE_CONTENT));
-                        note.setDateCreated(object.getLong(AppDatabase.COLUMN_NOTE_DATE_CREATED));
-                        note.setLastUpdated(object.getLong(AppDatabase.COLUMN_NOTE_LAST_UPDATED));
-                        note.setState(object.getInt(AppDatabase.COLUMN_NOTE_STATE));
-                        note.setIsFavorite(object.getInt(AppDatabase.COLUMN_NOTE_FAVORITE));
-                        appDatabase.createNote(note);
+                        note.setTitle(object.getString(Database.COLUMN_NOTE_TITLE));
+                        note.setContent(object.getString(Database.COLUMN_NOTE_CONTENT));
+                        note.setDateCreated(object.getLong(Database.COLUMN_NOTE_DATE_CREATED));
+                        note.setLastUpdated(object.getLong(Database.COLUMN_NOTE_LAST_UPDATED));
+                        note.setState(object.getInt(Database.COLUMN_NOTE_STATE));
+                        note.setIsFavorite(object.getInt(Database.COLUMN_NOTE_FAVORITE));
+                        database.createNote(note);
                     }
                     Toast.makeText(requireContext(), "Import successful", Toast.LENGTH_SHORT).show();
                 }
@@ -219,18 +219,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         private void exportNotes(Uri uri) {
             try {
-                final AppDatabase appDatabase = new AppDatabase(requireContext());
+                final Database database = new Database(requireContext());
                 final JSONArray jsonArray = new JSONArray();
-                final ArrayList<NoteModel> notes = appDatabase.getAllNotes();
+                final ArrayList<NoteModel> notes = database.getAllNotes();
 
                 for (NoteModel note : notes) {
                     final JSONObject object = new JSONObject();
-                    object.put(AppDatabase.COLUMN_NOTE_TITLE, note.getTitle());
-                    object.put(AppDatabase.COLUMN_NOTE_CONTENT, note.getContent());
-                    object.put(AppDatabase.COLUMN_NOTE_DATE_CREATED, note.getDateCreated());
-                    object.put(AppDatabase.COLUMN_NOTE_LAST_UPDATED, note.getLastUpdated());
-                    object.put(AppDatabase.COLUMN_NOTE_STATE, note.getState());
-                    object.put(AppDatabase.COLUMN_NOTE_FAVORITE, note.getIsFavorite());
+                    object.put(Database.COLUMN_NOTE_TITLE, note.getTitle());
+                    object.put(Database.COLUMN_NOTE_CONTENT, note.getContent());
+                    object.put(Database.COLUMN_NOTE_DATE_CREATED, note.getDateCreated());
+                    object.put(Database.COLUMN_NOTE_LAST_UPDATED, note.getLastUpdated());
+                    object.put(Database.COLUMN_NOTE_STATE, note.getState());
+                    object.put(Database.COLUMN_NOTE_FAVORITE, note.getIsFavorite());
                     jsonArray.put(object);
                 }
 

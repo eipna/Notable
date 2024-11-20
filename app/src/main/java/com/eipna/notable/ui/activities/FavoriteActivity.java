@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.AppDatabase;
+import com.eipna.notable.Database;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.Listener {
 
     private ActivityFavoriteBinding binding;
-    private AppDatabase appDatabase;
+    private Database database;
     private ArrayList<NoteModel> favoriteNotes;
     private NoteAdapter noteAdapter;
 
@@ -37,9 +37,9 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        appDatabase = new AppDatabase(this);
+        database = new Database(this);
         favoriteNotes = new ArrayList<>();
-        favoriteNotes.addAll(appDatabase.getFavoriteNotes());
+        favoriteNotes.addAll(database.getFavoriteNotes());
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
@@ -61,7 +61,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
 
     private void loadNewNotes() {
         favoriteNotes.clear();
-        favoriteNotes.addAll(appDatabase.getFavoriteNotes());
+        favoriteNotes.addAll(database.getFavoriteNotes());
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(favoriteNotes);
     }

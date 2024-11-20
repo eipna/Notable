@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.AppDatabase;
+import com.eipna.notable.Database;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityArchiveBinding;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Listener {
 
     private ActivityArchiveBinding binding;
-    private AppDatabase appDatabase;
+    private Database database;
     private ArrayList<NoteModel> archivedNotes;
     private NoteAdapter noteAdapter;
 
@@ -37,9 +37,9 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        appDatabase = new AppDatabase(this);
+        database = new Database(this);
         archivedNotes = new ArrayList<>();
-        archivedNotes.addAll(appDatabase.getArchivedNotes());
+        archivedNotes.addAll(database.getArchivedNotes());
         binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
@@ -61,7 +61,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
 
     private void loadNewNotes() {
         archivedNotes.clear();
-        archivedNotes.addAll(appDatabase.getArchivedNotes());
+        archivedNotes.addAll(database.getArchivedNotes());
         binding.emptyIndicator.setVisibility(archivedNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(archivedNotes);
     }
