@@ -14,7 +14,7 @@
         <item>light</item>
         <item>dark</item>
         <item>system</item>
-        <item>battery_saving</item>
+        <item>battery</item>
     </string-array>
 
     <string-array name="preference_list_display">
