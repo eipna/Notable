@@ -184,7 +184,7 @@ public class UpdateActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Are you sure you want to permanently delete this note?");
         dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
-            database.deleteNote(currentNote.getId());
+            long result = database.deleteNote(currentNote.getId());
             updateNote();
         });
 
@@ -255,7 +255,7 @@ public class UpdateActivity extends AppCompatActivity {
         currentNote.setTitle(updatedNoteTitle);
         currentNote.setContent(updatedNoteContent);
         currentNote.setLastUpdated(DateUtil.getCurrentTime());
-        database.updateNote(currentNote);
+        long result = database.updateNote(currentNote);
         closeActivity();
     }
 

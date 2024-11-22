@@ -53,7 +53,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void createNote(NoteModel createdNote) {
+    public long createNote(NoteModel createdNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, createdNote.getTitle());
@@ -62,8 +62,7 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_LAST_UPDATED, createdNote.getLastUpdated());
         values.put(COLUMN_NOTE_STATE, createdNote.getState());
         values.put(COLUMN_NOTE_FAVORITE, createdNote.getIsFavorite());
-        db.insert(TABLE_NOTE, null, values);
-        db.close();
+        return db.insert(TABLE_NOTE, null, values);
     }
 
     @SuppressLint("Range")
@@ -191,7 +190,7 @@ public class Database extends SQLiteOpenHelper {
         return allNotes;
     }
 
-    public void updateNote(NoteModel updatedNote) {
+    public long updateNote(NoteModel updatedNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, updatedNote.getTitle());
@@ -199,14 +198,12 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_STATE, updatedNote.getState());
         values.put(COLUMN_NOTE_FAVORITE, updatedNote.getIsFavorite());
         values.put(COLUMN_NOTE_LAST_UPDATED, updatedNote.getLastUpdated());
-        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getId())});
-        db.close();
+        return db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getId())});
     }
 
-    public void deleteNote(int noteId) {
+    public long deleteNote(int noteId) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
-        db.close();
+        return db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
     }
 
     public void clear(int state) {
