@@ -31,10 +31,24 @@ public class CreateActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // Checks for shared texts from other applications
+        if (Intent.ACTION_SEND.equals(getIntent().getAction()) && getIntent().getType() != null) {
+            if (getIntent().getType().equals("text/plain")) {
+                handleSharedTexts(getIntent());
+            }
+        }
+
         // Set focus on note field on load
         binding.contentInput.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputMethodManager.showSoftInput(binding.contentInput, InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    private void handleSharedTexts(Intent intent) {
+        String receivedSharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (receivedSharedText != null) {
+            binding.contentInput.setText(receivedSharedText);
+        }
     }
 
     @Override
