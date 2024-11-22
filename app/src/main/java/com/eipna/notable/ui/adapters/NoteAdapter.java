@@ -102,7 +102,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             lastUpdatedTextView = itemView.findViewById(R.id.noteLastUpdated);
 
             boolean prefsRoundedNotes = new SharedPrefsUtil(itemView.getContext()).getBoolean("prefs_rounded_notes", true);
-            noteCardView.setRadius(prefsRoundedNotes ? 32.0f : 0.0f);
+            noteCardView.setRadius(prefsRoundedNotes ? 42.0f : 0.0f);
         }
     }
 }
