@@ -4,6 +4,9 @@
     <string name="app_version">1.0.0</string>
     <string name="app_easter_egg">You are now a developer :D</string>
 
+    <!-- Application Shortcuts -->
+    <string name="shortcut_create">Create Note</string>
+
     <!-- External Links -->
     <string name="link_github">https://github.com/eipna/Notable</string>
     <string name="link_pretty_time">https://www.ocpsoft.org/prettytime/</string>

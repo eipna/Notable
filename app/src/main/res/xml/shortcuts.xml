@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shortcut
+        android:shortcutId="noteCreate"
+        android:enabled="true"
+        android:icon="@drawable/plus"
+        android:shortcutShortLabel="@string/shortcut_create"
+        android:shortcutLongLabel="@string/shortcut_create"
+        android:shortcutDisabledMessage="@string/shortcut_create"
+        tools:targetApi="n_mr1">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.eipna.notable"
+            android:targetClass="com.eipna.notable.ui.activities.CreateActivity"/>
+    </shortcut>
+
+</shortcuts>
