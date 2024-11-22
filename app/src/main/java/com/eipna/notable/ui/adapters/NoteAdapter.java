@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
+import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
@@ -30,11 +31,20 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         this.context = context;
         this.notes = notes;
         this.listener = listener;
+        notes.sort(NoteSort.getComparator(context));
     }
 
     @SuppressLint("NotifyDataSetChanged")
     public void search(ArrayList<NoteModel> filteredNotes) {
         notes = filteredNotes;
+        notifyDataSetChanged();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void sort(NoteSort selectedSort) {
+        SharedPrefsUtil prefs = new SharedPrefsUtil(context);
+        prefs.setInt("prefs_note_sort", selectedSort.getValue());
+        notes.sort(NoteSort.getComparator(context));
         notifyDataSetChanged();
     }
 

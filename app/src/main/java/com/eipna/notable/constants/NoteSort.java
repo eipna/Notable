@@ -26,7 +26,7 @@ public enum NoteSort {
     }
 
     public static Comparator<NoteModel> getComparator(Context context) {
-        int defSorting = new SharedPrefsUtil(context).getInt("prefs_note_sorting", LAST_UPDATED_ASCENDING.getValue());
+        int defSorting = new SharedPrefsUtil(context).getInt("prefs_note_sort", LAST_UPDATED_ASCENDING.getValue());
         if (defSorting == TITLE_ASCENDING.getValue()) {
             return NoteModel.SORT_TITLE_ASCENDING;
         } else if (defSorting == TITLE_DESCENDING.getValue()) {
