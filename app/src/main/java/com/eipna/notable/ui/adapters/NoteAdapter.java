@@ -33,7 +33,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void searchNotes(ArrayList<NoteModel> filteredNotes) {
+    public void search(ArrayList<NoteModel> filteredNotes) {
         notes = filteredNotes;
         notifyDataSetChanged();
     }

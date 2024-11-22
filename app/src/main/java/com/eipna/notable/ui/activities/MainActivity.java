@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
                 queriedNotes.add(note);
             }
         }
-        noteAdapter.searchNotes(queriedNotes);
+        noteAdapter.search(queriedNotes);
     }
 
     @Override
