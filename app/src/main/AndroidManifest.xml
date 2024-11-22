@@ -41,7 +41,7 @@
         <activity
             android:name=".ui.activities.CreateActivity"
             android:label=" "
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName=".ui.activities.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
