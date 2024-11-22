@@ -93,13 +93,13 @@ public class NoteModel implements Parcelable {
 
     public static final Comparator<NoteModel> SORT_TITLE_DESCENDING = (note01, note02) -> note02.getTitle().toLowerCase().compareTo(note01.getTitle().toLowerCase());
 
-    public static final Comparator<NoteModel> SORT_DATE_CREATED_ASCENDING = Comparator.comparingLong(NoteModel::getDateCreated);
+    public static final Comparator<NoteModel> SORT_DATE_CREATED_ASCENDING = (note01, note02) -> Long.compare(note02.getDateCreated(), note01.getDateCreated());
 
-    public static final Comparator<NoteModel> SORT_DATE_CREATED_DESCENDING = (note01, note02) -> Long.compare(note02.getDateCreated(), note01.getDateCreated());
+    public static final Comparator<NoteModel> SORT_DATE_CREATED_DESCENDING = Comparator.comparingLong(NoteModel::getDateCreated);
 
-    public static final Comparator<NoteModel> SORT_LAST_UPDATED_ASCENDING = Comparator.comparingLong(NoteModel::getLastUpdated);
+    public static final Comparator<NoteModel> SORT_LAST_UPDATED_ASCENDING = (note01, note02) -> Long.compare(note02.getLastUpdated(), note01.getLastUpdated());
 
-    public static final Comparator<NoteModel> SORT_LAST_UPDATED_DESCENDING = (note01, note02) -> Long.compare(note02.getLastUpdated(), note01.getLastUpdated());
+    public static final Comparator<NoteModel> SORT_LAST_UPDATED_DESCENDING = Comparator.comparingLong(NoteModel::getLastUpdated);
 
     protected NoteModel(Parcel parcel) {
         this.Id = parcel.readInt();
