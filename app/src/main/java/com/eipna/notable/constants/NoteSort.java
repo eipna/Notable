@@ -45,7 +45,7 @@ public enum NoteSort {
     }
 
     public static int getMenuItem(Context context) {
-        int prefsNoteSorting = new SharedPrefsUtil(context).getInt("prefs_note_sort", LAST_UPDATED_DESCENDING.getValue());
+        int prefsNoteSorting = new SharedPrefsUtil(context).getInt("prefs_note_sort", LAST_UPDATED_ASCENDING.getValue());
         if (prefsNoteSorting == TITLE_ASCENDING.getValue()) {
             return R.id.sort_title_asc;
         } else if (prefsNoteSorting == TITLE_DESCENDING.getValue()) {

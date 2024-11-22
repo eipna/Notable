@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.eipna.notable.Database;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
+import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.databinding.ActivityMainBinding;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -101,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         MenuItem searchItem = menu.findItem(R.id.options_main_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
+        MenuItem checkedSortingMenuItem = menu.findItem(NoteSort.getMenuItem(this));
+        checkedSortingMenuItem.setChecked(true);
+
         assert searchView != null;
         searchView.setQueryHint("Search notes...");
 
@@ -146,6 +150,36 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
 
         if (item.getItemId() == R.id.options_main_settings) {
             settingsLauncher.launch(new Intent(MainActivity.this, SettingsActivity.class));
+        }
+
+        if (item.getItemId() == R.id.sort_title_asc) {
+            noteAdapter.sort(NoteSort.TITLE_ASCENDING);
+            item.setChecked(true);
+        }
+
+        if (item.getItemId() == R.id.sort_title_desc) {
+            noteAdapter.sort(NoteSort.TITLE_DESCENDING);
+            item.setChecked(true);
+        }
+
+        if (item.getItemId() == R.id.sort_date_created_asc) {
+            noteAdapter.sort(NoteSort.DATE_CREATED_ASCENDING);
+            item.setChecked(true);
+        }
+
+        if (item.getItemId() == R.id.sort_date_created_desc) {
+            noteAdapter.sort(NoteSort.DATE_CREATED_DESCENDING);
+            item.setChecked(true);
+        }
+
+        if (item.getItemId() == R.id.sort_last_updated_asc) {
+            noteAdapter.sort(NoteSort.LAST_UPDATED_ASCENDING);
+            item.setChecked(true);
+        }
+
+        if (item.getItemId() == R.id.sort_last_updated_desc) {
+            noteAdapter.sort(NoteSort.LAST_UPDATED_DESCENDING);
+            item.setChecked(true);
         }
         return true;
     }
