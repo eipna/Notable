@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
 
     private final ActivityResultLauncher<Intent> settingsLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
         if (result.getResultCode() == RESULT_OK) {
-            resetAdapter();
+            recreate();
         }
     });
 
@@ -83,16 +83,6 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         activeNotes.addAll(database.getActiveNotes());
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(activeNotes);
-    }
-
-    private void resetAdapter() {
-        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
-        if (layoutMgr.equals(NoteList.LIST.getValue())) {
-            binding.noteList.setLayoutManager(new LinearLayoutManager(this));
-        } else {
-            binding.noteList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        }
-        binding.noteList.setAdapter(noteAdapter);
     }
 
     @Override
