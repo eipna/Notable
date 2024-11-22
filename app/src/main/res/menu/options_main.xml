@@ -10,6 +10,42 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
     <item
+        android:id="@+id/options_main_sort"
+        android:title="@string/menu_sort"
+        android:icon="@drawable/sort"
+        app:showAsAction="always">
+
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sort_title_asc"
+                    android:title="@string/menu_sort_title_ascending"/>
+
+                <item
+                    android:id="@+id/sort_title_desc"
+                    android:title="@string/menu_sort_title_descending"/>
+
+                <item
+                    android:id="@+id/sort_date_created_asc"
+                    android:title="@string/menu_sort_created_latest"/>
+
+                <item
+                    android:id="@+id/sort_date_created_desc"
+                    android:title="@string/menu_sort_created_oldest"/>
+
+                <item
+                    android:id="@+id/sort_last_updated_asc"
+                    android:title="@string/menu_sort_updated_latest"/>
+
+                <item
+                    android:id="@+id/sort_last_updated_desc"
+                    android:title="@string/menu_sort_updated_oldest"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/options_main_favorite"
         android:title="@string/menu_favorite"/>
 

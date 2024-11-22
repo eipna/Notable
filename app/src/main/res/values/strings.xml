@@ -27,6 +27,14 @@
     <string name="menu_clear">Clear All</string>
     <string name="menu_search">Search</string>
     <string name="menu_settings">Settings</string>
+    <string name="menu_sort">Sort by</string>
+
+    <string name="menu_sort_title_ascending">Title (A -> Z)</string>
+    <string name="menu_sort_title_descending">Title (Z -> A)</string>
+    <string name="menu_sort_created_latest">Created (Latest)</string>
+    <string name="menu_sort_created_oldest">Created (Oldest)</string>
+    <string name="menu_sort_updated_latest">Updated (Latest)</string>
+    <string name="menu_sort_updated_oldest">Updated (Oldest)</string>
 
     <!-- Text that shows up when the recycler view is empty -->
     <string name="empty_notes_archive">The archive is empty.</string>
