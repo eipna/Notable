@@ -5,12 +5,12 @@
     <item
         android:id="@+id/options_update_favorite"
         android:title="@string/menu_favorite"
-        android:icon="@drawable/heart_not_filled"
+        android:icon="@drawable/ic_heart_not_filled"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/options_update_share"
-        android:icon="@drawable/share"
+        android:icon="@drawable/ic_share"
         app:showAsAction="ifRoom"
         android:title="@string/menu_share" />
 

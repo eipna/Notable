@@ -142,7 +142,7 @@ public class UpdateActivity extends AppCompatActivity {
         propertiesDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBackground = getResources().getDrawable(R.drawable.dialog, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.bg_dialog, getTheme());
         propertiesDialog.getWindow().setWindowAnimations(0);
         propertiesDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
@@ -159,11 +159,11 @@ public class UpdateActivity extends AppCompatActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         if (currentNote.getIsFavorite() == NoteState.FAVORITE_YES.getValue()) {
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
+            Drawable heartFilled = getResources().getDrawable(R.drawable.ic_heart_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
         } else {
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
+            Drawable heartNotFilled = getResources().getDrawable(R.drawable.ic_heart_not_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
         }
         return true;
@@ -199,7 +199,7 @@ public class UpdateActivity extends AppCompatActivity {
         deleteDialog.getWindow().setAttributes(layoutParams);
 
         @SuppressLint("UseCompatLoadingForDrawables")
-        Drawable dialogBackground = getResources().getDrawable(R.drawable.dialog, getTheme());
+        Drawable dialogBackground = getResources().getDrawable(R.drawable.bg_dialog, getTheme());
         deleteDialog.getWindow().setWindowAnimations(0);
         deleteDialog.getWindow().setBackgroundDrawable(dialogBackground);
 
@@ -226,11 +226,11 @@ public class UpdateActivity extends AppCompatActivity {
 
         if (currentNote.getIsFavorite() == NoteState.FAVORITE_YES.getValue()) {
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable heartFilled = getResources().getDrawable(R.drawable.heart_filled, getTheme());
+            Drawable heartFilled = getResources().getDrawable(R.drawable.ic_heart_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartFilled);
         } else {
             @SuppressLint("UseCompatLoadingForDrawables")
-            Drawable heartNotFilled = getResources().getDrawable(R.drawable.heart_not_filled, getTheme());
+            Drawable heartNotFilled = getResources().getDrawable(R.drawable.ic_heart_not_filled, getTheme());
             menu.findItem(R.id.options_update_favorite).setIcon(heartNotFilled);
         }
         return true;

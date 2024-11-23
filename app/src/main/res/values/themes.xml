@@ -12,7 +12,7 @@
         <item name="actionOverflowButtonStyle">@style/OverFlowButtonStyle</item>
 
         <!-- Sets a the icon for the home as up button in toolbar -->
-        <item name="homeAsUpIndicator">@drawable/arrow_back</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_back</item>
     </style>
 
     <style name="Theme.Notable" parent="Base.Theme.Notable" >
@@ -21,7 +21,7 @@
 
     <!-- Custom theme for popup menus -->
     <style name="PopupMenuStyle" parent="Widget.AppCompat.PopupMenu">
-        <item name="popupMenuBackground">@drawable/popup_menu</item>
+        <item name="popupMenuBackground">@drawable/bg_popup_menu</item>
         <item name="android:textColor">@color/popup_menu_text</item>
     </style>
 

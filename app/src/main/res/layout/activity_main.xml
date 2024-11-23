@@ -57,7 +57,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/createNote"
-        android:src="@drawable/edit"
+        android:src="@drawable/ic_edit"
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="24dp"
