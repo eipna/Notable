@@ -73,7 +73,7 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
     }
 
     @Override
-    public void launchUpdateActivity(int adapterPos) {
+    public void OnItemClick(int adapterPos) {
         NoteModel selectedNote = archivedNotes.get(adapterPos);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("selected_note", selectedNote);

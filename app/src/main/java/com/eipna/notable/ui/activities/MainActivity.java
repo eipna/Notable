@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
     }
 
     @Override
-    public void launchUpdateActivity(int adapterPos) {
+    public void OnItemClick(int adapterPos) {
         NoteModel selectedNote = activeNotes.get(adapterPos);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("selected_note", selectedNote);

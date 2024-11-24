@@ -66,7 +66,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(view -> {
             if (listener != null) {
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.launchUpdateActivity(position);
+                    listener.OnItemClick(position);
                 }
             }
         });
@@ -75,10 +75,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return notes.size();
-    }
-
-    public interface Listener {
-        void launchUpdateActivity(int adapterPos);
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -110,5 +106,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             int prefsNoteContentMaxLines = new SharedPrefsUtil(itemView.getContext()).getInt("prefs_note_content_max_lines", 1);
             contentTextView.setMaxLines(prefsNoteContentMaxLines);
         }
+    }
+
+    public interface Listener {
+        void OnItemClick(int adapterPos);
     }
 }

@@ -73,7 +73,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
     }
 
     @Override
-    public void launchUpdateActivity(int adapterPos) {
+    public void OnItemClick(int adapterPos) {
         NoteModel selectedNote = favoriteNotes.get(adapterPos);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("selected_note", selectedNote);
