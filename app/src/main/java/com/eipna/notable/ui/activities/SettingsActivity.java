@@ -11,6 +11,7 @@ import androidx.documentfile.provider.DocumentFile;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SeekBarPreference;
 import androidx.preference.SwitchPreferenceCompat;
 
 import android.annotation.SuppressLint;
@@ -93,16 +94,40 @@ public class SettingsActivity extends AppCompatActivity {
             Preference settingsExport = findPreference("settings_export");
             Preference settingsImport = findPreference("settings_import");
 
+            SeekBarPreference settingsNoteTitleMaxLines = findPreference("settings_note_title_max_lines");
+            SeekBarPreference settingsNoteContentMaxLines = findPreference("settings_note_content_max_lines");
+
             SwitchPreferenceCompat settingsRoundedNotes = findPreference("settings_rounded_notes");
 
             // If no shared preference found, use default values instead
             String defTheme = prefs.getString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
             String defNoteLayout = prefs.getString("prefs_note_layout", NoteList.LIST.getValue());
             boolean defRoundedNotes = prefs.getBoolean("prefs_rounded_notes", true);
+            int defNoteMaxTitleLines = prefs.getInt("prefs_note_title_max_lines", 1);
+            int defNoteMaxContentLines = prefs.getInt("prefs_note_content_max_lines", 1);
 
             ListPreference settingsAppTheme = findPreference("settings_app_theme");
             ListPreference settingsNoteLayout = findPreference("settings_note_layout");
 
+            assert settingsNoteTitleMaxLines != null;
+            settingsNoteTitleMaxLines.setMin(1);
+
+            assert settingsNoteContentMaxLines != null;
+            settingsNoteContentMaxLines.setMin(1);
+
+            settingsNoteTitleMaxLines.setValue(defNoteMaxTitleLines);
+            settingsNoteTitleMaxLines.setOnPreferenceChangeListener((preference, newValue) -> {
+                prefs.setInt("prefs_note_title_max_lines", (int) newValue);
+                return true;
+            });
+
+            settingsNoteContentMaxLines.setValue(defNoteMaxContentLines);
+            settingsNoteContentMaxLines.setOnPreferenceChangeListener((preference, newValue) -> {
+                prefs.setInt("prefs_note_content_max_lines", (int) newValue);
+                return true;
+            });
+
+            assert settingsRoundedNotes != null;
             settingsRoundedNotes.setChecked(defRoundedNotes);
             settingsRoundedNotes.setOnPreferenceChangeListener((preference, newValue) -> {
                 prefs.setBoolean("prefs_rounded_notes", (boolean) newValue);

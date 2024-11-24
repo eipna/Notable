@@ -103,6 +103,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
             boolean prefsRoundedNotes = new SharedPrefsUtil(itemView.getContext()).getBoolean("prefs_rounded_notes", true);
             noteCardView.setRadius(prefsRoundedNotes ? 42.0f : 0.0f);
+
+            int prefsNoteTitleMaxLines = new SharedPrefsUtil(itemView.getContext()).getInt("prefs_note_title_max_lines", 1);
+            titleTextView.setMaxLines(prefsNoteTitleMaxLines);
+
+            int prefsNoteContentMaxLines = new SharedPrefsUtil(itemView.getContext()).getInt("prefs_note_content_max_lines", 1);
+            contentTextView.setMaxLines(prefsNoteContentMaxLines);
         }
     }
 }

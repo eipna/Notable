@@ -26,6 +26,26 @@
             android:title="@string/pref_title_rounded_notes"
             app:iconSpaceReserved="false"
             app:summary="@string/pref_summary_rounded_notes"/>
+
+        <SeekBarPreference
+            android:key="settings_note_title_max_lines"
+            android:title="@string/pref_title_note_content_max_lines"
+            android:max="5"
+            android:defaultValue="1"
+            android:persistent="true"
+            app:showSeekBarValue="true"
+            android:selectable="false"
+            app:iconSpaceReserved="false"/>
+
+        <SeekBarPreference
+            android:key="settings_note_content_max_lines"
+            android:title="@string/pref_title_note_content_max_lines"
+            app:iconSpaceReserved="false"
+            android:persistent="true"
+            android:defaultValue="1"
+            app:showSeekBarValue="true"
+            android:selectable="false"
+            android:max="10"/>
     </PreferenceCategory>
 
     <PreferenceCategory
