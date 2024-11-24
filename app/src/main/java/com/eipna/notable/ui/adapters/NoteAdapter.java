@@ -110,5 +110,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public interface Listener {
         void OnItemClick(int adapterPos);
+        void OnItemLongClick(int adapterPos);
     }
 }

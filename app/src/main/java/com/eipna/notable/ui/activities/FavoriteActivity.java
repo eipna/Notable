@@ -79,4 +79,9 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
         updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
+
+    @Override
+    public void OnItemLongClick(int adapterPos) {
+
+    }
 }

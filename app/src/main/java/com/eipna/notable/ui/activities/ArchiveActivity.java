@@ -79,4 +79,9 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
         updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
+
+    @Override
+    public void OnItemLongClick(int adapterPos) {
+
+    }
 }

@@ -187,4 +187,9 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
+
+    @Override
+    public void OnItemLongClick(int adapterPos) {
+
+    }
 }

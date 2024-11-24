@@ -158,4 +158,9 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
         updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
+
+    @Override
+    public void OnItemLongClick(int adapterPos) {
+
+    }
 }
