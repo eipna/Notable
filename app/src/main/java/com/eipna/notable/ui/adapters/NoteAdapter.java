@@ -70,6 +70,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
                 }
             }
         });
+
+        holder.itemView.setOnLongClickListener(view -> {
+            if (listener != null) {
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.OnItemLongClick(position);
+                }
+            }
+            return true;
+        });
     }
 
     @Override
