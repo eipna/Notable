@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.eipna.notable.R;
 import com.eipna.notable.Database;
 import com.eipna.notable.constants.AppTheme;
+import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivitySettingsBinding;
@@ -98,22 +99,46 @@ public class SettingsActivity extends AppCompatActivity {
             SeekBarPreference settingsNoteContentMaxLines = findPreference("settings_note_content_max_lines");
 
             SwitchPreferenceCompat settingsRoundedNotes = findPreference("settings_rounded_notes");
+            SwitchPreferenceCompat settingsShowNoteDateCreated = findPreference("settings_show_note_date_created");
 
             // If no shared preference found, use default values instead
             String defTheme = prefs.getString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
             String defNoteLayout = prefs.getString("prefs_note_layout", NoteList.LIST.getValue());
+            String defNoteDateFormat = prefs.getString("prefs_note_date_format", DateTimePattern.DETAILED_WITHOUT_TIME.toString());
+
             boolean defRoundedNotes = prefs.getBoolean("prefs_rounded_notes", true);
+            boolean defShowNoteDateCreated = prefs.getBoolean("prefs_show_note_date_created", false);
+
             int defNoteMaxTitleLines = prefs.getInt("prefs_note_title_max_lines", 1);
             int defNoteMaxContentLines = prefs.getInt("prefs_note_content_max_lines", 1);
 
             ListPreference settingsAppTheme = findPreference("settings_app_theme");
             ListPreference settingsNoteLayout = findPreference("settings_note_layout");
+            ListPreference settingsNoteDateFormat = findPreference("settings_note_date_format");
 
             assert settingsNoteTitleMaxLines != null;
             settingsNoteTitleMaxLines.setMin(1);
 
             assert settingsNoteContentMaxLines != null;
             settingsNoteContentMaxLines.setMin(1);
+
+            assert settingsNoteDateFormat != null;
+            settingsNoteDateFormat.setVisible(defShowNoteDateCreated);
+            settingsNoteDateFormat.setValue(defNoteDateFormat);
+            settingsNoteDateFormat.setDialogTitle("");
+            settingsNoteDateFormat.setNegativeButtonText("");
+
+            assert settingsShowNoteDateCreated != null;
+            settingsShowNoteDateCreated.setOnPreferenceChangeListener((preference, isEnabled) -> {
+                settingsNoteDateFormat.setVisible((boolean) isEnabled);
+                prefs.setBoolean("prefs_show_note_date_created", (boolean) isEnabled);
+                return true;
+            });
+
+            settingsNoteDateFormat.setOnPreferenceChangeListener((preference, selectedFormat) -> {
+                prefs.setString("prefs_note_date_format", (String) selectedFormat);
+                return true;
+            });
 
             settingsNoteTitleMaxLines.setValue(defNoteMaxTitleLines);
             settingsNoteTitleMaxLines.setOnPreferenceChangeListener((preference, newValue) -> {
