@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="libraries">
+    <string-array name="arr_libraries">
         <item>PrettyTime</item>
     </string-array>
 
-    <string-array name="preference_list_theme">
+    <string-array name="app_theme">
         <item>Light Mode</item>
         <item>Dark Mode</item>
         <item>Follow System</item>
         <item>Battery Saving</item>
     </string-array>
-    <string-array name="preference_list_theme_values">
+    <string-array name="app_theme_values">
         <item>light</item>
         <item>dark</item>
         <item>system</item>
         <item>battery</item>
     </string-array>
 
-    <string-array name="preference_list_display">
+    <string-array name="note_list">
         <item>List</item>
         <item>Grid</item>
     </string-array>
-    <string-array name="preference_list_display_values">
+    <string-array name="note_list_values">
         <item>list</item>
         <item>grid</item>
     </string-array>

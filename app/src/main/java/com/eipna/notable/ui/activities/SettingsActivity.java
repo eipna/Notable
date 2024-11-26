@@ -293,7 +293,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
             dialogBuilder.setCustomTitle(titleTV);
-            dialogBuilder.setItems(R.array.libraries, (dialogInterface, i) -> linkOpener(i));
+            dialogBuilder.setItems(R.array.arr_libraries, (dialogInterface, i) -> linkOpener(i));
             dialogBuilder.setPositiveButton("Back", (dialogInterface, i) -> dialogInterface.dismiss());
 
             AlertDialog librariesDialog = dialogBuilder.create();

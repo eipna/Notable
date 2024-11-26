@@ -9,16 +9,16 @@
             android:key="settings_app_theme"
             app:title="@string/pref_title_theme"
             app:summary="@string/pref_summary_theme"
-            android:entries="@array/preference_list_theme"
-            android:entryValues="@array/preference_list_theme_values"
+            android:entries="@array/app_theme"
+            android:entryValues="@array/app_theme_values"
             app:iconSpaceReserved="false"/>
 
         <ListPreference
             android:key="settings_note_layout"
             android:title="@string/pref_title_display"
             app:iconSpaceReserved="false"
-            android:entries="@array/preference_list_display"
-            android:entryValues="@array/preference_list_display_values"
+            android:entries="@array/note_list"
+            android:entryValues="@array/note_list_values"
             app:summary="@string/pref_summary_display"/>
     </PreferenceCategory>
 
