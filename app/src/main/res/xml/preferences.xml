@@ -32,6 +32,18 @@
             app:iconSpaceReserved="false"
             app:summary="@string/pref_summary_rounded_notes"/>
 
+        <SwitchPreferenceCompat
+            android:key="settings_show_note_date_created"
+            app:iconSpaceReserved="false"
+            android:title="@string/pref_title_show_note_date_created"
+            android:summary="@string/pref_summary_show_note_date_created"/>
+
+        <ListPreference
+            android:key="settings_note_date_format"
+            app:iconSpaceReserved="false"
+            android:title="@string/pref_title_note_date_format"
+            android:summary="@string/pref_summary_note_date_format"/>
+
         <SeekBarPreference
             android:key="settings_note_title_max_lines"
             android:title="@string/pref_title_note_content_max_lines"

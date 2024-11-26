@@ -72,10 +72,13 @@
     <string name="pref_title_display">List</string>
     <string name="pref_summary_display">Choose how your notes are displayed</string>
 
-
     <string name="pref_category_note_appearance">Note Appearance</string>
     <string name="pref_title_rounded_notes">Rounded Notes</string>
     <string name="pref_summary_rounded_notes">Makes the corner of your notes rounded</string>
+    <string name="pref_title_show_note_date_created">Show Creation Date</string>
+    <string name="pref_summary_show_note_date_created">Shows the date when the note is created in the note list items</string>
+    <string name="pref_title_note_date_format">Date Format</string>
+    <string name="pref_summary_note_date_format">Choose a date format pattern</string>
     <string name="pref_title_note_title_max_lines">Max lines for note title</string>
     <string name="pref_title_note_content_max_lines">Max lines for note content</string>
 
