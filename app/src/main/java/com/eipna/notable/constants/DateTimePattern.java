@@ -10,6 +10,12 @@ public enum DateTimePattern {
     YEAR_MONTH_DAY("yyyy/MM/dd"),
     YEAR_DAY_MONTH("yyyy/dd/MM");
 
+    private static DateTimePattern[] patterns;
+
+    static {
+        patterns = values();
+    }
+
     private final String pattern;
 
     DateTimePattern(String pattern) {
@@ -20,5 +26,14 @@ public enum DateTimePattern {
     @Override
     public String toString() {
         return pattern;
+    }
+
+    public static DateTimePattern fromValue(String value) {
+        for (DateTimePattern pattern : patterns) {
+            if (pattern.toString().equals(value)) {
+                return pattern;
+            }
+        }
+        return DETAILED_WITHOUT_TIME;
     }
 }

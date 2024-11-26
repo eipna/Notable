@@ -12,8 +12,10 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eipna.notable.R;
+import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.models.NoteModel;
+import com.eipna.notable.utils.DateUtil;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
 import org.ocpsoft.prettytime.PrettyTime;
@@ -98,6 +100,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         TextView titleTextView;
         TextView contentTextView;
         TextView lastUpdatedTextView;
+        TextView dateCreatedTextView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,6 +109,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             titleTextView = itemView.findViewById(R.id.noteTitle);
             contentTextView = itemView.findViewById(R.id.noteContent);
             lastUpdatedTextView = itemView.findViewById(R.id.noteLastUpdated);
+            dateCreatedTextView = itemView.findViewById(R.id.noteDateCreated);
+
+            boolean prefsShowNoteDateCreated = new SharedPrefsUtil(itemView.getContext()).getBoolean("prefs_show_note_date_created", false);
+            dateCreatedTextView.setVisibility(prefsShowNoteDateCreated ? View.VISIBLE : View.GONE);
 
             boolean prefsRoundedNotes = new SharedPrefsUtil(itemView.getContext()).getBoolean("prefs_rounded_notes", true);
             noteCardView.setRadius(prefsRoundedNotes ? 42.0f : 0.0f);
@@ -119,9 +126,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         // Binds note data to view components
         public void bind(NoteModel note) {
+            String prefsNoteDateFormat = new SharedPrefsUtil(itemView.getContext()).getString("prefs_note_date_format", DateTimePattern.DETAILED_WITHOUT_TIME.toString());
+
             titleTextView.setText(note.getTitle());
             contentTextView.setText(note.getContent());
             lastUpdatedTextView.setText(prettyTime.format(new Date(note.getLastUpdated())));
+            dateCreatedTextView.setText(DateUtil.getDateString(DateTimePattern.fromValue(prefsNoteDateFormat), note.getDateCreated()));
         }
     }
 
