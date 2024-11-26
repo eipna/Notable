@@ -68,7 +68,7 @@ public class Database extends SQLiteOpenHelper {
     @SuppressLint("Range")
     public ArrayList<NoteModel> getActiveNotes() {
         SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> notes = new ArrayList<>();
+        ArrayList<NoteModel> activeNotes = new ArrayList<>();
         String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = ?";
 
         @SuppressLint("Recycle")
@@ -83,17 +83,17 @@ public class Database extends SQLiteOpenHelper {
                 retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
                 retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                notes.add(retrievedNote);
+                activeNotes.add(retrievedNote);
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return notes;
+        return activeNotes;
     }
 
     @SuppressLint("Range")
     public ArrayList<NoteModel> getArchivedNotes() {
         SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> notes = new ArrayList<>();
+        ArrayList<NoteModel> archivedNotes = new ArrayList<>();
         String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = ?";
 
         @SuppressLint("Recycle")
@@ -108,17 +108,17 @@ public class Database extends SQLiteOpenHelper {
                 retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
                 retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                notes.add(retrievedNote);
+                archivedNotes.add(retrievedNote);
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return notes;
+        return archivedNotes;
     }
 
     @SuppressLint("Range")
     public ArrayList<NoteModel> getDeletedNotes() {
         SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> notes = new ArrayList<>();
+        ArrayList<NoteModel> deletedNotes = new ArrayList<>();
         String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = ?";
 
         @SuppressLint("Recycle")
@@ -133,11 +133,11 @@ public class Database extends SQLiteOpenHelper {
                 retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
                 retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                notes.add(retrievedNote);
+                deletedNotes.add(retrievedNote);
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return notes;
+        return deletedNotes;
     }
 
     @SuppressLint("Range")
