@@ -55,6 +55,7 @@
     <!-- Text placeholder for custom note view -->
     <string name="template_note_title">Lorem Ipsum.</string>
     <string name="template_note_update">a few moments ago</string>
+    <string name="template_note_created">14 May 2024</string>
     <string name="template_note_content">Lorem ipsum odor amet, consectetuer adipiscing elit.
         At volutpat donec potenti libero ante; dictumst litora. Netus netus posuere
         augue tempor potenti risus. Per ultricies massa sit posuere imperdiet vulputate
