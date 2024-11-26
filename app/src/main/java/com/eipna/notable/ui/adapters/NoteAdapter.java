@@ -57,12 +57,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        PrettyTime prettyTime = new PrettyTime();
-        NoteModel currentNote = notes.get(position);
-        holder.titleTextView.setText(currentNote.getTitle());
-        holder.contentTextView.setText(currentNote.getContent());
-        holder.lastUpdatedTextView.setText(prettyTime.format(new Date(currentNote.getLastUpdated())));
+        // Binds each note
+        holder.bind(notes.get(position));
 
+        // Handles note click
         holder.itemView.setOnClickListener(view -> {
             if (listener != null) {
                 if (position != RecyclerView.NO_POSITION) {
@@ -71,6 +69,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             }
         });
 
+        // Handles note long click
         holder.itemView.setOnLongClickListener(view -> {
             if (listener != null) {
                 if (position != RecyclerView.NO_POSITION) {
@@ -94,6 +93,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        PrettyTime prettyTime;
         CardView noteCardView;
         TextView titleTextView;
         TextView contentTextView;
@@ -101,6 +101,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            prettyTime = new PrettyTime();
             noteCardView = itemView.findViewById(R.id.noteCard);
             titleTextView = itemView.findViewById(R.id.noteTitle);
             contentTextView = itemView.findViewById(R.id.noteContent);
@@ -114,6 +115,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
             int prefsNoteContentMaxLines = new SharedPrefsUtil(itemView.getContext()).getInt("prefs_note_content_max_lines", 1);
             contentTextView.setMaxLines(prefsNoteContentMaxLines);
+        }
+
+        // Binds note data to view components
+        public void bind(NoteModel note) {
+            titleTextView.setText(note.getTitle());
+            contentTextView.setText(note.getContent());
+            lastUpdatedTextView.setText(prettyTime.format(new Date(note.getLastUpdated())));
         }
     }
 
