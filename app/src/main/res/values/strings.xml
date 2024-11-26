@@ -71,6 +71,9 @@
     <string name="pref_summary_theme">Change between light mode or dark mode or follow the current system theme</string>
     <string name="pref_title_display">List</string>
     <string name="pref_summary_display">Choose how your notes are displayed</string>
+
+
+    <string name="pref_category_note_appearance">Note Appearance</string>
     <string name="pref_title_rounded_notes">Rounded Notes</string>
     <string name="pref_summary_rounded_notes">Makes the corner of your notes rounded</string>
     <string name="pref_title_note_title_max_lines">Max lines for note title</string>

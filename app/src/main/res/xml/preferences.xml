@@ -20,6 +20,11 @@
             android:entries="@array/preference_list_display"
             android:entryValues="@array/preference_list_display_values"
             app:summary="@string/pref_summary_display"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Note Appearance"
+        app:iconSpaceReserved="false">
 
         <SwitchPreferenceCompat
             android:key="settings_rounded_notes"
