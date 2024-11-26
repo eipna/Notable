@@ -23,7 +23,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Note Appearance"
+        android:title="@string/pref_category_note_appearance"
         app:iconSpaceReserved="false">
 
         <SwitchPreferenceCompat
