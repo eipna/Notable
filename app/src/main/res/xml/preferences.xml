@@ -42,7 +42,9 @@
             android:key="settings_note_date_format"
             app:iconSpaceReserved="false"
             android:title="@string/pref_title_note_date_format"
-            android:summary="@string/pref_summary_note_date_format"/>
+            android:summary="@string/pref_summary_note_date_format"
+            android:entries="@array/note_date_format"
+            android:entryValues="@array/note_date_format_values"/>
 
         <SeekBarPreference
             android:key="settings_note_title_max_lines"
