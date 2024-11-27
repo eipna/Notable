@@ -10,7 +10,7 @@ public enum DateTimePattern {
     YEAR_MONTH_DAY("yyyy/MM/dd"),
     YEAR_DAY_MONTH("yyyy/dd/MM");
 
-    private static DateTimePattern[] patterns;
+    private static final DateTimePattern[] patterns;
 
     static {
         patterns = values();
