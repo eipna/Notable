@@ -349,9 +349,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         private void setListPrefs(String selectedDisplay) {
             if (selectedDisplay.equals(NoteList.LIST.getValue())) {
-                prefs.setString("prefs_note_layout", NoteList.LIST.getValue());
+                prefs.setString("prefs_note_list", NoteList.LIST.getValue());
             } else {
-                prefs.setString("prefs_note_layout", NoteList.GRID.getValue());
+                prefs.setString("prefs_note_list", NoteList.GRID.getValue());
             }
         }
 
