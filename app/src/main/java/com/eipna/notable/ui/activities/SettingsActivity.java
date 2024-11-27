@@ -101,9 +101,14 @@ public class SettingsActivity extends AppCompatActivity {
             SwitchPreferenceCompat settingsRoundedNotes = findPreference("settings_rounded_notes");
             SwitchPreferenceCompat settingsShowNoteDateCreated = findPreference("settings_show_note_date_created");
 
+            ListPreference settingsAppTheme = findPreference("settings_app_theme");
+            ListPreference settingsNoteList = findPreference("settings_note_list");
+            ListPreference settingsNoteDateFormat = findPreference("settings_note_date_format");
+
+            // Default values for each option
             // If no shared preference found, use default values instead
             String defTheme = prefs.getString("prefs_app_theme", AppTheme.SYSTEM_MODE.getValue());
-            String defNoteLayout = prefs.getString("prefs_note_layout", NoteList.LIST.getValue());
+            String defNoteList = prefs.getString("prefs_note_list", NoteList.LIST.getValue());
             String defNoteDateFormat = prefs.getString("prefs_note_date_format", DateTimePattern.DETAILED_WITHOUT_TIME.toString());
 
             boolean defRoundedNotes = prefs.getBoolean("prefs_rounded_notes", true);
@@ -111,10 +116,6 @@ public class SettingsActivity extends AppCompatActivity {
 
             int defNoteMaxTitleLines = prefs.getInt("prefs_note_title_max_lines", 1);
             int defNoteMaxContentLines = prefs.getInt("prefs_note_content_max_lines", 1);
-
-            ListPreference settingsAppTheme = findPreference("settings_app_theme");
-            ListPreference settingsNoteLayout = findPreference("settings_note_layout");
-            ListPreference settingsNoteDateFormat = findPreference("settings_note_date_format");
 
             assert settingsNoteTitleMaxLines != null;
             settingsNoteTitleMaxLines.setMin(1);
@@ -178,11 +179,11 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             });
 
-            assert settingsNoteLayout != null;
-            settingsNoteLayout.setNegativeButtonText("");
-            settingsNoteLayout.setDialogTitle("");
-            settingsNoteLayout.setValue(defNoteLayout);
-            settingsNoteLayout.setOnPreferenceChangeListener((preference, newValue) -> {
+            assert settingsNoteList != null;
+            settingsNoteList.setNegativeButtonText("");
+            settingsNoteList.setDialogTitle("");
+            settingsNoteList.setValue(defNoteList);
+            settingsNoteList.setOnPreferenceChangeListener((preference, newValue) -> {
                 setListPrefs((String) newValue);
                 return true;
             });

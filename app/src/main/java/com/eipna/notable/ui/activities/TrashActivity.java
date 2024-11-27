@@ -54,7 +54,7 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
         deletedNotes.addAll(database.getDeletedNotes());
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
-        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_list", NoteList.LIST.getValue());
         if (layoutMgr.equals(NoteList.LIST.getValue())) {
             binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         } else {

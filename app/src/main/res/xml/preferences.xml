@@ -14,7 +14,7 @@
             app:iconSpaceReserved="false"/>
 
         <ListPreference
-            android:key="settings_note_layout"
+            android:key="settings_note_list"
             android:title="@string/pref_title_display"
             app:iconSpaceReserved="false"
             android:entries="@array/note_list"

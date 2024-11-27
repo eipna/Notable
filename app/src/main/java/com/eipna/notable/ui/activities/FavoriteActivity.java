@@ -42,7 +42,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
         favoriteNotes.addAll(database.getFavoriteNotes());
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
-        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_layout", NoteList.LIST.getValue());
+        String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_list", NoteList.LIST.getValue());
         if (layoutMgr.equals(NoteList.LIST.getValue())) {
             binding.noteList.setLayoutManager(new LinearLayoutManager(this));
         } else {
