@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <shortcut
-        android:shortcutId="noteCreate"
+        android:shortcutId="shortcut_create_note"
         android:enabled="true"
-        android:icon="@drawable/ic_plus"
+        android:icon="@drawable/ic_shortcut_create_note"
         android:shortcutShortLabel="@string/shortcut_create"
         android:shortcutLongLabel="@string/shortcut_create"
         android:shortcutDisabledMessage="@string/shortcut_create"
