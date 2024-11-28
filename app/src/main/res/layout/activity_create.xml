@@ -16,17 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>
 
-    <View
-        android:id="@+id/toolbarShadow"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        style="@style/DropShadowStyle"/>
-
     <ScrollView
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:paddingTop="21dp"
         android:paddingHorizontal="18dp"
         android:paddingBottom="16dp"
         android:layout_width="match_parent"
@@ -34,7 +26,6 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:paddingTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
