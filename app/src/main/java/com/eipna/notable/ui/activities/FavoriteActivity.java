@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import com.eipna.notable.Database;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
+import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -44,6 +45,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
         database = new Database(this);
         favoriteNotes = new ArrayList<>();
         favoriteNotes.addAll(database.getFavoriteNotes());
+        favoriteNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_list", NoteList.LIST.getValue());

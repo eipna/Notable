@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
         database = new Database(MainActivity.this);
         activeNotes = new ArrayList<>();
         activeNotes.addAll(database.getActiveNotes());
+        activeNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
         String layoutMgr = new SharedPrefsUtil(this).getString("prefs_note_list", NoteList.LIST.getValue());

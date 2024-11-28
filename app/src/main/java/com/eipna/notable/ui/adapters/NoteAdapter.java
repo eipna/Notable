@@ -33,7 +33,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         this.context = context;
         this.notes = notes;
         this.listener = listener;
-        notes.sort(NoteSort.getComparator(context));
     }
 
     @SuppressLint("NotifyDataSetChanged")
