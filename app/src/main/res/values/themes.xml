@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/primary_invert</item>
         <item name="colorPrimaryContainer">#3E3E3E</item>
         <item name="colorAccent">@color/dark_grey</item>
+        <item name="windowActionModeOverlay">true</item>
 
         <!-- Changes color of status bar -->
         <item name="android:statusBarColor">@color/primary</item>
