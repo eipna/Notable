@@ -258,7 +258,7 @@ public class SettingsActivity extends AppCompatActivity {
                         note.setLastUpdated(object.getLong(Database.COLUMN_NOTE_LAST_UPDATED));
                         note.setState(object.getInt(Database.COLUMN_NOTE_STATE));
                         note.setIsFavorite(object.getInt(Database.COLUMN_NOTE_FAVORITE));
-                        long result = database.createNote(note);
+                        database.createNote(note);
                     }
                     Toast.makeText(requireContext(), "Import successful", Toast.LENGTH_SHORT).show();
                 }

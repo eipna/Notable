@@ -53,7 +53,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public long createNote(NoteModel createdNote) {
+    public void createNote(NoteModel createdNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, createdNote.getTitle());
@@ -62,7 +62,8 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_LAST_UPDATED, createdNote.getLastUpdated());
         values.put(COLUMN_NOTE_STATE, createdNote.getState());
         values.put(COLUMN_NOTE_FAVORITE, createdNote.getIsFavorite());
-        return db.insert(TABLE_NOTE, null, values);
+        db.insert(TABLE_NOTE, null, values);
+        db.close();
     }
 
     @SuppressLint("Range")
@@ -190,7 +191,7 @@ public class Database extends SQLiteOpenHelper {
         return allNotes;
     }
 
-    public long updateNote(NoteModel updatedNote) {
+    public void updateNote(NoteModel updatedNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NOTE_TITLE, updatedNote.getTitle());
@@ -198,12 +199,14 @@ public class Database extends SQLiteOpenHelper {
         values.put(COLUMN_NOTE_STATE, updatedNote.getState());
         values.put(COLUMN_NOTE_FAVORITE, updatedNote.getIsFavorite());
         values.put(COLUMN_NOTE_LAST_UPDATED, updatedNote.getLastUpdated());
-        return db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getId())});
+        db.update(TABLE_NOTE, values, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(updatedNote.getId())});
+        db.close();
     }
 
-    public long deleteNote(int noteId) {
+    public void deleteNote(int noteId) {
         SQLiteDatabase db = getWritableDatabase();
-        return db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
+        db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
+        db.close();
     }
 
     public void clear(int state) {

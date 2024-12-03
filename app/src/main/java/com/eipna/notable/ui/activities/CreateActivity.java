@@ -70,7 +70,7 @@ public class CreateActivity extends AppCompatActivity {
         NoteModel createdNote = new NoteModel();
         createdNote.setTitle(noteTitle);
         createdNote.setContent(noteContent);
-        long result = database.createNote(createdNote);
+        database.createNote(createdNote);
 
         Intent intent = new Intent();
         setResult(RESULT_OK, intent);
