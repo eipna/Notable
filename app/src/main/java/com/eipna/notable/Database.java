@@ -165,7 +165,7 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void clear(int state) {
+    public void clearNotes(int state) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_NOTE, COLUMN_NOTE_STATE + " = ?", new String[]{String.valueOf(state)});
         db.close();

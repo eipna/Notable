@@ -174,7 +174,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
-        database.clear(NoteState.DELETED.getValue());
+        database.clearNotes(NoteState.DELETED.getValue());
         loadNewNotes();
     }
 
