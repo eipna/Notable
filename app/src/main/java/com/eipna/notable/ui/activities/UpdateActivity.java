@@ -16,7 +16,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eipna.notable.R;
-import com.eipna.notable.Database;
+import com.eipna.notable.LocalDatabase;
 import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
@@ -28,7 +28,7 @@ import java.util.Objects;
 public class UpdateActivity extends AppCompatActivity {
 
     private ActivityUpdateBinding binding;
-    private Database database;
+    private LocalDatabase localDatabase;
 
     private NoteModel currentNote;
 
@@ -38,7 +38,7 @@ public class UpdateActivity extends AppCompatActivity {
         binding = ActivityUpdateBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        database = new Database(UpdateActivity.this);
+        localDatabase = new LocalDatabase(UpdateActivity.this);
         currentNote = getIntent().getParcelableExtra("selected_note");
 
         assert currentNote != null;
@@ -184,7 +184,7 @@ public class UpdateActivity extends AppCompatActivity {
         dialogBuilder.setMessage("Are you sure you want to permanently delete this note?");
         dialogBuilder.setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss());
         dialogBuilder.setPositiveButton("Delete", (dialogInterface, i) -> {
-            database.deleteNote(currentNote.getId());
+            localDatabase.deleteNote(currentNote.getId());
             updateNote();
         });
 
@@ -255,7 +255,7 @@ public class UpdateActivity extends AppCompatActivity {
         currentNote.setTitle(updatedNoteTitle);
         currentNote.setContent(updatedNoteContent);
         currentNote.setLastUpdated(DateUtil.getCurrentTime());
-        database.updateNote(currentNote);
+        localDatabase.updateNote(currentNote);
         closeActivity();
     }
 

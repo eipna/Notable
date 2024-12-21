@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.eipna.notable.R;
-import com.eipna.notable.Database;
+import com.eipna.notable.LocalDatabase;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.constants.NoteState;
@@ -37,7 +37,7 @@ import java.util.Objects;
 public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityTrashBinding binding;
-    private Database database;
+    private LocalDatabase localDatabase;
     private ArrayList<NoteModel> deletedNotes;
     private NoteAdapter noteAdapter;
 
@@ -52,9 +52,9 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        database = new Database(this);
+        localDatabase = new LocalDatabase(this);
         deletedNotes = new ArrayList<>();
-        deletedNotes.addAll(database.getNotes(NoteState.DELETED));
+        deletedNotes.addAll(localDatabase.getNotes(NoteState.DELETED));
         deletedNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
@@ -77,7 +77,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     private void loadNewNotes() {
         deletedNotes.clear();
-        deletedNotes.addAll(database.getNotes(NoteState.DELETED));
+        deletedNotes.addAll(localDatabase.getNotes(NoteState.DELETED));
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
         invalidateOptionsMenu();
         noteAdapter.loadNotes(deletedNotes);
@@ -174,7 +174,7 @@ public class TrashActivity extends AppCompatActivity implements NoteListener {
 
     @SuppressLint("NotifyDataSetChanged")
     private void clear() {
-        database.clearNotes(NoteState.DELETED);
+        localDatabase.clearNotes(NoteState.DELETED);
         loadNewNotes();
     }
 

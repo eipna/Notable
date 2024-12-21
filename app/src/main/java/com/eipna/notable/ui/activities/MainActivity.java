@@ -14,7 +14,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.eipna.notable.Database;
+import com.eipna.notable.LocalDatabase;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteSort;
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityMainBinding binding;
-    private Database database;
+    private LocalDatabase localDatabase;
     private ArrayList<NoteModel> activeNotes;
     private NoteAdapter noteAdapter;
 
@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
         setContentView(binding.getRoot());
         setSupportActionBar(binding.toolbar);
 
-        database = new Database(MainActivity.this);
+        localDatabase = new LocalDatabase(MainActivity.this);
         activeNotes = new ArrayList<>();
-        activeNotes.addAll(database.getNotes(NoteState.ACTIVE));
+        activeNotes.addAll(localDatabase.getNotes(NoteState.ACTIVE));
         activeNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private void loadNote() {
         activeNotes.clear();
-        activeNotes.addAll(database.getNotes(NoteState.ACTIVE));
+        activeNotes.addAll(localDatabase.getNotes(NoteState.ACTIVE));
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(activeNotes);
     }
