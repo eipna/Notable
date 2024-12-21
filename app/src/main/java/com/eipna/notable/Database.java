@@ -10,11 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.eipna.notable.constants.NoteState;
+import com.eipna.notable.interfaces.NoteRepository;
 import com.eipna.notable.models.NoteModel;
 
 import java.util.ArrayList;
 
-public class Database extends SQLiteOpenHelper {
+public class Database extends SQLiteOpenHelper implements NoteRepository {
 
     // Database credentials
     private static final String DATABASE_NAME = "notable.db";
@@ -53,6 +54,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    @Override
     public void createNote(NoteModel createdNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -67,6 +69,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
+    @Override
     public ArrayList<NoteModel> getNotes() {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<NoteModel> notes = new ArrayList<>();
@@ -92,6 +95,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
+    @Override
     public ArrayList<NoteModel> getNotes(NoteState state) {
         SQLiteDatabase db = getReadableDatabase();
         ArrayList<NoteModel> notes = new ArrayList<>();
@@ -122,6 +126,7 @@ public class Database extends SQLiteOpenHelper {
         return notes;
     }
 
+    @Override
     public void updateNote(NoteModel updatedNote) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -134,12 +139,14 @@ public class Database extends SQLiteOpenHelper {
         db.close();
     }
 
+    @Override
     public void deleteNote(int noteId) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_NOTE, COLUMN_NOTE_ID + " = ?", new String[]{String.valueOf(noteId)});
         db.close();
     }
 
+    @Override
     public void clearNotes(int state) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_NOTE, COLUMN_NOTE_STATE + " = ?", new String[]{String.valueOf(state)});
