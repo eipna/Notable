@@ -92,84 +92,9 @@ public class Database extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Range")
-    public ArrayList<NoteModel> getArchivedNotes() {
+    public ArrayList<NoteModel> getNotes() {
         SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> archivedNotes = new ArrayList<>();
-        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = ?";
-
-        @SuppressLint("Recycle")
-        Cursor cursor = db.rawQuery(readNotesQuery, new String[]{String.valueOf(NoteState.ARCHIVED.getValue())});
-        if (cursor.moveToFirst()) {
-            do {
-                NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
-                retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                archivedNotes.add(retrievedNote);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return archivedNotes;
-    }
-
-    @SuppressLint("Range")
-    public ArrayList<NoteModel> getDeletedNotes() {
-        SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> deletedNotes = new ArrayList<>();
-        String readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = ?";
-
-        @SuppressLint("Recycle")
-        Cursor cursor = db.rawQuery(readNotesQuery, new String[]{String.valueOf(NoteState.DELETED.getValue())});
-        if (cursor.moveToFirst()) {
-            do {
-                NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
-                retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                deletedNotes.add(retrievedNote);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return deletedNotes;
-    }
-
-    @SuppressLint("Range")
-    public ArrayList<NoteModel> getFavoriteNotes() {
-        SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> favoriteNotes = new ArrayList<>();
-        String readFavoriteNotes = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_FAVORITE + " = " + NoteState.FAVORITE_YES.getValue();
-
-        @SuppressLint("Recycle")
-        Cursor cursor = db.rawQuery(readFavoriteNotes, null);
-        if (cursor.moveToFirst()) {
-            do {
-                NoteModel retrievedNote = new NoteModel();
-                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
-                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
-                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
-                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
-                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
-                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
-                retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                favoriteNotes.add(retrievedNote);
-            } while (cursor.moveToNext());
-        }
-        cursor.close();
-        return favoriteNotes;
-    }
-
-    @SuppressLint("Range")
-    public ArrayList<NoteModel> getAllNotes() {
-        SQLiteDatabase db = getReadableDatabase();
-        ArrayList<NoteModel> allNotes = new ArrayList<>();
+        ArrayList<NoteModel> notes = new ArrayList<>();
         String readAllNotesQuery = "SELECT * FROM " + TABLE_NOTE;
 
         @SuppressLint("Recycle")
@@ -184,11 +109,42 @@ public class Database extends SQLiteOpenHelper {
                 retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
                 retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
                 retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
-                allNotes.add(retrievedNote);
+                notes.add(retrievedNote);
             } while (cursor.moveToNext());
         }
         cursor.close();
-        return allNotes;
+        return notes;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<NoteModel> getNotes(NoteState state) {
+        SQLiteDatabase db = getReadableDatabase();
+        ArrayList<NoteModel> notes = new ArrayList<>();
+
+        String readNotesQuery;
+        if (state.equals(NoteState.FAVORITE_YES)) {
+            readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_FAVORITE + " = " + NoteState.FAVORITE_YES;
+        } else {
+            readNotesQuery = "SELECT * FROM " + TABLE_NOTE + " WHERE " + COLUMN_NOTE_STATE + " = " + state.getValue();
+        }
+
+        @SuppressLint("Recycle")
+        Cursor cursor = db.rawQuery(readNotesQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                NoteModel retrievedNote = new NoteModel();
+                retrievedNote.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_ID)));
+                retrievedNote.setTitle(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_TITLE)));
+                retrievedNote.setContent(cursor.getString(cursor.getColumnIndex(COLUMN_NOTE_CONTENT)));
+                retrievedNote.setDateCreated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_DATE_CREATED)));
+                retrievedNote.setLastUpdated(cursor.getLong(cursor.getColumnIndex(COLUMN_NOTE_LAST_UPDATED)));
+                retrievedNote.setState(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_STATE)));
+                retrievedNote.setIsFavorite(cursor.getInt(cursor.getColumnIndex(COLUMN_NOTE_FAVORITE)));
+                notes.add(retrievedNote);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return notes;
     }
 
     public void updateNote(NoteModel updatedNote) {

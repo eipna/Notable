@@ -17,6 +17,7 @@ import com.eipna.notable.Database;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteSort;
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityFavoriteBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -44,7 +45,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
 
         database = new Database(this);
         favoriteNotes = new ArrayList<>();
-        favoriteNotes.addAll(database.getFavoriteNotes());
+        favoriteNotes.addAll(database.getNotes(NoteState.FAVORITE_YES));
         favoriteNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
@@ -102,7 +103,7 @@ public class FavoriteActivity extends AppCompatActivity implements NoteAdapter.L
 
     private void loadNewNotes() {
         favoriteNotes.clear();
-        favoriteNotes.addAll(database.getFavoriteNotes());
+        favoriteNotes.addAll(database.getNotes(NoteState.FAVORITE_YES));
         binding.emptyIndicator.setVisibility(favoriteNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(favoriteNotes);
     }

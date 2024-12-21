@@ -53,7 +53,7 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
 
         database = new Database(this);
         deletedNotes = new ArrayList<>();
-        deletedNotes.addAll(database.getDeletedNotes());
+        deletedNotes.addAll(database.getNotes(NoteState.DELETED));
         deletedNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
@@ -76,7 +76,7 @@ public class TrashActivity extends AppCompatActivity implements NoteAdapter.List
 
     private void loadNewNotes() {
         deletedNotes.clear();
-        deletedNotes.addAll(database.getDeletedNotes());
+        deletedNotes.addAll(database.getNotes(NoteState.DELETED));
         binding.emptyIndicator.setVisibility(deletedNotes.isEmpty() ? View.VISIBLE : View.GONE);
         invalidateOptionsMenu();
         noteAdapter.loadNotes(deletedNotes);

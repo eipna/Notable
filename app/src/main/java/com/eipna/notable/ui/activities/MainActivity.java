@@ -18,6 +18,7 @@ import com.eipna.notable.Database;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteSort;
+import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.databinding.ActivityMainBinding;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
 
         database = new Database(MainActivity.this);
         activeNotes = new ArrayList<>();
-        activeNotes.addAll(database.getActiveNotes());
+        activeNotes.addAll(database.getNotes(NoteState.ACTIVE));
         activeNotes.sort(NoteSort.getComparator(this));
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
 
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
 
     private void loadNote() {
         activeNotes.clear();
-        activeNotes.addAll(database.getActiveNotes());
+        activeNotes.addAll(database.getNotes(NoteState.ACTIVE));
         binding.emptyIndicator.setVisibility(activeNotes.isEmpty() ? View.VISIBLE : View.GONE);
         noteAdapter.loadNotes(activeNotes);
     }
