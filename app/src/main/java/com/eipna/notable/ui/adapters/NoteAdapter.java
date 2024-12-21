@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.eipna.notable.R;
 import com.eipna.notable.constants.DateTimePattern;
 import com.eipna.notable.constants.NoteSort;
+import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.utils.DateUtil;
 import com.eipna.notable.utils.SharedPrefsUtil;
@@ -27,9 +28,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
     private ArrayList<NoteModel> notes;
     private final Context context;
-    private final NoteAdapter.Listener listener;
+    private final NoteListener listener;
 
-    public NoteAdapter(Context context, NoteAdapter.Listener listener, ArrayList<NoteModel> notes) {
+    public NoteAdapter(Context context, NoteListener listener, ArrayList<NoteModel> notes) {
         this.context = context;
         this.notes = notes;
         this.listener = listener;
@@ -65,7 +66,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.itemView.setOnClickListener(view -> {
             if (listener != null) {
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.OnItemClick(position);
+                    listener.onNoteClick(position);
                 }
             }
         });
@@ -74,7 +75,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
         holder.itemView.setOnLongClickListener(view -> {
             if (listener != null) {
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.OnItemLongClick(position);
+                    listener.onNoteLongClick(position);
                 }
             }
             return true;
@@ -132,10 +133,5 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
             lastUpdatedTextView.setText(prettyTime.format(new Date(note.getLastUpdated())));
             dateCreatedTextView.setText(DateUtil.getDateString(DateTimePattern.fromValue(prefsNoteDateFormat), note.getDateCreated()));
         }
-    }
-
-    public interface Listener {
-        void OnItemClick(int adapterPos);
-        void OnItemLongClick(int adapterPos);
     }
 }

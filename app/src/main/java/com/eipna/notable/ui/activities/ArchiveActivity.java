@@ -18,6 +18,7 @@ import com.eipna.notable.R;
 import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.constants.NoteState;
+import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.databinding.ActivityArchiveBinding;
 import com.eipna.notable.ui.adapters.NoteAdapter;
@@ -25,7 +26,7 @@ import com.eipna.notable.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
-public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Listener {
+public class ArchiveActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityArchiveBinding binding;
     private Database database;
@@ -115,15 +116,15 @@ public class ArchiveActivity extends AppCompatActivity implements NoteAdapter.Li
     }
 
     @Override
-    public void OnItemClick(int adapterPos) {
-        NoteModel selectedNote = archivedNotes.get(adapterPos);
+    public void onNoteClick(int position) {
+        NoteModel selectedNote = archivedNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 
     @Override
-    public void OnItemLongClick(int adapterPos) {
+    public void onNoteLongClick(int position) {
 
     }
 }

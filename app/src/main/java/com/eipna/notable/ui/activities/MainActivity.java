@@ -20,13 +20,14 @@ import com.eipna.notable.constants.NoteList;
 import com.eipna.notable.constants.NoteSort;
 import com.eipna.notable.constants.NoteState;
 import com.eipna.notable.databinding.ActivityMainBinding;
+import com.eipna.notable.interfaces.NoteListener;
 import com.eipna.notable.models.NoteModel;
 import com.eipna.notable.ui.adapters.NoteAdapter;
 import com.eipna.notable.utils.SharedPrefsUtil;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements NoteAdapter.Listener {
+public class MainActivity extends AppCompatActivity implements NoteListener {
 
     private ActivityMainBinding binding;
     private Database database;
@@ -183,15 +184,15 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.Liste
     }
 
     @Override
-    public void OnItemClick(int adapterPos) {
-        NoteModel selectedNote = activeNotes.get(adapterPos);
+    public void onNoteClick(int position) {
+        NoteModel selectedNote = activeNotes.get(position);
         Intent updateNoteIntent = new Intent(this, UpdateActivity.class);
         updateNoteIntent.putExtra("selected_note", selectedNote);
         updateNoteLauncher.launch(updateNoteIntent);
     }
 
     @Override
-    public void OnItemLongClick(int adapterPos) {
+    public void onNoteLongClick(int position) {
 
     }
 }
