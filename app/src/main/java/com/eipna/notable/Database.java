@@ -147,9 +147,9 @@ public class Database extends SQLiteOpenHelper implements NoteRepository {
     }
 
     @Override
-    public void clearNotes(int state) {
+    public void clearNotes(NoteState state) {
         SQLiteDatabase db = getWritableDatabase();
-        db.delete(TABLE_NOTE, COLUMN_NOTE_STATE + " = ?", new String[]{String.valueOf(state)});
+        db.delete(TABLE_NOTE, COLUMN_NOTE_STATE + " = ?", new String[]{String.valueOf(state.getValue())});
         db.close();
     }
 }

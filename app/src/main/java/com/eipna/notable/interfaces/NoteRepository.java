@@ -11,5 +11,5 @@ public interface NoteRepository {
     ArrayList<NoteModel> getNotes(NoteState state); // Retrieves notes by state
     void updateNote(NoteModel updatedNote); // Updates a note
     void deleteNote(int noteId); // Deletes a note by a note Id
-    void clearNotes(int state); // Clears notes by state
+    void clearNotes(NoteState state); // Clears notes by state
 }
